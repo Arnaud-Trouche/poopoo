@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Eau : Case
+    public interface iStrategieCarte
     {
+        bool creerCarte(int tailleCarte);
     }
 }

@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface StrategieCarte
+    public interface iJoueur
     {
-        bool creerCarte(int tailleCarte);
     }
 }

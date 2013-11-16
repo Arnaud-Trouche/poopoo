@@ -1,156 +1,156 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
-  <Interface Name="Modelisation.Case" Collapsed="true">
+  <Class Name="Modelisation.Coord">
+    <Position X="0.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAGAAAAAAAAAAAAAABgAGAAAAA=</HashCode>
+      <FileName>Coord.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Modelisation.iCase" Collapsed="true">
     <Position X="10.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Case.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Desert" Collapsed="true">
+  <Interface Name="Modelisation.iDesert" Collapsed="true">
     <Position X="6.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Désert.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Eau" Collapsed="true">
+  <Interface Name="Modelisation.iEau" Collapsed="true">
     <Position X="8.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Eau.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Foret" Collapsed="true">
+  <Interface Name="Modelisation.iForet" Collapsed="true">
     <Position X="10.25" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Foret.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Montagne" Collapsed="true">
+  <Interface Name="Modelisation.iMontagne" Collapsed="true">
     <Position X="12" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Montagne.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Plaine" Collapsed="true">
+  <Interface Name="Modelisation.iPlaine" Collapsed="true">
     <Position X="13.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Plaine.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.FabriqueCases">
-    <Position X="7.5" Y="2.25" Width="1.5" />
+  <Interface Name="Modelisation.iFabriqueCases" Collapsed="true">
+    <Position X="6.25" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FabriqueCarte.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Peuple">
+  <Interface Name="Modelisation.iPeuple" Collapsed="true">
     <Position X="5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Peuple.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.PeupleGaulois">
+  <Interface Name="Modelisation.iPeupleGaulois">
     <Position X="3.25" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Gaulois.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.PeupleNain">
+  <Interface Name="Modelisation.iPeupleNain" Collapsed="true">
     <Position X="5" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Nain.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.PeupleViking">
+  <Interface Name="Modelisation.iPeupleViking">
     <Position X="6.75" Y="8" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Viking.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Unite">
-    <Position X="0.5" Y="7.75" Width="1.5" />
+  <Interface Name="Modelisation.iUnite">
+    <Position X="0.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAAAA=</HashCode>
       <FileName>Unite.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.FabriquePeuple">
+  <Interface Name="Modelisation.iFabriquePeuple" Collapsed="true">
     <Position X="2.75" Y="6" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FabriquePeuple.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.StrategieCarte">
+  <Interface Name="Modelisation.iStrategieCarte" Collapsed="true">
     <Position X="2.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>TailleCarte.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.CarteDemo">
+  <Interface Name="Modelisation.iCarteDemo">
     <Position X="0.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CarteDemo.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.CartePetite">
+  <Interface Name="Modelisation.iCartePetite" Collapsed="true">
     <Position X="2.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CartePetite.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.CarteNormale">
+  <Interface Name="Modelisation.iCarteNormale" Collapsed="true">
     <Position X="4.5" Y="4" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CarteNormale.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Carte">
+  <Interface Name="Modelisation.iCarte">
     <Position X="0.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Carte.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.MonteurPartie">
+  <Interface Name="Modelisation.iMonteurPartie" Collapsed="true">
     <Position X="9.75" Y="5.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAEAAAAAAA=</HashCode>
       <FileName>Monteur.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.FabriqueJeu">
-    <Position X="11.75" Y="5.75" Width="2.75" />
-    <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>FabriqueJeu.cs</FileName>
-    </TypeIdentifier>
-  </Interface>
-  <Interface Name="Modelisation.Joueur">
+  <Interface Name="Modelisation.iJoueur">
     <Position X="0.5" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Joueur.cs</FileName>
     </TypeIdentifier>
   </Interface>
-  <Interface Name="Modelisation.Jeu">
-    <Position X="9.75" Y="8" Width="1.5" />
+  <Interface Name="Modelisation.iJeu">
+    <Position X="9.5" Y="7.75" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
       <FileName>Jeu.cs</FileName>
     </TypeIdentifier>
   </Interface>

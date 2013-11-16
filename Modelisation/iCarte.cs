@@ -5,7 +5,11 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Foret : Case
+    public interface Cases
+    {
+    }
+
+    public interface iCarte
     {
     }
 }

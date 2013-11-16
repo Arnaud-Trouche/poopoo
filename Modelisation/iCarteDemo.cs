@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Joueur
+    public interface iCarteDemo : iStrategieCarte
     {
     }
 }

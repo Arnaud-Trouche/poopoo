@@ -5,12 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface MonteurPartie
+    public interface iCase
     {
-        bool initialiser();
-
-        bool sauvegarder();
-
-        bool restaurer();
     }
 }

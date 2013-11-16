@@ -5,7 +5,12 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface PeupleGaulois : Peuple
+    public interface iMonteurPartie
     {
+        bool initialiser();
+
+        bool sauvegarder();
+
+        bool restaurer();
     }
 }

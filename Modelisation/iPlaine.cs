@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface FabriquePeuple
+    public interface iPlaine : iCase
     {
-
     }
 }

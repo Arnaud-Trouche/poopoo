@@ -5,11 +5,9 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Cases
+    public interface iFabriquePeuple
     {
-    }
 
-    public interface Carte
-    {
+        iPeuple creerPeuple(int nbUnites);
     }
 }

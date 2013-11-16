@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface CartePetite : StrategieCarte
+    public interface iForet : iCase
     {
     }
 }

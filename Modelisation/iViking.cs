@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Peuple
+    public interface iPeupleViking : iPeuple
     {
-        Unite creerUnite();
+        iUnite creerUnite();
     }
 }

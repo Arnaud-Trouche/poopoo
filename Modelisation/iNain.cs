@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Jeu
+    public interface iPeupleNain : iPeuple
     {
+        iUnite creerUnite();
     }
 }

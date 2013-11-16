@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface FabriqueJeu
+    public interface iPeuple
     {
-        Joueur creerJoueur(string nom, string peuple);
-
-        Carte creerCarte(int taille);
+        iUnite creerUnite();
     }
 }

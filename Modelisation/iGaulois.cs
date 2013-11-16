@@ -5,10 +5,8 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Unite
+    public interface iPeupleGaulois : iPeuple
     {
-        void attaquer();
-
-        void deplacer();
+        iUnite creerUnite();
     }
 }

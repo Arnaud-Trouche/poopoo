@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface Plaine : Case
+    public interface iCarteNormale : iStrategieCarte
     {
     }
 }

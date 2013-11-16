@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface CarteNormale : StrategieCarte
+    public interface FabriqueJeu
     {
+        iJoueur creerJoueur(string nom, string peuple);
+
+        iCarte creerCarte(int taille);
     }
 }

@@ -5,8 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface FabriqueCases
+    public interface iDesert : iCase
     {
-        bool creerCases(int nombreCases);
     }
 }

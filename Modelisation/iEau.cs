@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface PeupleNain : Peuple
+    public interface iEau : iCase
     {
     }
 }
