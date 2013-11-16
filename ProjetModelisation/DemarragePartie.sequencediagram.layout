@@ -124,10 +124,10 @@
         <umlExecutionSpecificationShapeMoniker Id="46529b0e-5d5f-417a-93f1-13dff796d29f" />
       </nodes>
     </returnMessageConnector>
-    <combinedFragmentShape Id="a8f2f88c-7e30-4ad0-9de6-944a9228a01a" absoluteBounds="3.4865391599996318, 2.864583333333333, 2.4224483446032643, 1.4199999995529646" visible="true" visualStyleMode="Modified">
+    <combinedFragmentShape Id="a8f2f88c-7e30-4ad0-9de6-944a9228a01a" absoluteBounds="3.4865391599996318, 2.864583333333333, 2.3724483326823353, 1.4199999995529646" visible="true" visualStyleMode="Modified">
       <combinedFragmentMoniker Id="b4638d35-13f4-4bfc-b572-93fbec729322" LastKnownName="CombinedFragment1" />
       <nestedChildShapes>
-        <interactionOperandShape Id="ac5d6304-362e-4d38-b8c9-43f0c6d6f720" absoluteBounds="3.506539159552597, 3.114583333333333, 2.3774483456090922, 1.1499999999999995">
+        <interactionOperandShape Id="ac5d6304-362e-4d38-b8c9-43f0c6d6f720" absoluteBounds="3.506539159552597, 3.114583333333333, 2.3274483336881637, 1.1499999999999995">
           <interactionOperandMoniker Id="12dc8b24-da95-4f47-afd0-fde5a35c460a" LastKnownName="InteractionOperand1" />
         </interactionOperandShape>
       </nestedChildShapes>
@@ -235,10 +235,10 @@
         <umlExecutionSpecificationShapeMoniker Id="59758404-7416-48d7-9cde-3bce033bd0b5" />
       </nodes>
     </returnMessageConnector>
-    <combinedFragmentShape Id="8f2bf527-75d9-4f7d-964c-60c5c7d0971c" absoluteBounds="6.2362495545422041, 7.90624975837768, 2.4394793088796254, 1.4199999995529673" visible="true" visualStyleMode="Modified">
+    <combinedFragmentShape Id="8f2bf527-75d9-4f7d-964c-60c5c7d0971c" absoluteBounds="6.2362495545422041, 7.90624975837768, 2.3894792969586964, 1.4199999995529673" visible="true" visualStyleMode="Modified">
       <combinedFragmentMoniker Id="6195d8aa-4276-4492-a58e-3875b7b9b128" LastKnownName="CombinedFragment2" />
       <nestedChildShapes>
-        <interactionOperandShape Id="4ce910b2-abb4-4364-98c9-e997b1bab89f" absoluteBounds="6.2562495540951693, 8.15624975837768, 2.3944793098854547, 1.1500000000000021">
+        <interactionOperandShape Id="4ce910b2-abb4-4364-98c9-e997b1bab89f" absoluteBounds="6.2562495540951693, 8.15624975837768, 2.3444792979645248, 1.1500000000000021">
           <interactionOperandMoniker Id="62ae73c3-bb27-4a4a-b379-f89480101540" LastKnownName="InteractionOperand1" />
         </interactionOperandShape>
       </nestedChildShapes>
@@ -247,14 +247,14 @@
       <commentMoniker Id="ae4f2976-352b-42b0-8eb0-f579ce5cc8df" />
       <relativeChildShapes />
     </commentShape>
-    <commentConnector edgePoints="[(7.5 : 6.625); (6.90624955409517 : 6.72031225966291)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+    <commentConnector edgePoints="[(7.5 : 6.625); (6.90624955409517 : 6.72031225966291)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
       <relativeChildShapes />
       <nodes>
         <commentShapeMoniker Id="299b498b-1322-4a85-9182-9246b642853d" />
         <umlExecutionSpecificationShapeMoniker Id="09318c04-5a01-4571-bb1d-c14ce331f88f" />
       </nodes>
     </commentConnector>
-    <commentConnector edgePoints="[(7.5 : 6.625); (6.90624955409517 : 7.60624975837768)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+    <commentConnector edgePoints="[(7.5 : 6.625); (6.90624955409517 : 7.60624975837768)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
       <relativeChildShapes />
       <nodes>
         <commentShapeMoniker Id="299b498b-1322-4a85-9182-9246b642853d" />
@@ -265,7 +265,7 @@
       <commentMoniker Id="13df8213-7447-4ae2-9543-3090cd01721e" />
       <relativeChildShapes />
     </commentShape>
-    <commentConnector edgePoints="[(7.875 : 7.5); (6.90624955409516 : 7.60624975837768)]" fixedFrom="NotFixed" fixedTo="NotFixed" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+    <commentConnector edgePoints="[(7.875 : 7.5); (6.90624955409516 : 7.60624975837768)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
       <relativeChildShapes />
       <nodes>
         <commentShapeMoniker Id="6f0f16f1-a149-4b7d-b6ae-3f162b58cf83" />
@@ -294,5 +294,26 @@
         <umlExecutionSpecificationShapeMoniker Id="e431fc9c-4f82-45dd-94c9-6045f822d4bd" />
       </nodes>
     </asyncMessageConnector>
+    <commentShape Id="48ac5f41-84ea-443d-a036-da3c4afeb150" absoluteBounds="5, 4.875, 1.125, 0.625" customColor="251, 247, 200">
+      <commentMoniker Id="62b67f32-d6c4-41d3-98d8-d3e843ac7557" />
+      <relativeChildShapes />
+    </commentShape>
+    <commentConnector edgePoints="[(5 : 5.17337281835819); (4.01547960367975 : 4.5845833328863)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <moveableDecoratorHostShapes>
+        <moveableDecoratorHostShape manuallySized="true" absoluteBounds="4.6677398018398755, 4.7860353648053842, 0.125, 0.1341145783662796" shapeFieldName="Stereotype" />
+      </moveableDecoratorHostShapes>
+      <nodes>
+        <commentShapeMoniker Id="48ac5f41-84ea-443d-a036-da3c4afeb150" />
+        <umlExecutionSpecificationShapeMoniker Id="46529b0e-5d5f-417a-93f1-13dff796d29f" />
+      </nodes>
+    </commentConnector>
+    <commentConnector edgePoints="[(5 : 5.1875); (4.1565391595526 : 6.0309608404474)]" fixedFrom="Caller" fixedTo="Caller" TargetRelationshipDomainClassId="217d6bd0-42ed-4e7f-ad2b-af3ef5142428" customColor="Black">
+      <relativeChildShapes />
+      <nodes>
+        <commentShapeMoniker Id="48ac5f41-84ea-443d-a036-da3c4afeb150" />
+        <umlExecutionSpecificationShapeMoniker Id="14824e8a-9e9f-4cb2-bc87-679b8e6b3e7e" />
+      </nodes>
+    </commentConnector>
   </nestedChildShapes>
 </sequenceDesignerDiagram>

@@ -36,6 +36,13 @@
       <SubType>Content</SubType>
       <DependentUpon>DeroulementPartie.usecasediagram</DependentUpon>
     </Content>
+    <Content Include="etattransition.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="etattransition.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>etattransition.activitydiagram</DependentUpon>
+    </Content>
     <Content Include="InteractionsMenu.usecasediagram">
       <SubType>Content</SubType>
     </Content>
