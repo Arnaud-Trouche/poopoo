@@ -36,12 +36,12 @@
       <SubType>Content</SubType>
       <DependentUpon>DeroulementPartie.usecasediagram</DependentUpon>
     </Content>
-    <Content Include="etattransition.activitydiagram">
+    <Content Include="TourEtatTransition.activitydiagram">
       <SubType>Content</SubType>
     </Content>
-    <Content Include="etattransition.activitydiagram.layout">
+    <Content Include="TourEtatTransition.activitydiagram.layout">
       <SubType>Content</SubType>
-      <DependentUpon>etattransition.activitydiagram</DependentUpon>
+      <DependentUpon>TourEtatTransition.activitydiagram</DependentUpon>
     </Content>
     <Content Include="InteractionsMenu.usecasediagram">
       <SubType>Content</SubType>
@@ -49,6 +49,13 @@
     <Content Include="InteractionsMenu.usecasediagram.layout">
       <SubType>Content</SubType>
       <DependentUpon>InteractionsMenu.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="Tour.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="Tour.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>Tour.sequencediagram</DependentUpon>
     </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\ProjetModelisation.uml">
