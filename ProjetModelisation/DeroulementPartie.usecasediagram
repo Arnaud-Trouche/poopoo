@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="26875a95-f5d5-4b04-9946-b4c29593e24e" name="DeroulementPartie" linkedPackageId="4eb61957-5681-4359-9846-ba09fe888b90" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="37961740-51c0-4c0b-8fdd-64cbb7456f85" name="Joueur" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="319da4e2-7216-4c29-a43f-cb5bdd72f1c5" />
+        <targetEnds>
+          <association Id="6e5d791d-1b02-49f8-9d33-f98d0492e054" isDerived="false" sourceEndRoleName="Joueur 1" targetEndRoleName="Finir le tour" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="0cc107e0-5c66-4c0c-bd6f-6e2cb64bb942" LastKnownName="Finir le tour" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c8032bf4-8055-43c8-bce1-a27361e37d72" name="Joueur 1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="44a95a49-3fd0-4b3c-8841-3421833ebb95" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="c8d03163-ea46-478b-bb4c-b17b84cbdb6b" name="Finir le tour" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="29ddc2a9-016f-475d-bfa0-06545844c1c8" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="06e169eb-118a-4242-b547-23ae3de12d19" />
+          </association>
+          <association Id="09e2a88b-1f12-4b6e-b426-0ab3a9f1eaaf" isDerived="false" sourceEndRoleName="Joueur 1" targetEndRoleName="Lancer attaque unité" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="4d30384c-5333-4bc6-85ac-6de8d16e88c3" LastKnownName="Lancer attaque unité" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="3050efed-45b1-4e48-b450-8ac4c3bcdb22" name="Joueur 1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="4d5e2d1b-ce43-4e25-b9b8-401870c81c51" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="334ce462-06fc-449b-ae2e-347bcefec39b" name="Lancer attaque unité" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="5e1a17de-2637-4c73-8771-3b232c9d14ab" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="0e8586d1-2dda-4217-bf35-fa9e62967476" />
+          </association>
+          <association Id="b48afb7c-3d09-48ef-b6d2-f912bb8e4376" isDerived="false" sourceEndRoleName="Joueur 1" targetEndRoleName="Déplacer unité" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="b0cfeac7-308f-4cf9-9d97-f4522a48a94d" LastKnownName="Déplacer unité" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="4b771f11-c318-479e-8c68-bd3e6bbd283b" name="Joueur 1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="5093bb16-be7a-4f05-8d02-cd0d536020fc" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="e21e4462-9cba-48bc-9131-ed018bd47a8d" name="Déplacer unité" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="f7c4d015-b689-443a-a360-2d3f8ae71537" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="3e504ecd-dd10-4613-8c60-4eead2116f86" />
+          </association>
+          <association Id="3439847b-ca64-4e54-8884-6b51cb11b840" isDerived="false" sourceEndRoleName="Joueur 1" targetEndRoleName="Passer le tour de l'unité" isLeaf="false" isAbstract="false">
+            <useCaseMoniker Id="98424f46-5b5f-46f8-b99f-b0aa6a3239c0" LastKnownName="Passer le tour de l'unité" />
+            <relationshipOwnedElementsInternal>
+              <associationHasOwnedEnds>
+                <memberEnd Id="5e579ce7-29de-4c5b-8a87-64e8648263ff" name="Joueur 1" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                  <elementDefinition Id="d2411bfa-7bba-4ecc-acb0-7585e9a4c7f9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+              <associationHasOwnedEnds>
+                <memberEnd Id="311ca2ef-40d9-4d62-ab29-f83732fa4c54" name="Passer le tour de l'unité" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                  <elementDefinition Id="16fa98e2-0735-4b34-a3f4-c7b42e9072f9" />
+                </memberEnd>
+              </associationHasOwnedEnds>
+            </relationshipOwnedElementsInternal>
+            <elementDefinition Id="2f5783e8-9167-4047-a173-d55410c64f8f" />
+          </association>
+        </targetEnds>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0cc107e0-5c66-4c0c-bd6f-6e2cb64bb942" name="Finir le tour" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="9f745618-36aa-45b6-860c-bfe038fcfbb4" />
+        <subjects>
+          <subsystemMoniker Id="63aa5026-5256-40dd-b6f3-d0d71c4f27b3" LastKnownName="Déroulement d'un tour" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b0cfeac7-308f-4cf9-9d97-f4522a48a94d" name="Déplacer unité" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8c56f939-4105-437a-9e7f-4933c5a45981" />
+        <suppliersInternal>
+          <dependency Id="77e53c7c-a89d-4440-8390-0ca9c4435d4f">
+            <useCaseMoniker Id="4d30384c-5333-4bc6-85ac-6de8d16e88c3" LastKnownName="Lancer attaque unité" />
+            <elementDefinition Id="f27b162b-0dd6-48e9-8d0c-0908b9079f18" />
+          </dependency>
+        </suppliersInternal>
+        <subjects>
+          <subsystemMoniker Id="63aa5026-5256-40dd-b6f3-d0d71c4f27b3" LastKnownName="Déroulement d'un tour" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="98424f46-5b5f-46f8-b99f-b0aa6a3239c0" name="Passer le tour de l'unité" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="e67c6335-af6f-4d66-bde2-8d4ae03ba2b2" />
+        <subjects>
+          <subsystemMoniker Id="63aa5026-5256-40dd-b6f3-d0d71c4f27b3" LastKnownName="Déroulement d'un tour" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="4d30384c-5333-4bc6-85ac-6de8d16e88c3" name="Lancer attaque unité" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="38dd6a27-db2d-40d7-bc3c-33d37a453571" />
+        <subjects>
+          <subsystemMoniker Id="63aa5026-5256-40dd-b6f3-d0d71c4f27b3" LastKnownName="Déroulement d'un tour" />
+        </subjects>
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <subsystem Id="63aa5026-5256-40dd-b6f3-d0d71c4f27b3" name="Déroulement d'un tour" isAbstract="false" isLeaf="false" isActiveClass="false">
+        <elementDefinition Id="c30c376d-4a60-4e64-ae37-b469e95bc4e8" />
+      </subsystem>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="4eb61957-5681-4359-9846-ba09fe888b90" name="ProjetModelisation">
+    <elementDefinition Id="0085f54f-46aa-47d0-9f52-21116cf9185d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="32212475-ed9c-4b16-b543-5ed1cb5d9634">
+        <profileInstance Id="8d2d34ae-934b-4a0c-bb56-5f0b76a123b1" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="389e93af-743f-4087-a547-48877b6f9eba">
+        <profileInstance Id="26a5df6a-1df4-41ea-9a2c-52fc50f59821" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
+  </package>
+</useCaseModelRoot>
