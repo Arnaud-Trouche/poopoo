@@ -57,13 +57,6 @@
       <SubType>Content</SubType>
       <DependentUpon>InteractionsMenu.usecasediagram</DependentUpon>
     </Content>
-    <Content Include="Tour.sequencediagram">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Tour.sequencediagram.layout">
-      <SubType>Content</SubType>
-      <DependentUpon>Tour.sequencediagram</DependentUpon>
-    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\ProjetModelisation.uml">
       <SubType>Content</SubType>

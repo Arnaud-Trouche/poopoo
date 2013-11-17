@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="26875a95-f5d5-4b04-9946-b4c29593e24e" name="DeroulementPartie" linkedPackageId="4eb61957-5681-4359-9846-ba09fe888b90" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" dslVersion="1.0.0.0" Id="26875a95-f5d5-4b04-9946-b4c29593e24e" name="DeroulementPartie" linkedPackageId="4eb61957-5681-4359-9846-ba09fe888b90" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <ownedCommentsInternal>
+    <comment Id="0981a946-4257-4fe1-a3c4-6ebb57d4d22f">
+      <elementDefinition Id="08e7ead5-3264-40dd-a4b5-a231238e746d" />
+      <body>Si unité adverse présente sur une case adjacente </body>
+      <annotatedElements>
+        <useCaseMoniker Id="4d30384c-5333-4bc6-85ac-6de8d16e88c3" LastKnownName="Lancer attaque unité" />
+      </annotatedElements>
+    </comment>
+  </ownedCommentsInternal>
   <packagedElements>
     <useCaseModelRootHasTypes>
       <actor Id="37961740-51c0-4c0b-8fdd-64cbb7456f85" name="Joueur" isAbstract="false" isLeaf="false">
@@ -83,12 +92,6 @@
     <useCaseModelRootHasTypes>
       <useCase Id="b0cfeac7-308f-4cf9-9d97-f4522a48a94d" name="Déplacer unité" isAbstract="false" isLeaf="false">
         <elementDefinition Id="8c56f939-4105-437a-9e7f-4933c5a45981" />
-        <suppliersInternal>
-          <dependency Id="77e53c7c-a89d-4440-8390-0ca9c4435d4f">
-            <useCaseMoniker Id="4d30384c-5333-4bc6-85ac-6de8d16e88c3" LastKnownName="Lancer attaque unité" />
-            <elementDefinition Id="f27b162b-0dd6-48e9-8d0c-0908b9079f18" />
-          </dependency>
-        </suppliersInternal>
         <subjects>
           <subsystemMoniker Id="63aa5026-5256-40dd-b6f3-d0d71c4f27b3" LastKnownName="Déroulement d'un tour" />
         </subjects>
