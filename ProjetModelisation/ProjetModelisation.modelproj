@@ -29,6 +29,13 @@
       <SubType>Content</SubType>
       <DependentUpon>DemarragePartie.sequencediagram</DependentUpon>
     </Content>
+    <Content Include="deplacementUnite.sequencediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="deplacementUnite.sequencediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>deplacementUnite.sequencediagram</DependentUpon>
+    </Content>
     <Content Include="DeroulementPartie.usecasediagram">
       <SubType>Content</SubType>
     </Content>
