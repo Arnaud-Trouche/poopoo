@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface iFabriqueCases
+    public interface iFabriqueCase
     {
-        bool creerCases(int nombreCases);
+        void obtenirCase(Coord c);
     }
 }

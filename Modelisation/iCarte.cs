@@ -11,5 +11,12 @@ namespace Modelisation
 
     public interface iCarte
     {
+        void creerCarte();
+
+        void definirTaille(int taille);
+
+        int getNbTours();
+
+        int getNbUnites();
     }
 }

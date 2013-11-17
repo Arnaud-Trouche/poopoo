@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface iMontagne : iCase
+    public class Case
     {
     }
 }

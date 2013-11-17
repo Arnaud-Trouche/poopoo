@@ -8,6 +8,6 @@ namespace Modelisation
     public interface iFabriquePeuple
     {
 
-        iPeuple creerPeuple(int nbUnites);
+        Modelisation.Peuple creerPeuple(int nbUnites);
     }
 }

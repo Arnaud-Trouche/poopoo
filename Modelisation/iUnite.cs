@@ -9,8 +9,6 @@ namespace Modelisation
     {
         void attaquer(Coord caseAttaquee);
 
-        void deplacer(Coord caser);
-
-        void passerTour();
+        void deplacer(Coord caseDeplacement);
     }
 }

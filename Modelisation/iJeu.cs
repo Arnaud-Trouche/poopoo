@@ -7,6 +7,6 @@ namespace Modelisation
 {
     public interface iJeu
     {
-        void lancerJeu(iCarte c, iJoueur j1, iJoueur j2);
+        void lancerJeu(Modelisation.Carte c, Modelisation.Joueur j1, Modelisation.Joueur j2);
     }
 }

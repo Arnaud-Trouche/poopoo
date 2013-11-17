@@ -7,6 +7,6 @@ namespace Modelisation
 {
     public interface iPeupleNain : iPeuple
     {
-        iUnite creerUnite();
+        Modelisation.Unite creerUnite();
     }
 }

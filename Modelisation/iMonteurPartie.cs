@@ -5,7 +5,12 @@ using System.Text;
 
 namespace Modelisation
 {
-    public interface iCartePetite : iStrategieCarte
+    public interface iMonteurPartie
     {
+        bool initialiser();
+
+        bool restaurer();
+
+        bool sauvegarder();
     }
 }
