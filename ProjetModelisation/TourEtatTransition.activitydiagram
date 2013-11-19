@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="7bb571aa-0dc1-42e2-b7d2-5d36630cb612" name="etattransition" linkedPackageId="a836fc12-0096-4ab1-bd74-6420af9c3b85" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="78c471bd-f3e5-449f-ac6c-919e0efa8e45">
-      <profileInstance Id="6182024d-3866-4a6b-84cd-f78e7ebd8cec" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="fbdbcfd7-c0c3-46cf-94a0-40ccd09df7a1">
-      <profileInstance Id="92e21f71-acc2-4578-9bc4-e6b6fb340bfc" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm4="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm5="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="7bb571aa-0dc1-42e2-b7d2-5d36630cb612" name="etattransition" linkedPackageId="a836fc12-0096-4ab1-bd74-6420af9c3b85" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
   <packagedElements>
     <activityRootModelHasActivity>
       <activity Id="03122b5c-2476-45f1-803d-9cc6bc8b68a6" name="etattransition" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
@@ -104,5 +90,19 @@
   </packagedElements>
   <package Id="a836fc12-0096-4ab1-bd74-6420af9c3b85" name="ProjetModelisation">
     <elementDefinition Id="0085f54f-46aa-47d0-9f52-21116cf9185d" />
+    <profileInstances>
+      <packageHasProfileInstances Id="78c471bd-f3e5-449f-ac6c-919e0efa8e45">
+        <profileInstance Id="6182024d-3866-4a6b-84cd-f78e7ebd8cec" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="fbdbcfd7-c0c3-46cf-94a0-40ccd09df7a1">
+        <profileInstance Id="92e21f71-acc2-4578-9bc4-e6b6fb340bfc" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </activityRootModel>
