@@ -1,4 +1,0 @@
-C:\Users\Samuel\Documents\GitHub\poopoo\Modelisation\bin\Debug\Modelisation.dll
-C:\Users\Samuel\Documents\GitHub\poopoo\Modelisation\bin\Debug\Modelisation.pdb
-C:\Users\Samuel\Documents\GitHub\poopoo\Modelisation\obj\Debug\Modelisation.dll
-C:\Users\Samuel\Documents\GitHub\poopoo\Modelisation\obj\Debug\Modelisation.pdb

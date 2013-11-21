@@ -7,8 +7,8 @@
     <ProjectGuid>{C497677F-029B-4DF6-8073-F0977C8D652D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Modelisation</RootNamespace>
-    <AssemblyName>Modelisation</AssemblyName>
+    <RootNamespace>Code</RootNamespace>
+    <AssemblyName>Code</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
