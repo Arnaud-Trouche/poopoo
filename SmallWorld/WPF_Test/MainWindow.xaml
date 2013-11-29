@@ -1,8 +1,39 @@
 ﻿<Window x:Class="WPF_Test.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <Label Name="Labello" Content="Label" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Height="300"/>
-    </Grid>
+        Title="MainWindow" Height="450" Width="525">
+    <DockPanel>
+        <Grid  DockPanel.Dock="Bottom" Background="AliceBlue" >
+            <DockPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Peuple 1" ></Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="  Nb points :" ></Label>
+                        <Label Content="0" ></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="  Nb unités restantes :" ></Label>
+                        <Label Content="0" ></Label>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Vertical">
+                    <Label Content="Peuple 2" ></Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="  Nb points :" ></Label>
+                        <Label Content="0" ></Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="  Nb unités restantes :" ></Label>
+                        <Label Content="0" ></Label>
+                    </StackPanel>
+                </StackPanel>
+                <!-- Définition du bouton "fin de tour" et association à l'évt Click : => appel à la méthode "Button_Click" -->
+                <Button HorizontalAlignment="Right" Content="Finir Tour"/> <!--="Button_Click"--> 
+            </DockPanel>
+            
+        </Grid>
+        <Grid Name="mapGrid" Background="SeaShell">
+            
+        </Grid>
+    </DockPanel>
 </Window>
