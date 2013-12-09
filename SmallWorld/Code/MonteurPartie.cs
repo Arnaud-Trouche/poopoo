@@ -8,6 +8,10 @@ namespace Modelisation
     public class MonteurPartie : iMonteurPartie
     {
 
+        // ATTENTION !!
+        // penser à transmettre le tableau de case à FabriqueCase
+        // AVANT de faire des appels à obtenirCase
+
         public Carte Carte
         {
             get

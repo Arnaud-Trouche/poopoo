@@ -9,7 +9,7 @@ namespace Modelisation
     {
         public FabriquePeuple INSTANCE;
     
-        public void creerPeuple(int nbUnites)
+        public Peuple creerPeuple(int nbUnites)
         {
             throw new System.NotImplementedException();
         }

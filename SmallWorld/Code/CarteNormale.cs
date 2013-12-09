@@ -5,35 +5,18 @@ using System.Text;
 
 namespace Modelisation
 {
-    public class CarteNormale : iStrategieCarte
+    public class CarteNormale : StrategieCarte
     {
         private int nbHauteurCases;
         private int nbTours;
         private int nbUnites;
 
-        public void CreerCarte(ref Case[] listeCasesARemplir)
+        public CarteNormale()
         {
-            throw new System.NotImplementedException();
+            nbUnites = 8;
+            nbTours = 30;
+            nbHauteurCases = 15;
         }
-
-        public int getHauteurCases()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public int getNbTours()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void getNbUnites()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool creerCarte(int tailleCarte)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

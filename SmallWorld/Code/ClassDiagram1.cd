@@ -1,16 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="Modelisation.Coord">
-    <Position X="16" Y="2.5" Width="1.5" />
+    <Position X="16" Y="3" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAACAAAAAAAAGAAAAAAAAAAAAAABgAGAAAAA=</HashCode>
+      <HashCode>AAgAAAAAAACAAAAAAAAGAAAAAAAAAAAAAABgAGIAAAA=</HashCode>
       <FileName>Coord.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Modelisation.Unite">
     <Position X="0.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gAAAAoAAAQAAAAAAAAAAIAAAAACAAAAAgAAAAEAAAAA=</HashCode>
+      <HashCode>gAAAAoAAAAAAAAAAAAAAIAAAAACAAAAAgAAAAEAAAAA=</HashCode>
       <FileName>Unite.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -20,7 +20,9 @@
     <AssociationLine Name="Carte" Type="Modelisation.Carte" ManuallyRouted="true">
       <Path>
         <Point X="12.75" Y="7.119" />
-        <Point X="13.5" Y="7.119" />
+        <Point X="13.125" Y="7.119" />
+        <Point X="13.125" Y="7.251" />
+        <Point X="13.5" Y="7.251" />
       </Path>
     </AssociationLine>
     <AssociationLine Name="Joueur" Type="Modelisation.Joueur" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
@@ -46,7 +48,9 @@
     <AssociationLine Name="Carte" Type="Modelisation.Carte" ManuallyRouted="true" FixedToPoint="true">
       <Path>
         <Point X="12.75" Y="8.938" />
-        <Point X="13.5" Y="8.938" />
+        <Point X="13.125" Y="8.938" />
+        <Point X="13.125" Y="9.457" />
+        <Point X="13.5" Y="9.457" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -62,7 +66,7 @@
   <Class Name="Modelisation.Carte">
     <Position X="13.5" Y="6.5" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAARAAAAAAAABIAAIAAkAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <HashCode>AAAARCAAAAAAABIAAIAAkAAAAAAAAAAIAAAAAAAAACA=</HashCode>
       <FileName>Carte.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -70,18 +74,17 @@
   <Class Name="Modelisation.StrategieCarte">
     <Position X="9.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <HashCode>AAAABAAAAAAAAIIAAAAAgAAAAgAAAAAAAEAAAAAAACA=</HashCode>
       <FileName>StrategieCarte.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.CarteDemo">
-    <Position X="9.75" Y="2.5" Width="1.5" />
+    <Position X="9.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAIIAAAAAgAAAAgAAAAAAAEAAAAAAACA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>CarteDemo.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.FabriquePeuple">
     <Position X="3.25" Y="6.75" Width="1.5" />
@@ -97,7 +100,7 @@
       <Path>
         <Point X="2.75" Y="9.552" />
         <Point X="1.75" Y="9.552" />
-        <Point X="1.75" Y="8.151" />
+        <Point X="1.75" Y="7.766" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -116,7 +119,7 @@
         <Point X="5.75" Y="10.103" />
         <Point X="5.75" Y="10.527" />
         <Point X="1.188" Y="10.527" />
-        <Point X="1.188" Y="8.151" />
+        <Point X="1.188" Y="7.766" />
       </Path>
       <MemberNameLabel ManuallyPlaced="true" ManuallySized="true">
         <Position X="-0.18" Y="0.493" Height="0.182" Width="0.716" />
@@ -138,7 +141,7 @@
         <Point X="7.938" Y="10.103" />
         <Point X="7.938" Y="10.91" />
         <Point X="0.688" Y="10.91" />
-        <Point X="0.688" Y="8.151" />
+        <Point X="0.688" Y="7.766" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
@@ -151,13 +154,12 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.CartePetite">
-    <Position X="11.75" Y="2.5" Width="1.5" />
+    <Position X="11.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAIIAAAAAgAAAAgAAAAAAAEAAAAAAACA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>CartePetite.cs</FileName>
       <NewMemberFileName>CarteDemo.cs</NewMemberFileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.Joueur">
     <Position X="9" Y="6.25" Width="1.5" />
@@ -177,119 +179,71 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.CarteNormale">
-    <Position X="13.75" Y="2.5" Width="1.5" />
+    <Position X="13.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAIIAAAAAgAAAAgAAAAAAAEAAAAAAACQ=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAEAAAAAAAAA=</HashCode>
       <FileName>CarteNormale.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.FabriqueCase">
     <Position X="1.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAgAAABAIAAAAAAAAAAAAAAQQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>FabriqueCase.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.Desert">
-    <Position X="0.5" Y="2.75" Width="1.5" />
-    <AssociationLine Name="Unite" Type="Modelisation.Unite" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="1.25" Y="4.238" />
-        <Point X="1.25" Y="4.613" />
-        <Point X="1.875" Y="4.613" />
-        <Point X="1.875" Y="5.25" />
-      </Path>
-      <MemberNameLabel ManuallyPlaced="true">
-        <Position X="0.11" Y="-0.009" />
-      </MemberNameLabel>
-    </AssociationLine>
+    <Position X="0.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEIABAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Desert.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Unite" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.Eau" BaseTypeListCollapsed="true">
-    <Position X="2.25" Y="2.75" Width="1.5" />
-    <AssociationLine Name="Unite1" Type="Modelisation.Unite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="3" Y="4.238" />
-        <Point X="3" Y="5.438" />
-        <Point X="2" Y="5.438" />
-      </Path>
-    </AssociationLine>
+    <Position X="2.25" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEIABAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Eau.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Unite1" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.Foret" BaseTypeListCollapsed="true">
-    <Position X="4" Y="2.75" Width="1.5" />
-    <AssociationLine Name="Unite1" Type="Modelisation.Unite" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="4.75" Y="4.238" />
-        <Point X="4.75" Y="5.625" />
-        <Point X="2" Y="5.625" />
-      </Path>
-    </AssociationLine>
+    <Position X="4" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEIABAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Foret.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Unite1" />
-    </ShowAsAssociation>
     <Lollipop Position="0.214" />
   </Class>
   <Class Name="Modelisation.Plaine" BaseTypeListCollapsed="true">
-    <Position X="7.5" Y="2.75" Width="1.5" />
-    <AssociationLine Name="Unite1" Type="Modelisation.Unite" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="8.25" Y="4.238" />
-        <Point X="8.25" Y="6.25" />
-        <Point X="2" Y="6.25" />
-      </Path>
-    </AssociationLine>
+    <Position X="7.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEIABAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Plaine.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Unite1" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Modelisation.Montagne" BaseTypeListCollapsed="true">
-    <Position X="5.75" Y="2.75" Width="1.5" />
-    <AssociationLine Name="Unite1" Type="Modelisation.Unite" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="6.5" Y="4.238" />
-        <Point X="6.5" Y="5.875" />
-        <Point X="2" Y="5.875" />
-      </Path>
-    </AssociationLine>
+    <Position X="5.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEIABAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Montagne.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Property Name="Unite1" />
-    </ShowAsAssociation>
     <Lollipop Position="0.2" />
   </Class>
-  <Interface Name="Modelisation.iCase">
-    <Position X="4" Y="0.5" Width="1.5" />
+  <Class Name="Code.Constants">
+    <Position X="16" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAEIAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAQAAAAAAAAAAAAQQAAAAAAQAAUAAAAgAEAAAA=</HashCode>
+      <FileName>Constants.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Modelisation.iCase">
+    <Position X="5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAAAAAABAAgAAAAAAAAAAAAAAA=</HashCode>
       <FileName>iCase.cs</FileName>
     </TypeIdentifier>
   </Interface>
@@ -324,8 +278,8 @@
   <Interface Name="Modelisation.iStrategieCarte">
     <Position X="11.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAACA=</HashCode>
-      <FileName>iTailleCarte.cs</FileName>
+      <HashCode>AAAABAAAAAAAAIAAAAAAgAAAAAAAAAAAAAAAAAAAACA=</HashCode>
+      <FileName>iStrategieCarte.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Modelisation.iCarte">

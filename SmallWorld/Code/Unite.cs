@@ -11,8 +11,8 @@ namespace Modelisation
         private int pointDefense;
         private int pointAttaque;
         private Coord position;
-        private Modelisation.Peuple* pere;
-        private Case* caseActuelle;
+        /*private Peuple* pere;
+        private Case* caseActuelle;*/
         private int pointDeDeplacement;
     
         public void attaquer(Coord caseAttaquee)

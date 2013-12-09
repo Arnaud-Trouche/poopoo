@@ -7,28 +7,19 @@ namespace Modelisation
 {
     public class Desert : iCase
     {
-        public Unite Unite
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
+            
         public int getPtDeplacement(Peuple p)
         {
-            throw new NotImplementedException();
+            //Pas d'exception tous les peuples ont les mêmes points de déplacement
+            return 1;
         }
 
-        public bool deplacementPossible(Peuple p, Unite u)
+        bool deplacementPossible(Peuple p, Coord init, Coord nouvelle)
         {
             throw new NotImplementedException();
         }
 
-        public void partir(Unite u)
+        int getPtScore(Peuple u)
         {
             throw new NotImplementedException();
         }

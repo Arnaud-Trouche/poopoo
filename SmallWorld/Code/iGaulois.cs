@@ -7,6 +7,6 @@ namespace Modelisation
 {
     public interface iPeupleGaulois : iPeuple
     {
-        Modelisation.Unite creerUnite();
+        
     }
 }

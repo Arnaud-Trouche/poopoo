@@ -7,29 +7,18 @@ namespace Modelisation
 {
     public class Foret : iCase
     {
-
-        public Unite Unite1
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
     
         public int getPtDeplacement(Peuple p)
         {
             throw new NotImplementedException();
         }
 
-        public bool deplacementPossible(Peuple p, Unite u)
+        bool deplacementPossible(Peuple p, Coord init, Coord nouvelle)
         {
             throw new NotImplementedException();
         }
 
-        public void partir(Unite u)
+        int getPtScore(Peuple u)
         {
             throw new NotImplementedException();
         }

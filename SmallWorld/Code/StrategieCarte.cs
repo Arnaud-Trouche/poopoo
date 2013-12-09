@@ -5,27 +5,39 @@ using System.Text;
 
 namespace Modelisation
 {
-    public class StrategieCarte : iStrategieCarte
+    public abstract class StrategieCarte : iStrategieCarte
     {
+        private int nbUnites;
+        private int nbTours;
+        private int nbHauteurCases;
 
-        public void creerCarte(ref Cases[] cases)
+        public int getNbTours()
         {
-            throw new System.NotImplementedException();
+            return nbTours;
         }
 
         public int getNbUnites()
         {
-            throw new System.NotImplementedException();
+            return nbUnites;
         }
 
-        public int getNbTours()
+        public int getHauteurCases()
         {
-            throw new System.NotImplementedException();
+            return nbHauteurCases;
         }
 
-        public bool creerCarte(int tailleCarte)
+        public void creerCarte()
         {
-            throw new NotImplementedException();
+            //On appelle la Fabrique le bon nombre de fois pour initialiser les bonnes cases à la bonne valeur
+            Coord c;
+            for (int i = 0; i < nbHauteurCases; i++)
+            {
+                for (int j = 0; i < nbHauteurCases; i++)
+                {
+                    c = new Coord(i, j);
+                    FabriqueCase.INSTANCE.obtenirCase(c);
+                }
+            }
         }
     }
 }

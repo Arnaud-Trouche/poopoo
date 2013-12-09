@@ -6,35 +6,18 @@ using System.Text;
 namespace Modelisation
 {
 
-    public class CartePetite : iStrategieCarte
+    public class CartePetite : StrategieCarte
     {
         private int nbUnites;
         private int nbTours;
         private int nbHauteurCases;
 
-        public int getNbTours()
+        public CartePetite()
         {
-            throw new System.NotImplementedException();
+            nbUnites = 6;
+            nbTours = 20;
+            nbHauteurCases = 10;
         }
 
-        public int getNbUnites()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public int getHauteurCases()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void creerCarte(ref Case[] listeCasesARemplir)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool creerCarte(int tailleCarte)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -7,29 +7,55 @@ namespace Modelisation
 {
     public class Carte : iCarte
     {
-        private Object strategie;
-        private Case[] listeCases;
+        private iStrategieCarte strategie;
+        private iCase[] listeCases;
         private int nbTour;
         private int nbUnites;
-    
+        private static int TAILLE;
+
+        public Carte()
+        {
+        }
+
         public void creerCarte()
         {
-            throw new System.NotImplementedException();
+            strategie.creerCarte();
         }
 
         public void definirTaille(int taille)
         {
-            throw new System.NotImplementedException();
+            Modelisation.Carte.TAILLE = taille;
+            switch (taille)
+            {
+                case Code.Constants.DEMO:
+                    strategie = new CarteDemo();
+                    break;
+
+                case Code.Constants.PETITE:
+                    strategie = new CartePetite();
+                    break;
+
+                case Code.Constants.NORMALE:
+                    strategie = new CarteNormale();
+                    break;
+            }
+            this.nbTour = strategie.getNbTours();
+            this.nbUnites = strategie.getNbUnites();
         }
 
         public int getNbUnites()
         {
-            throw new System.NotImplementedException();
+            return nbUnites;
         }
 
         public int getNbTours()
         {
-            throw new System.NotImplementedException();
+            return nbTour;
+        }
+
+        public static int getTaille()
+        {
+            return TAILLE;
         }
     }
 }

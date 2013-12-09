@@ -9,8 +9,8 @@ namespace Modelisation
     {
         int getPtDeplacement(Peuple p);
 
-        bool deplacementPossible(Peuple p, Unite u);
+        bool deplacementPossible(Peuple p, Coord init, Coord nouvelle);
 
-        void partir(Unite u);
+        int getPtScore(Peuple u);
     }
 }

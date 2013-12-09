@@ -41,12 +41,12 @@ namespace Modelisation
             throw new System.NotImplementedException();
         }
 
-        public void setScore(string score)
+        public void setScore(int score)
         {
             throw new System.NotImplementedException();
         }
 
-        public void setPeuple(Peuple peuple)
+        public void setPeuple(string peuple)
         {
             throw new System.NotImplementedException();
         }
