@@ -3,52 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public class Joueur : iJoueur
     {
         private int nom;
         private int score;
+        private iPeuple peuple;
 
         public iPeuple iPeuple
         {
             get
             {
-                throw new System.NotImplementedException();
+                return peuple;
             }
-            set
+        }
+
+        public int Score
+        {
+            get
             {
+                return score;
             }
         }
 
-        public String getNom()
+        public int Nom
         {
-            throw new System.NotImplementedException();
+            get
+            {
+                return nom;
+            }
         }
 
-        public int getScore()
+        public void augmenterScore(int delta)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public Peuple getPeuple()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void setNom(string nom)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void setScore(int score)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void setPeuple(string peuple)
-        {
-            throw new System.NotImplementedException();
+            this.score += delta;
         }
     }
 }

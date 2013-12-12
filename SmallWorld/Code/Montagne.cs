@@ -3,22 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public class Montagne : iCase
     {
-    
-        public int getPtDeplacement(Peuple p)
+        int getPtScore(int peuple)
         {
-            throw new NotImplementedException();
+            if (peuple == Constants.GAULOIS)
+            {
+                return 0;
+            }
+            else {
+                return 1;
+            }
         }
 
-        bool deplacementPossible(Peuple p, Coord init, Coord nouvelle)
-        {
-            throw new NotImplementedException();
-        }
-
-        int getPtScore(Peuple u)
+        bool deplacementPossible(int peuple, Coord init, Coord nouvelle)
         {
             throw new NotImplementedException();
         }

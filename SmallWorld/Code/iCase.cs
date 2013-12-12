@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public interface iCase
     {
-        int getPtDeplacement(Peuple p);
+        int getPtScore(int peuple, Coord coordCase);
+        bool deplacementPossible(int peuple, Coord init, Coord nouvelle);
 
-        bool deplacementPossible(Peuple p, Coord init, Coord nouvelle);
-
-        int getPtScore(Peuple u);
     }
 }

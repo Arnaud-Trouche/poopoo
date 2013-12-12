@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public class Coord
     {
@@ -106,9 +106,19 @@ namespace Modelisation
         /// <summary>
         /// surcharge de ==
         /// </summary>
-        public bool equal(Coord c1, Coord c2)
+        /// 
+        public static bool operator ==(Coord c1, Coord c2)
         {
             return (c1.x == c2.x) && (c1.y == c2.y);
+        }
+
+        /// <summary>
+        /// surcharge de !=
+        /// </summary>
+        /// 
+        public static bool operator !=(Coord c1, Coord c2)
+        {
+            return (c1.x != c2.x) || (c1.y != c2.y);
         }
 
     }

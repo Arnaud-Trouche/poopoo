@@ -16,5 +16,9 @@ namespace Code
         public static const int DEMO = 5;
         public static const int PETITE = 10;
         public static const int NORMALE = 15;
+
+        public static const int NAIN = 0;
+        public static const int VIKING = 1;
+        public static const int GAULOIS = 2;
     }
 }

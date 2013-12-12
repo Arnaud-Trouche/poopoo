@@ -3,24 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public class PeupleGaulois : iPeuple
     {
-        public Unite Unite
+        private int nbUnites;
+        private List<Unite> unites;
+
+        public PeupleGaulois(int nbUnites, Coord pos)
         {
-            get
+            this.nbUnites = nbUnites;
+            unites = new List<Unite>(nbUnites);
+
+            for (int i = 0; i < nbUnites; i++)
             {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
+                unites.Add(new Unite(pos, Constants.GAULOIS));
             }
         }
-    
-        public Unite creerUnite()
+
+        public Unite getUnite(Coord coordonnee)
         {
-            throw new NotImplementedException();
+            Unite result = unites.Find(
+            delegate(Unite uni)
+            {
+                return uni.Position == coordonnee;
+            }
+            );
+            //si pas trouvé, null est envoyé
+            return result;
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public class Carte : iCarte
     {
@@ -24,7 +24,7 @@ namespace Modelisation
 
         public void definirTaille(int taille)
         {
-            Modelisation.Carte.TAILLE = taille;
+            Carte.TAILLE = taille;
             switch (taille)
             {
                 case Code.Constants.DEMO:

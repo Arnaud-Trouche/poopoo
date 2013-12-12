@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public interface iJeu
     {
-        void lancerJeu(Modelisation.Carte c, Modelisation.Joueur j1, Modelisation.Joueur j2);
+        void lancerJeu(Carte c, Joueur j1, Joueur j2);
     }
 }

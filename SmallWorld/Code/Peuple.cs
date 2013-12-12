@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public class Peuple : iPeuple
     {
-        public Modelisation.Unite creerUnite()
+        public Unite creerUnite()
         {
             throw new NotImplementedException();
         }

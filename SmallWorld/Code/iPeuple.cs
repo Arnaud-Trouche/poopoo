@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public interface iPeuple
     {
-    
-        Modelisation.Unite creerUnite();
+        public iPeuple(int nbUnites, Coord pos);
+
+        public Unite getUnite(Coord coordonnee);
     }
 }

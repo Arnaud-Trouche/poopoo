@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Modelisation
+namespace Code
 {
     public class Desert : iCase
     {
-            
-        public int getPtDeplacement(Peuple p)
+
+        int getPtScore(int peuple)
         {
-            //Pas d'exception tous les peuples ont les mêmes points de déplacement
-            return 1;
+            if (peuple == Constants.VIKING)
+            {
+                return 0;
+            }
+            else
+            {
+                return 1;
+            }
         }
 
-        bool deplacementPossible(Peuple p, Coord init, Coord nouvelle)
-        {
-            throw new NotImplementedException();
-        }
-
-        int getPtScore(Peuple u)
+        bool deplacementPossible(int peuple, Coord init, Coord nouvelle)
         {
             throw new NotImplementedException();
         }
