@@ -26,6 +26,7 @@ namespace WPF_Test
         WrapperAlgo wrap;
         int taille;
         String s;
+
         unsafe public MainWindow()
         {
             taille = 10;
@@ -73,6 +74,11 @@ namespace WPF_Test
             }
             labello.Content = s;
              * */
+        }
+
+        public void changePage(String adresse){
+            // Navigate to URI using the Source property 
+            this.FramePrincipal.Source = new Uri(adresse, UriKind.Relative);  
         }
     }
 }

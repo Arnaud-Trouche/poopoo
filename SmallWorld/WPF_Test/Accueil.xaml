@@ -1,0 +1,39 @@
+﻿<Page x:Class="WPF_Test.Accueil"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300"
+	Title="Accueil">
+
+    <StackPanel HorizontalAlignment="Left" >
+        <Label Content="SmallWorld" FontSize="40" Margin="45,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        
+        <Grid ShowGridLines="False" Margin="20,10,20,10" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Nouvelle_Partie_Click">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Right">Nouvelle</TextBlock>
+                    <TextBlock HorizontalAlignment="Right">Partie</TextBlock>
+                </StackPanel>
+            </Button>
+
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" >
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Right">Restaurer</TextBlock>
+                    <TextBlock HorizontalAlignment="Right">Partie</TextBlock>
+                </StackPanel>
+            </Button>
+        </Grid>
+    </StackPanel>
+</Page>
+
+

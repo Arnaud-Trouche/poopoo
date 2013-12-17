@@ -1,39 +1,9 @@
 ﻿<Window x:Class="WPF_Test.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="450" Width="525">
-    <DockPanel>
-        <Grid  DockPanel.Dock="Bottom" Background="AliceBlue" >
-            <DockPanel>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Peuple 1" ></Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="  Nb points :" ></Label>
-                        <Label Content="0" ></Label>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="  Nb unités restantes :" ></Label>
-                        <Label Content="0" ></Label>
-                    </StackPanel>
-                </StackPanel>
-                <StackPanel Orientation="Vertical">
-                    <Label Content="Peuple 2" ></Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="  Nb points :" ></Label>
-                        <Label Content="0" ></Label>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="  Nb unités restantes :" ></Label>
-                        <Label Content="0" ></Label>
-                    </StackPanel>
-                </StackPanel>
-                <!-- Définition du bouton "fin de tour" et association à l'évt Click : => appel à la méthode "Button_Click" -->
-                <Button HorizontalAlignment="Right" Content="Finir Tour"/> <!--="Button_Click"--> 
-            </DockPanel>
-            
-        </Grid>
-        <Grid Name="mapGrid" Background="SeaShell">
-            
-        </Grid>
-    </DockPanel>
+        Title="SmallWorld" Height="350" Width="350" MinWidth="350" WindowStartupLocation="CenterScreen" Background="WhiteSmoke" >
+
+    <Frame Name="FramePrincipal" Source="Accueil.xaml" NavigationUIVisibility="Hidden">
+
+    </Frame>
 </Window>
