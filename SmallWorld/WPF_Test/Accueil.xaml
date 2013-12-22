@@ -8,7 +8,7 @@
 	Title="Accueil">
 
     <StackPanel HorizontalAlignment="Left" >
-        <Label Content="SmallWorld" FontSize="40" Margin="45,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <Label Content="SmallWorld" FontSize="40" Margin="55,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         
         <Grid ShowGridLines="False" Margin="20,10,20,10" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
@@ -26,7 +26,7 @@
                 </StackPanel>
             </Button>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" >
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" Click="Restaurer_Partie_Click">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Restaurer</TextBlock>
                     <TextBlock HorizontalAlignment="Right">Partie</TextBlock>

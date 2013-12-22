@@ -23,12 +23,20 @@ namespace WPF_Test
     /// </summary>
     public partial class MainWindow : Window
     {
+        Stack<string> history;
+        string pageActuelle;
+
         WrapperAlgo wrap;
         int taille;
         String s;
 
         unsafe public MainWindow()
         {
+
+            //Initialisation de l'historique
+            history = new Stack<string>();
+            pageActuelle = "accueil.xaml";
+
             taille = 10;
             s = "";
             InitializeComponent();
@@ -76,9 +84,19 @@ namespace WPF_Test
              * */
         }
 
-        public void changePage(String adresse){
-            // Navigate to URI using the Source property 
-            this.FramePrincipal.Source = new Uri(adresse, UriKind.Relative);  
+        public void changePage(String adresse){ 
+            //Enregistrer la page actuelle dans la pile
+            history.Push(pageActuelle);
+
+            // Navigate to URI using the Source property
+            pageActuelle = adresse;
+            this.FramePrincipal.Source = new Uri(adresse, UriKind.Relative);
+        }
+
+        public void goBack()
+        {
+            pageActuelle = history.Peek();
+            this.FramePrincipal.Source = new Uri(history.Pop(), UriKind.Relative);          
         }
     }
 }

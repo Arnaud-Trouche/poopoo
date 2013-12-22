@@ -3,11 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	Title="Difficulté" Width="470">
+	Title="Difficulté" Width="460">
 
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <Image Name="Back_Haut" Source="ress/back.png"  Width="30" Height="30" Margin="10,7,0,0"/>
+            <Button Style="{DynamicResource FlecheBack}" Click="Back_Top_Click" ></Button>
+            
             <Label Content="Choix de la difficulté" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </StackPanel>
         <Grid ShowGridLines="False" Margin="20,10,20,10" HorizontalAlignment="Left">
@@ -20,7 +21,7 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" >
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Demo_Click" >
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Démo</TextBlock>
                     <TextBlock HorizontalAlignment="Right">5x5</TextBlock>
@@ -28,7 +29,7 @@
                 </StackPanel>
             </Button>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" >
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" Click="Petite_Click">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Petite</TextBlock>
                     <TextBlock HorizontalAlignment="Right">10x10</TextBlock>
@@ -36,7 +37,7 @@
                 </StackPanel>
             </Button>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0" >
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0" Click="Normale_Click">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Normale</TextBlock>
                     <TextBlock HorizontalAlignment="Right">15x15</TextBlock>

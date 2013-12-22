@@ -76,6 +76,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Choix_Peuple.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Difficulte.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -90,6 +94,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Choix_Peuple.xaml.cs">
+      <DependentUpon>Choix_Peuple.xaml</DependentUpon>
     </Compile>
     <Compile Include="Difficulte.xaml.cs">
       <DependentUpon>Difficulte.xaml</DependentUpon>
@@ -158,6 +165,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ress\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ress\back_h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="ress\next.png" />
+    <Resource Include="ress\next_h.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
