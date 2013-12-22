@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="460"
+      d:DesignHeight="540" d:DesignWidth="460"
 	Title="Choix_Peuple">
 
     <StackPanel>
@@ -13,9 +13,9 @@
 
             <Label Content="Choix des Peuples" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
             <Label Content="Joueur 1 :" FontSize="25"  Margin="20,0,0,0"/>
-            <TextBox Margin="5,7,5,5" Width="250" TextBlock.FontSize="20"/>
+            <TextBox Name="NameJoueur1" Margin="5,7,5,5" Width="250" TextBlock.FontSize="20"/>
         </StackPanel>
         <Grid ShowGridLines="False" Margin="20,0,20,10" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
@@ -27,27 +27,27 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" >
+            <RadioButton Style="{DynamicResource RadioButtonStyle}" GroupName="Peuple1" Name="G1" Checked="P1_Checked" Grid.Column="0" Grid.Row="0" >
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Gaulois</TextBlock>
                 </StackPanel>
-            </Button>
+            </RadioButton>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0">
+            <RadioButton Style="{DynamicResource RadioButtonStyle}" GroupName="Peuple1" Name="N1" Checked="P1_Checked" Grid.Column="1" Grid.Row="0">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Nains</TextBlock>
                 </StackPanel>
-            </Button>
+            </RadioButton>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0">
+            <RadioButton Style="{DynamicResource RadioButtonStyle}" GroupName="Peuple1" Name="V1" Checked="P1_Checked" Grid.Column="2" Grid.Row="0">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Vikings</TextBlock>
                 </StackPanel>
-            </Button>
+            </RadioButton>
         </Grid>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Margin="0,25,0,0">
             <Label Content="Joueur 2 :" FontSize="25"  Margin="20,0,0,0"/>
-            <TextBox Margin="5,7,5,5" Width="250" TextBlock.FontSize="20" />
+            <TextBox Name="NameJoueur2" Margin="5,7,5,5" Width="250" TextBlock.FontSize="20" />
         </StackPanel>
         <Grid ShowGridLines="False" Margin="20,0,20,10" HorizontalAlignment="Left">
             <Grid.ColumnDefinitions>
@@ -59,24 +59,27 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" >
+            <RadioButton Style="{DynamicResource RadioButtonStyle}" GroupName="Peuple2" Name="G2" Checked="P2_Checked"  Grid.Column="0" Grid.Row="0" >
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Gaulois</TextBlock>
                 </StackPanel>
-            </Button>
+            </RadioButton>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0">
+            <RadioButton Style="{DynamicResource RadioButtonStyle}" GroupName="Peuple2" Name="N2" Checked="P2_Checked"  Grid.Column="1" Grid.Row="0">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Nains</TextBlock>
                 </StackPanel>
-            </Button>
+            </RadioButton>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0">
+            <RadioButton Style="{DynamicResource RadioButtonStyle}" GroupName="Peuple2" Name="V2" Checked="P2_Checked" Grid.Column="2" Grid.Row="0">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Vikings</TextBlock>
                 </StackPanel>
-            </Button>
+            </RadioButton>
         </Grid>
-        <Button Style="{DynamicResource FlecheNext}" ></Button>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Label Name="ErrorMsg" VerticalAlignment="Center" Margin="0,0,15,0" FontSize="17" Foreground="Coral" FontWeight="Bold"/>
+            <Button Style="{DynamicResource FlecheNext}" Click="Next_Click"></Button>
+        </StackPanel>
     </StackPanel>
 </Page>

@@ -21,15 +21,19 @@ namespace WPF_Test
     public partial class Accueil : Page
     {
         public Accueil()
-        {
+        {            
             InitializeComponent();
-
         }
 
         private void Nouvelle_Partie_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow parent = (MainWindow)Application.Current.MainWindow;
-            parent.FramePrincipal.Source = new Uri("Difficulte.xaml", UriKind.Relative); 
+            MainWindow parent = (Application.Current.MainWindow as MainWindow);
+            parent.changePage("Difficulte.xaml"); 
+        }
+
+        private void Restaurer_Partie_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO appel aux méthodes pour la restauration de partie
         }
     }
 }
