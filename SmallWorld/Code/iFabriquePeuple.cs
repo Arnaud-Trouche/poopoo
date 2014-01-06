@@ -8,6 +8,6 @@ namespace Code
     public interface iFabriquePeuple
     {
 
-        Peuple creerPeuple(int nbUnites);
+        iPeuple creerPeuple(int peuple, int nbUnites, Coord pos);
     }
 }

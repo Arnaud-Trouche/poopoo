@@ -11,10 +11,20 @@ namespace Code
 
         private Dictionary<Coord, iCase> mapCases;
         private int[] casesInt;
+        private Montagne montagne;
+        private Eau eau;
+        private Desert desert;
+        private Plaine plaine;
+        private Foret foret;
 
-        public FabriqueCase()
+        private FabriqueCase()
         {
             mapCases = new Dictionary<Coord, iCase>();
+            montagne = new Montagne();
+            eau = new Eau();
+            desert = new Desert();
+            plaine = new Plaine();
+            foret = new Foret();
         }
 
         public void setTabCases(ref int[] tab){
@@ -30,26 +40,30 @@ namespace Code
                 switch (type)
                 {
                     case Code.Constants.MONTAGNE:
-                        cas = new Montagne();
+                        cas = montagne;
+                        mapCases.Add(c, montagne);
                         break;
 
                     case Code.Constants.EAU:
-                        cas = new Eau();
+                        cas = eau;
+                        mapCases.Add(c, eau);
                         break;
 
                     case Code.Constants.DESERT:
-                        cas = new Desert();
+                        cas = desert;
+                        mapCases.Add(c, desert);
                         break;
 
                     case Code.Constants.PLAINE:
-                        cas = new Plaine();
+                        cas = plaine;
+                        mapCases.Add(c, plaine);
                         break;
 
                     case Code.Constants.FORET:
-                        cas = new Foret();
+                        cas = foret;
+                        mapCases.Add(c, foret);
                         break;
                 }
-                mapCases.Add(c, cas);
             }
             else {
                 cas = mapCases[c];

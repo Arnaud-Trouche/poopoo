@@ -107,18 +107,10 @@ namespace Code
         /// surcharge de ==
         /// </summary>
         /// 
-        public static bool operator ==(Coord c1, Coord c2)
+        public override bool Equals(Object obj)
         {
-            return (c1.x == c2.x) && (c1.y == c2.y);
-        }
-
-        /// <summary>
-        /// surcharge de !=
-        /// </summary>
-        /// 
-        public static bool operator !=(Coord c1, Coord c2)
-        {
-            return (c1.x != c2.x) || (c1.y != c2.y);
+            Coord c = obj as Coord;
+            return (this.x == c.x) && (this.y == c.y);
         }
 
     }

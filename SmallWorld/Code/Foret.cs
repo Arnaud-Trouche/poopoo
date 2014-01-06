@@ -8,7 +8,7 @@ namespace Code
     public class Foret : iCase
     {
 
-        int getPtScore(int peuple)
+        public int getPtScore(int peuple)
         {
             if (peuple == Constants.NAIN)
             {
@@ -20,7 +20,7 @@ namespace Code
             }
         }
 
-        bool deplacementPossible(int peuple, Coord init, Coord nouvelle)
+        public bool deplacementPossible(int peuple, Coord init, Coord nouvelle)
         {
             throw new NotImplementedException();
         }

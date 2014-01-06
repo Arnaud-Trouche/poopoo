@@ -7,8 +7,6 @@ namespace Code
 {
     public interface iPeuple
     {
-        public iPeuple(int nbUnites, Coord pos);
-
-        public Unite getUnite(Coord coordonnee);
+        Unite getUnite(Coord coordonnee);
     }
 }

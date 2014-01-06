@@ -11,5 +11,10 @@ namespace Code
         {
             throw new NotImplementedException();
         }
+
+        public Unite getUnite(Coord coordonnee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

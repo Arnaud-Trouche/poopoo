@@ -7,6 +7,6 @@ namespace Code
 {
     public interface iFabriqueCase
     {
-        void obtenirCase(Coord c);
+       iCase obtenirCase(Coord c);
     }
 }

@@ -8,6 +8,11 @@
 	Title="Carte">
 
     <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Button Style="{DynamicResource FlecheBack}" Click="Back_Top_Click" ></Button>
+
+            <Label Content="Tour 1 - Joueur 1" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        </StackPanel>
         <Grid  DockPanel.Dock="Bottom" >
             <Label Content="test" />
         </Grid>

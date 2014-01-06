@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Code;
+
 namespace WPF_Test
 {
     /// <summary>
@@ -33,7 +35,7 @@ namespace WPF_Test
 
         private void Demo_Click(object sender, RoutedEventArgs e)
         {
-            //TODO enregistrer la difficulté à Demo
+            MonteurPartie.INSTANCE.Difficulte = Constants.DEMO;
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.changePage("Choix_Peuple.xaml");
         }

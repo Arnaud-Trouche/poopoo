@@ -7,7 +7,7 @@ namespace Code
 {
     public class Montagne : iCase
     {
-        int getPtScore(int peuple)
+        public int getPtScore(int peuple)
         {
             if (peuple == Constants.GAULOIS)
             {
@@ -18,7 +18,7 @@ namespace Code
             }
         }
 
-        bool deplacementPossible(int peuple, Coord init, Coord nouvelle)
+        public bool deplacementPossible(int peuple, Coord init, Coord nouvelle)
         {
             throw new NotImplementedException();
         }

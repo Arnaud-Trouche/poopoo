@@ -72,6 +72,7 @@ namespace WPF_Test
             
             if (!erreur)
             {
+                // TODO transmettre les infos au code, lancer le monteurPartie
                 MainWindow parent = (Application.Current.MainWindow as MainWindow);
                 parent.changePage("Carte.xaml");
             }

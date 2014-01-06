@@ -23,6 +23,15 @@ namespace WPF_Test
         public Carte()
         {
             InitializeComponent();
+            // On efface l'historique des pages pour le bouton de retour
+            (Application.Current.MainWindow as MainWindow).clearHistory();
         }
+
+        private void Back_Top_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow parent = (Application.Current.MainWindow as MainWindow);
+            parent.goBack();
+        }
+
     }
 }

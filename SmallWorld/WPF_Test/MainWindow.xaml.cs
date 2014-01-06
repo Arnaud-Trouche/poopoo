@@ -84,6 +84,10 @@ namespace WPF_Test
              * */
         }
 
+        /// <summary>
+        /// Change la page chargée dans la fenêtre
+        /// </summary>
+        /// <param name="adresse">L'adresse (le nom) de la page à charger dans la fenêtre</param>
         public void changePage(String adresse){ 
             //Enregistrer la page actuelle dans la pile
             history.Push(pageActuelle);
@@ -93,10 +97,22 @@ namespace WPF_Test
             this.FramePrincipal.Source = new Uri(adresse, UriKind.Relative);
         }
 
+        /// <summary>
+        /// Utilisé pour revenir en arrière en utilisant la flèche en haut à gauche de l'écran
+        /// </summary>
         public void goBack()
         {
             pageActuelle = history.Peek();
             this.FramePrincipal.Source = new Uri(history.Pop(), UriKind.Relative);          
+        }
+
+        /// <summary>
+        /// Efface l'historique des pages visitées (mais laisse dans la pile la page d'accueil)
+        /// </summary>
+        public void clearHistory()
+        {
+            history.Clear();
+            history.Push("Accueil.xaml");
         }
     }
 }

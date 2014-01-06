@@ -162,12 +162,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Wrapper\Wrapper.vcxproj">
-      <Project>{4e9db1d4-45c7-4922-bd88-8a8bb57b2852}</Project>
-      <Name>Wrapper</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <SplashScreen Include="ress\splash.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +173,16 @@
   <ItemGroup>
     <Resource Include="ress\next.png" />
     <Resource Include="ress\next_h.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Code\Code.csproj">
+      <Project>{c497677f-029b-4df6-8073-f0977c8d652d}</Project>
+      <Name>Code</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Wrapper\Wrapper.vcxproj">
+      <Project>{4e9db1d4-45c7-4922-bd88-8a8bb57b2852}</Project>
+      <Name>Wrapper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
