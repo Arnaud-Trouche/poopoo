@@ -11,7 +11,7 @@ namespace Code
     
         public iPeuple creerPeuple(int peuple, int nbUnites, Coord pos)
         {
-            if (peuple == null) return null;
+            if (peuple == 0) return null;
             switch (peuple)
             {
                 case Constants.GAULOIS:
