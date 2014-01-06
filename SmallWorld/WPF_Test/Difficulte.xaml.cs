@@ -42,14 +42,14 @@ namespace WPF_Test
 
         private void Petite_Click(object sender, RoutedEventArgs e)
         {
-            //TODO enregistrer la difficulté à Petite
+            MonteurPartie.INSTANCE.Difficulte = Constants.PETITE;
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.changePage("Choix_Peuple.xaml");
         }
 
         private void Normale_Click(object sender, RoutedEventArgs e)
         {
-            //TODO enregistrer la difficulté à Normale
+            MonteurPartie.INSTANCE.Difficulte = Constants.NORMALE;
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.changePage("Choix_Peuple.xaml");
         }

@@ -33,7 +33,23 @@ namespace WPF_Test
 
         private void Restaurer_Partie_Click(object sender, RoutedEventArgs e)
         {
-            //TODO appel aux méthodes pour la restauration de partie
+            // Configure open file dialog box
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Partie"; // Default file name
+            dlg.DefaultExt = ".sw"; // Default file extension
+            dlg.Filter = "Parties SmallWolrd (.sw)|*.sw"; // Filter files by extension
+            dlg.AddExtension = true;
+            dlg.Title = "Retrouver une partie";
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
+            {
+                //TODO faire la restauration !
+                MessageBox.Show("Pas chargé :p");
+            }
         }
     }
 }

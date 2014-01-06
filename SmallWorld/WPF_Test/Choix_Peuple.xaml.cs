@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Code;
+
 namespace WPF_Test
 {
     /// <summary>
@@ -72,7 +74,38 @@ namespace WPF_Test
             
             if (!erreur)
             {
-                // TODO transmettre les infos au code, lancer le monteurPartie
+                MonteurPartie.INSTANCE.J1 = NameJoueur1.Text;
+                MonteurPartie.INSTANCE.J2 = NameJoueur2.Text;
+                switch (peuple1)
+                {
+                    case "N":
+                        MonteurPartie.INSTANCE.P1 = Constants.NAIN;
+                        break;
+
+                    case "V":
+                        MonteurPartie.INSTANCE.P1 = Constants.VIKING;
+                        break;
+
+                    case "G":
+                        MonteurPartie.INSTANCE.P1 = Constants.GAULOIS;
+                        break;
+                }
+                switch (peuple2)
+                {
+                    case "N":
+                        MonteurPartie.INSTANCE.P2 = Constants.NAIN;
+                        break;
+
+                    case "V":
+                        MonteurPartie.INSTANCE.P2 = Constants.VIKING;
+                        break;
+
+                    case "G":
+                        MonteurPartie.INSTANCE.P2 = Constants.GAULOIS;
+                        break;
+                }
+                //On lance le montage de la partie
+                //MonteurPartie.INSTANCE.initialiser();
                 MainWindow parent = (Application.Current.MainWindow as MainWindow);
                 parent.changePage("Carte.xaml");
             }

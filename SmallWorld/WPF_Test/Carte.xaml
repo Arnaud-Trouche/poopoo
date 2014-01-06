@@ -16,8 +16,7 @@
         <Grid  DockPanel.Dock="Bottom" >
             <Label Content="test" />
         </Grid>
-        <Grid Name="mapGrid" Background="Azure">
-           
+        <Grid Name="mapGrid" Background="#EEEEEE" >
         </Grid>
     </DockPanel>
 </Page>

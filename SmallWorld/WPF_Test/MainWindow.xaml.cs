@@ -107,7 +107,7 @@ namespace WPF_Test
         }
 
         /// <summary>
-        /// Efface l'historique des pages visitées (mais laisse dans la pile la page d'accueil)
+        /// Efface l'historique des pages visitées (mais remet dans l'historique le menu)
         /// </summary>
         public void clearHistory()
         {
