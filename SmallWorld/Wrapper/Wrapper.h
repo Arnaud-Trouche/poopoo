@@ -14,7 +14,9 @@ public:
 WrapperAlgo(){ algo = Algo_new(); }
 ~WrapperAlgo(){ Algo_delete(algo); }
 int* creationCarte(int taille) { return algo->creationCarte(taille); }
-int positionnerJoueur(int* carte, int taille, int pos) { return algo->positionnerJoueur(carte, taille, pos); }
+int positionnerJoueurHorsEau(int* carte, int taille, int pos) { return algo->positionnerJoueurHorsEau(carte, taille, pos); }
+int* positionnerJoueurs(int* carte, int taille) { return algo->positionnerJoueurs(carte, taille); }
+
 };
 }
 #endif

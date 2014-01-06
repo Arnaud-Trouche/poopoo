@@ -14,6 +14,7 @@ namespace Code
             if (peuple == 0) return null;
             switch (peuple)
             {
+                 
                 case Constants.GAULOIS:
                     return new PeupleGaulois(nbUnites, pos);
 
