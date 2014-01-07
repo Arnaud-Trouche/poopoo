@@ -110,8 +110,8 @@
     </Style>
     
     <Style x:Key="CaseSelectionnee" TargetType="Rectangle">
-        <Setter Property="Width" Value="50"/>
-        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="48"/>
+        <Setter Property="Height" Value="48"/>
         <Setter Property="Stroke" Value="Black"/>
         <Setter Property="StrokeThickness" Value="1"/>
         <Setter Property="Panel.ZIndex" Value="333"/>
@@ -119,8 +119,8 @@
     </Style>
 
     <Style x:Key="UniteSelectionnee" TargetType="Ellipse">
-        <Setter Property="Width" Value="20"/>
-        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="Height" Value="14"/>
         <Setter Property="Stroke" Value="Black"/>
         <Setter Property="StrokeThickness" Value="1"/>
         <Setter Property="Panel.ZIndex" Value="333"/>

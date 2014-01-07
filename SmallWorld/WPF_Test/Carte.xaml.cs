@@ -45,13 +45,18 @@ namespace WPF_Test
             // on initialise la Grid (mapGrid défini dans le xaml) à partir de la map du modèle (engine)             
             for (int y = 0; y < tailleCarte; y++)
             {
-                mapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50, GridUnitType.Pixel) });
-                uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50, GridUnitType.Pixel) });
+                mapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(48, GridUnitType.Pixel) });
+                //grille des unités 3x plus grande pour permettre d'en mettre plusieurs
+                uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(16, GridUnitType.Pixel) } );
+                uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(16, GridUnitType.Pixel) });
+                uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(16, GridUnitType.Pixel) });
             }
             for (int x = 0; x < tailleCarte; x++)
             {
-                mapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(50, GridUnitType.Pixel) });
-                uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(50, GridUnitType.Pixel) });
+                mapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(48, GridUnitType.Pixel) });
+                uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
+                uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
+                uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
 
                 for (int y = 0; y < tailleCarte; y++)
                 {
@@ -59,12 +64,6 @@ namespace WPF_Test
                     Coord c = new Coord(x, y);
                     var element = creerTuile(c);
                     mapGrid.Children.Add(element);
-                    //// ON AJOUTE UNE STACKPANEL DANS LA GRILLE DES UNITES POUR STOCKER LES UNITES
-                    var stack = new StackPanel();
-                    stack.Orientation = System.Windows.Controls.Orientation.Horizontal;
-                    Grid.SetColumn(stack, y); // oula oula
-                    Grid.SetRow(stack, x);
-                    mapGrid.Children.Add(stack);
                 }
             }
 
@@ -117,16 +116,19 @@ namespace WPF_Test
         /// </summary>
         private void placerUnites()
         {
+            int j1 = 0;
+            int j2 = 0;
+
             //Placer les unités du Joueur 1
             foreach (Unite unite in MonteurPartie.INSTANCE.Joueur1.Peuple.Unites) {
-                int row = unite.Position.X;
-                int col = unite.Position.Y;
+                int row = (unite.Position.X)*3;
+                int col = (unite.Position.Y)*3;
 
                 //création de l'ellipse
                 var e = new Ellipse();
-                e.Fill = Brushes.White;
-                e.Width = 15;                
-                e.Height = 15;
+                e.Fill = Brushes.Yellow;
+                e.Width = 11;                
+                e.Height = 11;
 
                 //lien entre l'ellipse et l'uniteLogique
                 e.Tag = unite;
@@ -135,22 +137,24 @@ namespace WPF_Test
                 e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
 
                 //Positionnement de l'unité
-                Grid.SetColumn(e, row);
-                Grid.SetRow(e, col);
+                Grid.SetColumn(e, row+(j1%3));
+                Grid.SetRow(e, col+(j1/3));
                 uniteGrid.Children.Add(e);
+
+                j1++;
             }
 
             //Placer les unités du Joueur 2
             foreach (Unite unite in MonteurPartie.INSTANCE.Joueur2.Peuple.Unites)
             {
-                int row = unite.Position.X;
-                int col = unite.Position.Y;
+                int row = (unite.Position.X)*3;
+                int col = (unite.Position.Y)*3;
 
                 //création de l'ellipse
                 var e = new Ellipse();
                 e.Fill = Brushes.White;
-                e.Width = 15;
-                e.Height = 15;
+                e.Width = 11;
+                e.Height = 11;
 
                 //lien entre l'ellipse et l'uniteLogique
                 e.Tag = unite;
@@ -159,9 +163,11 @@ namespace WPF_Test
                 e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
 
                 //Positionnement de l'unité
-                Grid.SetColumn(e, row);
-                Grid.SetRow(e, col);
+                Grid.SetColumn(e, row + (j2 % 3));
+                Grid.SetRow(e, col + (j2 / 3));
                 uniteGrid.Children.Add(e);
+
+                j2++;
             }
         }
 
@@ -205,7 +211,7 @@ namespace WPF_Test
         private void unite_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var ellipse = sender as Ellipse;
-            var uniteLogique = ellipse.Tag as iCase;
+            var uniteLogique = ellipse.Tag as Unite;
 
             //Mise à jour de l'ellipse sélectionnée
             int col = Grid.GetColumn(ellipse);

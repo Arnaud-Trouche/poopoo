@@ -64,13 +64,13 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Unité" FontSize="28" HorizontalAlignment="Center" />
                 <Label Grid.Row="1" Grid.Column="0" Content="Vie " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="1" Grid.Column="1" Name="Vie" FontSize="16"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag.PointVie, ElementName=UniteSelectionnee}" FontSize="16"/>
                 <Label Grid.Row="2" Grid.Column="0" Content="Déplacement " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="2" Grid.Column="1" Name="Déplacement" FontSize="16"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag.PointDeplacement, ElementName=UniteSelectionnee}" FontSize="16"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Attaque " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="3" Grid.Column="1" Name="Attaque" FontSize="16"/>
+                <Label Grid.Row="3" Grid.Column="1" Content="{Binding Tag.PointAttaque, ElementName=UniteSelectionnee}" FontSize="16"/>
                 <Label Grid.Row="4" Grid.Column="0" Content="Defense " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="4" Grid.Column="1" Name="Defense" FontSize="16"/>
+                <Label Grid.Row="4" Grid.Column="1" Content="{Binding Tag.PointDefense, ElementName=UniteSelectionnee}" FontSize="16"/>
             </Grid>
         </DockPanel>
         

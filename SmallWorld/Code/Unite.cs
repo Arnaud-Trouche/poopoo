@@ -12,6 +12,38 @@ namespace Code
         private int pointAttaque;
         private int pointDeDeplacement;
         private int peuple;
+        private Coord position;
+
+        public int PointVie
+        {
+            get
+            {
+                return pointVie;
+            }
+        }
+
+        public int PointAttaque
+        {
+            get
+            {
+                return pointAttaque;
+            }
+        }
+        public int PointDefense
+        {
+            get
+            {
+                return pointDefense;
+            }
+        }
+        public int PointDeplacement
+        {
+            get
+            {
+                return pointDeDeplacement;
+            }
+        }
+
         public int Peuple    // the peuple property
         {
             get
@@ -19,8 +51,6 @@ namespace Code
                 return peuple;
             }
         }
-
-        private Coord position;
 
         public Coord Position    // the position property
         {
