@@ -4,17 +4,19 @@
 #include <time.h>
 
 
-
+//Constantes des types de cases
 #define CASE_DESERT 0
 #define CASE_EAU 1
 #define CASE_FORET 2
 #define CASE_MONTAGNE 3
 #define CASE_PLAINE 4
 
+//Constantes pour remplir la carte des Points de Deplacement
 #define CASE_NONTRAITEE 0
 #define CASE_POSSIBLE 1
 #define CASE_BONUS 2
 #define CASE_IMPOSSIBLE 3
+#define CASE_NEUTRE 4 //Case ne rapportant pas de point 
 
 
 int* Algo::creationCarte(int taille) {
@@ -329,6 +331,112 @@ void Algo::deplacementPossibleNainCase(int* carte, int taille, int pos, double* 
 }
 
 
+void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes){
+	int i;
+
+	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
+	for (i = 0; i < taille; i++)
+		carteDepRes[i] = CASE_NONTRAITEE;
+
+
+	//Initialise la Carte des Cout des déplacements
+	for (i = 0; i < (taille*taille); i++)
+		carteCoutDep[i] = 0;
+
+	//On autorise la case initiale pour démarrer l'algo de recherche
+	carteCoutDep[pos] = 1;
+	carteDepRes[pos] = CASE_POSSIBLE;
+		
+	deplacementPossibleVikingRec(carte, taille, pos, carteCoutDep, carteDepRes);
+}
+
+void Algo::deplacementPossibleVikingRec(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes){
+
+	int posTemp = pos;
+
+	//Si on est pas en haut
+	if (pos > taille - 1){
+		posTemp = pos - taille;
+		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
+			//On regarde la case du haut
+			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
+			//Appel Recursif
+			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+		}
+	}
+
+	//Si on est pas en bas
+	if (pos < taille*(taille - 1)) {
+		posTemp = pos + taille;
+		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
+			//On regarde la case de bas
+			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
+			//Appel Recursif
+			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+		}
+	}
+
+	//Si on est pas a gauche
+	if (pos != 0 || (pos % taille) != 0) {
+		posTemp = pos - 1;
+		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
+			//On regarde la case a gauche
+			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
+			//Appel Recursif
+			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+		}
+	}
+
+	//Si on est pas a droite
+	if (pos%(taille - 1) != 0) {
+		posTemp = pos + 1;
+		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
+			//On regarde la case du haut
+			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
+			//Appel Recursif
+			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+		}
+	}
+
+
+}
+
+
+void Algo::deplacementPossibleVikingCase(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl){
+
+	double PointDeDeplacement = ptDeDepl;
+
+	//Comportement varie selon le type de la case
+	switch (carte[pos]) {
+
+	case CASE_DESERT:
+		traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement);
+		break;
+
+	case CASE_EAU:
+		traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement);
+		break;
+
+		//Case Bonus
+	case CASE_FORET:
+		traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement);
+		break;
+
+	case CASE_MONTAGNE:
+		traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement);
+		break;
+
+
+	case CASE_PLAINE:
+		traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement);
+		break;
+
+	default:
+		break;
+
+	}
+
+}
 Algo* Algo_new() { return new Algo(); }
 void Algo_delete(Algo* algo) { delete algo; }
 int* Algo_creationCarte(Algo* algo, int taille) { return algo->creationCarte(taille); } 
@@ -345,6 +453,10 @@ void Algo_deplacementPossibleGauloisCase(Algo* algo, int* carte, int taille, int
 void Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleNainInit(carte, taille, pos, carteCoutDep, carteDepRes); }
 void Algo_deplacementPossibleNainRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleNainRec(carte, taille, pos, carteCoutDep, carteDepRes); }
 void Algo_deplacementPossibleNainCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl) { return algo->deplacementPossibleNainCase(carte, taille, pos, carteCoutDep, carteDepRes, ptDeDepl); }
+
+void Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleVikingInit(carte, taille, pos, carteCoutDep, carteDepRes); }
+void Algo_deplacementPossibleVikingRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleVikingRec(carte, taille, pos, carteCoutDep, carteDepRes); }
+void Algo_deplacementPossibleVikingCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl) { return algo->deplacementPossibleVikingCase(carte, taille, pos, carteCoutDep, carteDepRes, ptDeDepl); }
 
 
 //void Algo_deplacementPossibleGauloisVerifCase
