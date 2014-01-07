@@ -42,7 +42,7 @@ namespace Code
 
         public void action(Coord casecliquee)
         {
-            iPeuple p = Jeu.INSTANCE.recupAdversaire().iPeuple;
+            Peuple p = Jeu.INSTANCE.recupAdversaire().Peuple;
             if (p.getUnite(casecliquee) != null)
             {
                 attaquer(casecliquee);

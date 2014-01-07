@@ -9,13 +9,17 @@ namespace Code
     {
         private String nom;
         private int score;
-        private iPeuple peuple;
+        private Peuple peuple;
 
-        public iPeuple iPeuple
+        public Peuple Peuple
         {
             get
             {
                 return peuple;
+            }
+            set
+            {
+                peuple = value;
             }
         }
 
@@ -33,6 +37,14 @@ namespace Code
             {
                 return nom;
             }
+            set
+            {
+                nom = value;
+            }
+        }
+        public Joueur()
+        {
+         
         }
 
         public Joueur(String name, Peuple hisPeuple)
