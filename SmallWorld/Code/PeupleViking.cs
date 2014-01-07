@@ -7,9 +7,6 @@ namespace Code
 {
     public class PeupleViking : Peuple
     {
-        private int nbUnites;
-        private List<Unite> unites;
-
         public PeupleViking(int nbUnites, Coord pos)
         {
             this.nbUnites = nbUnites;

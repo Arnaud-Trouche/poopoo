@@ -5,13 +5,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="700"
-	Title="Carte">
+	  Title="Carte"
+      Loaded="Window_Loaded">
 
     <DockPanel>
+        <!-- HEADER -->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <Button Style="{DynamicResource FlecheBack}" Click="Back_Top_Click" ></Button>
             <Label Content="Tour 1 - Joueur 1" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </StackPanel>
+        
+        <!-- INFOS JOUEURS ET UNITE -->
         <DockPanel  DockPanel.Dock="Right" >
             <!-- INFOS JOUEUR 1 -->
             <Grid DockPanel.Dock="Top" HorizontalAlignment="Left" Width="165" Background="Azure" Height="150">
@@ -69,12 +73,19 @@
                 <Label Grid.Row="4" Grid.Column="1" Name="Defense" FontSize="16"/>
             </Grid>
         </DockPanel>
-        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+        
+        <!-- CARTE -->
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseLeftButtonDown="window_MouseLeftButtonDown">
             <Grid>
+                <!-- Grille des cases -->
                 <Grid Name="mapGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Rectangle Style="{StaticResource CaseSelectionnee}" Name="CaseSelectionnee" />
                     <!-- Les cases seront ajoutées ici -->
                 </Grid>
+                
+                <!-- Grille des unités-->
                 <Grid Name="uniteGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Ellipse Style="{StaticResource UniteSelectionnee}" Name="UniteSelectionnee" />
                     <!-- Les unités seront ajoutées ici -->
                 </Grid>
             </Grid>

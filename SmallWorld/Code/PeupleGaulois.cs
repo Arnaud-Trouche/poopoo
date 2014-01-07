@@ -7,8 +7,6 @@ namespace Code
 {
     public class PeupleGaulois : Peuple
     {
-        private int nbUnites;
-        private List<Unite> unites;
 
         public PeupleGaulois(int nbUnites, Coord pos)
         {

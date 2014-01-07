@@ -7,9 +7,16 @@ namespace Code
 {
     public class Peuple : iPeuple
     {
-        private int nbUnites;
-        private List<Unite> unites;
+        protected int nbUnites;
+        protected List<Unite> unites;
 
+        public List<Unite> Unites
+        {
+            get
+            {
+                return unites;
+            }
+        }
         public Unite creerUnite()
         {
             throw new NotImplementedException();

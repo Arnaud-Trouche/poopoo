@@ -7,9 +7,6 @@ namespace Code
 {
     public class PeupleNain : Peuple
     {
-        private int nbUnites;
-        private List<Unite> unites;
-
         public PeupleNain(int nbUnites, Coord pos)
         {
             this.nbUnites = nbUnites;
