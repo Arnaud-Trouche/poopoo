@@ -10,13 +10,74 @@
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <Button Style="{DynamicResource FlecheBack}" Click="Back_Top_Click" ></Button>
-
             <Label Content="Tour 1 - Joueur 1" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </StackPanel>
-        <Grid  DockPanel.Dock="Bottom" >
-            <Label Content="test" />
-        </Grid>
-        <Grid Name="mapGrid" Background="#EEEEEE" >
-        </Grid>
+        <DockPanel  DockPanel.Dock="Right" >
+            <!-- INFOS JOUEUR 1 -->
+            <Grid DockPanel.Dock="Top" HorizontalAlignment="Left" Width="165" Background="Azure" Height="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 1" FontSize="28" HorizontalAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="" Name="Score1" FontSize="16"/>
+            </Grid>
+            
+            <!-- INFOS JOUEUR 2 -->
+            <Grid DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Width="165" Background="Azure" Height="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 2" FontSize="28" HorizontalAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="" Name="Score2" FontSize="16"/>
+            </Grid>
+
+            <!-- INFOS UNITE EN COURS (VIDE SINON) -->
+            <Grid VerticalAlignment="Center" Width="165" Background="Azure" Height="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28"/>
+                    <RowDefinition Height="28" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Unité" FontSize="28" HorizontalAlignment="Center" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Vie " FontSize="15" HorizontalAlignment="Right"/>
+                <Label Grid.Row="1" Grid.Column="1" Name="Vie" FontSize="16"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Déplacement " FontSize="15" HorizontalAlignment="Right"/>
+                <Label Grid.Row="2" Grid.Column="1" Name="Déplacement" FontSize="16"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Attaque " FontSize="15" HorizontalAlignment="Right"/>
+                <Label Grid.Row="3" Grid.Column="1" Name="Attaque" FontSize="16"/>
+                <Label Grid.Row="4" Grid.Column="0" Content="Defense " FontSize="15" HorizontalAlignment="Right"/>
+                <Label Grid.Row="4" Grid.Column="1" Name="Defense" FontSize="16"/>
+            </Grid>
+        </DockPanel>
+        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid Name="mapGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <!-- Les cases seront ajoutées ici -->
+                </Grid>
+                <Grid Name="uniteGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <!-- Les unités seront ajoutées ici -->
+                </Grid>
+            </Grid>
+        </ScrollViewer>        
     </DockPanel>
 </Page>

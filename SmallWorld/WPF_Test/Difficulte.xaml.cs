@@ -31,6 +31,7 @@ namespace WPF_Test
         {
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.goBack();
+            e.Handled = true;
         }
 
         private void Demo_Click(object sender, RoutedEventArgs e)
@@ -38,6 +39,7 @@ namespace WPF_Test
             MonteurPartie.INSTANCE.Difficulte = Constants.DEMO;
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.changePage("Choix_Peuple.xaml");
+            e.Handled = true;
         }
 
         private void Petite_Click(object sender, RoutedEventArgs e)
@@ -45,6 +47,7 @@ namespace WPF_Test
             MonteurPartie.INSTANCE.Difficulte = Constants.PETITE;
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.changePage("Choix_Peuple.xaml");
+            e.Handled = true;
         }
 
         private void Normale_Click(object sender, RoutedEventArgs e)
@@ -52,6 +55,7 @@ namespace WPF_Test
             MonteurPartie.INSTANCE.Difficulte = Constants.NORMALE;
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.changePage("Choix_Peuple.xaml");
+            e.Handled = true;
         }
     }
 }

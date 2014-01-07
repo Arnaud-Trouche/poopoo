@@ -36,6 +36,7 @@ namespace WPF_Test
         {
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
             parent.goBack();
+            e.Handled = true;
         }
 
         private void P1_Checked(object sender, RoutedEventArgs e)
@@ -47,6 +48,7 @@ namespace WPF_Test
                 peuple1 = "";
                 li.IsChecked = false;
             }
+            e.Handled = true;
         }
 
         private void P2_Checked(object sender, RoutedEventArgs e)
@@ -58,6 +60,7 @@ namespace WPF_Test
                 peuple2 = "";
                 li.IsChecked = false;
             }
+            e.Handled = true;
         }
 
         private void Next_Click(object sender, RoutedEventArgs e)
@@ -109,6 +112,7 @@ namespace WPF_Test
                 MainWindow parent = (Application.Current.MainWindow as MainWindow);
                 parent.changePage("Carte.xaml");
             }
+            e.Handled = true;
         }
     }
 }

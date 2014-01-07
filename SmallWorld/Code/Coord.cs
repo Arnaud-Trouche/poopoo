@@ -17,7 +17,7 @@ namespace Code
         /// <param name="y1">Ordonnée</param>
         public Coord(int x1, int y1)
         {
-            int max = 100;// Carte.getTaille();
+            int max = 100;// TODO Carte.getTaille();
             if ((x1 < 0 || x1 > max) && (y1 < 0 || y1 > max))
             {
                 throw new System.ArgumentOutOfRangeException();
