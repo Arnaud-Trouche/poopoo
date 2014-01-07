@@ -14,7 +14,7 @@ namespace Code
             
         }
         
-        public iPeuple creerPeuple(int peuple, int nbUnites, Coord pos)
+        public Peuple creerPeuple(int peuple, int nbUnites, Coord pos)
         {
             if (peuple == 0) return null;
             switch (peuple)

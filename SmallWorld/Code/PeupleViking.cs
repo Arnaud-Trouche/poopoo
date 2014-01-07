@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Code
 {
-    public class PeupleViking : iPeuple
+    public class PeupleViking : Peuple
     {
         private int nbUnites;
         private List<Unite> unites;

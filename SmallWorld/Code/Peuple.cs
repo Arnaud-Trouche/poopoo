@@ -7,6 +7,9 @@ namespace Code
 {
     public class Peuple : iPeuple
     {
+        private int nbUnites;
+        private List<Unite> unites;
+
         public Unite creerUnite()
         {
             throw new NotImplementedException();

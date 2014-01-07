@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Code
 {
-    public class PeupleNain : iPeuple
+    public class PeupleNain : Peuple
     {
         private int nbUnites;
         private List<Unite> unites;
