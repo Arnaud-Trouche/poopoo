@@ -7,7 +7,7 @@ namespace Code
 {
     public class Joueur : iJoueur
     {
-        private int nom;
+        private String nom;
         private int score;
         private iPeuple peuple;
 
@@ -27,7 +27,7 @@ namespace Code
             }
         }
 
-        public int Nom
+        public String Nom
         {
             get
             {
@@ -35,6 +35,11 @@ namespace Code
             }
         }
 
+        public Joueur(String name, Peuple hisPeuple)
+        {
+            nom = name;
+            peuple = hisPeuple;
+        }
         public void augmenterScore(int delta)
         {
             this.score += delta;

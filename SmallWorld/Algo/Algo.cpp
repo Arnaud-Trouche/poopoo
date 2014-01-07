@@ -20,10 +20,10 @@
 
 
 int* Algo::creationCarte(int taille) {
-	srand(time(NULL));
-	int nbcases = taille*taille/5;
+	srand((unsigned int)time(NULL));
+	int nbcases = (taille*taille)/5;
 	int types[5] = {nbcases,nbcases,nbcases,nbcases,nbcases};
-	int* cases = (int*)malloc(taille*taille);
+	int* cases = (int*)malloc((taille*taille) * sizeof(int));
 	int i, rdm;
 	bool trouveType;
 

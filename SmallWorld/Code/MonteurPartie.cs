@@ -173,10 +173,20 @@ namespace Code
            carte.creerCarte();
        }
 
-       public Peuple creerPeuple(Coord c, int nbUnites)
+       public void creerJoueurs(String j1, int p1, String j2, int p2, int nbUnitesParJoueurs) 
+       {
+           //Avant de creer les objets Joueurs il faut creer les Peuples
+           //Avant de creer les Peuples il est nécessaire de connaitre l'endroit ou seront placees les unités
+           WrapperAlgo wrapperAlgo = new WrapperAlgo();
+          // int* positionsJ = wrapperAlgo.positionnerJoueur
+     
+       
+       }
+ 
+       /*public Peuple creerPeuple(Coord c, int nbUnites)
        {
            return null;
-       }
+       }*/
 
        public bool initialiser()
        {
@@ -201,9 +211,15 @@ namespace Code
                default :
                break;
            }
-
+           // On a toutes les infos pour créer la Carte
            creerCarte();
-          // creerPeuple()
+           nbUnites = carte.getNbUnites();
+
+           //Il faut maintenant créer les joueurs
+           //Commencons par créer le Peuple d'un joueur
+
+           creerJoueurs(j1, p1, j2, p2, nbUnites);
+
            return true;
        }
 
