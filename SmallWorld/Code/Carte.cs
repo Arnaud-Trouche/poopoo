@@ -13,10 +13,6 @@ namespace Code
         private int nbUnites;
         private static int TAILLE;
 
-        public Carte()
-        {
-        }
-
         public void creerCarte()
         {
             strategie.creerCarte();

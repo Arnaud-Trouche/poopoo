@@ -181,8 +181,8 @@ namespace Code
        public bool initialiser()
        {
            //Arnaud me send la diff le nom J1 J2 P1 P2 
-           Carte carte = new Carte();
-           Jeu jeu = new Jeu();
+           carte = new Carte();
+           jeu = new Jeu();
            
            switch(difficulte)
            {

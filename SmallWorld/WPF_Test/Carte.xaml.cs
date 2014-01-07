@@ -26,17 +26,15 @@ namespace WPF_Test
         public unsafe Carte()
         {
             InitializeComponent();
+
             // On efface l'historique des pages pour le bouton de retour
             (Application.Current.MainWindow as MainWindow).clearHistory();
             
             
-            int tailleCarte = 5; //TODO MonteurPartie.INSTANCE.Difficulte;
+            int tailleCarte = Code.Carte.getTaille();
             int tailleTuile = 50; // Fixé dans le poly
 
-            // on initialise la Grid (mapGrid défini dans le xaml) à partir de la map du modèle (engine)
-            WrapperAlgo wrap = new WrapperAlgo();
-            int[] map = { 1,4,3,2,0,0,4,0,2,2,3,4,1,3,1,3,0,2,0,1,1,2,4,3,4 };
-             
+            // on initialise la Grid (mapGrid défini dans le xaml) à partir de la map du modèle (engine)             
             for (int y = 0; y < tailleCarte; y++)
             {
                 mapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(tailleTuile, GridUnitType.Pixel) });
@@ -49,33 +47,80 @@ namespace WPF_Test
                     // dans chaque case de la grille on ajoute une tuile (logique) matérialisée par un rectangle (physique)
                     // le rectangle possède une référence sur sa tuile
                     Coord c = new Coord(x, y);
-                    var element = creerTuile(c, map[x * tailleCarte + y]);
+                    var element = creerTuile(c);
                     mapGrid.Children.Add(element);
                 }
             }
+
+            creerGridUnites();
             //updateUnitUI();
         }
 
-        private Grid creerTuile(Coord c, int type)
+        private void creerGridUnites()
+        {
+            int tailleCarte = Code.Carte.getTaille();
+            for (int y = 0; y < tailleCarte; y++)
+            {
+                uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(50, GridUnitType.Pixel) });
+            }
+            for (int x = 0; x < tailleCarte; x++)
+            {
+                uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(50, GridUnitType.Pixel) });
+                for (int y = 0; y < tailleCarte; y++)
+                {
+                    // dans chaque case de la grille on ajoute une tuile (logique) matérialisée par un rectangle (physique)
+                    // le rectangle possède une référence sur sa tuile
+                    var stack = new StackPanel();
+                    stack.Orientation = System.Windows.Controls.Orientation.Horizontal;
+                    Grid.SetColumn(stack, y); // oula oula
+                    Grid.SetRow(stack, x);
+                    mapGrid.Children.Add(stack);
+                }
+            }
+        }
+            
+        private Grid creerTuile(Coord c)
         {
             var tuile = new Grid();
-            //Ajout des colonnes et lignes
-            tuile.ColumnDefinitions.Add(new ColumnDefinition());
-            tuile.ColumnDefinitions.Add(new ColumnDefinition());
-            tuile.ColumnDefinitions.Add(new ColumnDefinition());
-            tuile.RowDefinitions.Add(new RowDefinition());
-            tuile.RowDefinitions.Add(new RowDefinition());
-            tuile.RowDefinitions.Add(new RowDefinition());
-            //TODO ajouter unités
-            // à changer comme le cours, référence vers la case
-            switch (type)
-            {
-                case Constants.DESERT:
-                    tuile.Background = Brushes.BlanchedAlmond;
-                    break;
+            var caseLogique = FabriqueCase.INSTANCE.obtenirCase(c);
 
-                case Constants.EAU:
+            if(caseLogique is Desert)
+                 tuile.Background = Brushes.BlanchedAlmond;
+                    
+             if(caseLogique is Eau)
                     tuile.Background = Brushes.DarkBlue;
+
+             if(caseLogique is Foret)
+                    tuile.Background = Brushes.DarkGreen;
+
+             if(caseLogique is Montagne)
+                    tuile.Background = Brushes.Maroon;
+
+             if(caseLogique is Plaine)
+                    tuile.Background = Brushes.Green;
+
+
+            // mise à jour des attributs (column et Row) référencant la position dans la grille
+            Grid.SetColumn(tuile, c.getX());
+            Grid.SetRow(tuile, c.getY());
+
+            tuile.Margin = new System.Windows.Thickness(1);
+            tuile.Tag = caseLogique;
+            // enregistrement d'un écouteur d'evt sur la tuile : 
+            // source = rectangle / evt = MouseLeftButtonDown / délégué = rectangle_MouseLeftButtonDown
+            tuile.MouseLeftButtonDown += new MouseButtonEventHandler(tuile_MouseLeftButtonDown);
+            return tuile;
+        }
+
+        private void placerUnites()
+        {
+            /*
+            for (int j = 0; j < 2; j++)
+            {
+                var joueur = MonteurPartie.INSTANCE.Joueurs[]
+            }
+
+
                     var e = new Ellipse();
                     e.Fill = Brushes.White;
                     e.Width = 15;
@@ -84,33 +129,8 @@ namespace WPF_Test
                     Grid.SetRow(e, 0);
                     e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
                     tuile.Children.Add(e);
-                    break;
-
-                case Constants.FORET:
-                    tuile.Background = Brushes.DarkGreen;
-                    break;
-
-                case Constants.MONTAGNE:
-                    tuile.Background = Brushes.Maroon;
-                    break;
-
-                case Constants.PLAINE:
-                    tuile.Background = Brushes.Green;
-                    break;
-            }
-            // mise à jour des attributs (column et Row) référencant la position dans la grille à rectangle
-            Grid.SetColumn(tuile, c.getX());
-            Grid.SetRow(tuile, c.getY());
-
-            tuile.Margin = new System.Windows.Thickness(1);
-            // TODO rectangle.Tag = 
-            // enregistrement d'un écouteur d'evt sur le rectangle : 
-            // source = rectangle / evt = MouseLeftButtonDown / délégué = rectangle_MouseLeftButtonDown
-            tuile.MouseLeftButtonDown += new MouseButtonEventHandler(case_MouseLeftButtonDown);
-            return tuile;
-        }
-
-        private void case_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        */}
+        private void tuile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             //TODO réaction à un clic
             //throw new NotImplementedException();
@@ -181,25 +201,6 @@ namespace WPF_Test
             }
         }
 
-        private void placerUnites()
-        {
-            int tailleCarte = 5;//TODO git MonteurPartie.INSTANCE.Difficulte;
-            for (int y = 0; y < tailleCarte; y++)
-            {
-                mapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(tailleTuile, GridUnitType.Pixel) });
-            }
-            for (int x = 0; x < tailleCarte; x++)
-            {
-                mapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(tailleTuile, GridUnitType.Pixel) });
-                for (int y = 0; y < tailleCarte; y++)
-                {
-                    // dans chaque case de la grille on ajoute une tuile (logique) matérialisée par un rectangle (physique)
-                    // le rectangle possède une référence sur sa tuile
-                    Coord c = new Coord(x, y);
-                    var element = creerTuile(c, map[x * tailleCarte + y]);
-                    mapGrid.Children.Add(element);
-                }
-            }
-        }
+        
     }
 }

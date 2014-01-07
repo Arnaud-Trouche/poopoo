@@ -108,7 +108,7 @@ namespace WPF_Test
                         break;
                 }
                 //On lance le montage de la partie
-                //MonteurPartie.INSTANCE.initialiser();
+                MonteurPartie.INSTANCE.initialiser();
                 MainWindow parent = (Application.Current.MainWindow as MainWindow);
                 parent.changePage("Carte.xaml");
             }
