@@ -7,8 +7,13 @@ namespace Code
 {
     public class FabriquePeuple : iFabriquePeuple
     {
-        public FabriquePeuple INSTANCE;
+        public static FabriquePeuple INSTANCE = new FabriquePeuple();
     
+        private FabriquePeuple()
+        {
+            
+        }
+        
         public iPeuple creerPeuple(int peuple, int nbUnites, Coord pos)
         {
             if (peuple == 0) return null;
@@ -28,5 +33,7 @@ namespace Code
                     return null;
             }
         }
+
+
     }
 }

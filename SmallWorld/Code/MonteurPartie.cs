@@ -14,76 +14,173 @@ namespace Code
         private int p1;
         private int p2;
 
+        private int nbCases;
+        private int tailleCarte;
+        private int nbTours;
+        private int nbUnites;
+
+        private Carte carte;
+        private Jeu jeu;
+
+
+        public int NbCases
+        { 
+            get
+            {
+                return nbCases;
+            }
+        
+        }
+        public int TailleCarte
+        {
+            get
+            {
+                return tailleCarte;
+            }
+
+        }
+        public int NbTours
+        {
+            get
+            {
+                return nbTours;
+            }
+
+        }
+        public int NbUnites
+        {
+            get
+            {
+                return nbUnites;
+            }
+
+        }
+       public Carte Carte
+        {
+            get
+            {
+                return carte;
+            }
+           set
+            {
+                carte = value;
+            }
+        }
+
+       public Jeu Jeu
+       {
+           get
+           {
+               return jeu;
+           }
+           set
+           {
+               jeu = value;
+           }
+       }
+
+       // ATTENTION !!
+       // penser à transmettre le tableau de case à FabriqueCase
+       // AVANT de faire des appels à obtenirCase
+
+       public int Difficulte
+       {
+           set
+           {
+               difficulte = value;
+           }
+           get
+           {
+               return difficulte;
+           }   
+       }
+       public String J1
+       {
+           set
+           {
+               j1 = value;
+           }
+           get
+           {
+               return j1;
+           }   
+       }
+       public String J2
+       {
+           set
+           {
+               j2 = value;
+           }
+           get
+           {
+               return j2;
+           }   
+       }
+       public int P1
+       {
+           set
+           {
+               p1 = value;
+           }
+           get
+           {
+               return p1;
+           }   
+       }
+       public int P2
+       {
+           set
+           {
+               p2 = value;
+           }
+           get
+           {
+               return p2;
+           }   
+       }
+
+       public void creerCarte()
+       {
+           carte.definirTaille(tailleCarte);
+
+       }
+       public Peuple creerPeuple(Coord c, int nbUnites)
+       {
+           return null;
+       }
+
+       public bool initialiser()
+       {
+           //Arnaud me send la diff le nom J1 J2 P1 P2 
+           Carte carte = new Carte();
+           Jeu jeu = new Jeu();
+           
+           switch(difficulte)
+           {
+               case Constants.DEMO :
+                     tailleCarte = Constants.DEMO;
+               break;
+
+               case Constants.PETITE :
+                     tailleCarte = Constants.PETITE;
+               break;
+
+               case Constants.NORMALE :
+                    tailleCarte = Constants.NORMALE;
+               break;
+
+               default :
+               break;
+           }
+
+           creerCarte();
+           return true;
+       }
+
 
         private MonteurPartie()
         {
             //rien ?
-        }
-
-        // ATTENTION !!
-        // penser à transmettre le tableau de case à FabriqueCase
-        // AVANT de faire des appels à obtenirCase
-
-        public int Difficulte
-        {
-            set
-            {
-                difficulte = value;
-            }
-        }
-        public String J1
-        {
-            set
-            {
-                j1 = value;
-            }
-        }
-        public String J2
-        {
-            set
-            {
-                j2 = value;
-            }
-        }
-        public int P1 {
-            set { 
-                p1 = value; 
-            }
-        }
-        public int P2
-        {
-            set
-            {
-                p2 = value;
-            }
-        }
-
-
-        public Carte Carte
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-
-        public Joueur Joueur
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-            }
-        }
-    
-        public bool initialiser()
-        {
-            throw new System.NotImplementedException();
         }
 
         public bool restaurer()
@@ -94,6 +191,21 @@ namespace Code
         public bool sauvegarder()
         {
             throw new System.NotImplementedException();
+        }
+
+        public void definirTaille(int taille){
+
+        }
+
+
+        public void definirRace(String nom){
+
+
+        }
+       
+        public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nbTours){
+
+
         }
     }
 }
