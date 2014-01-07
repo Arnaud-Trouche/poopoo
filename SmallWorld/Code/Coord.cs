@@ -45,41 +45,46 @@ namespace Code
         }
 
 
-        public int getX()
+        public int X
         {
-            return x;
-        }
-
-        public int getY()
-        {
-            return y;
-        }
-
-        public void setX(int x1)
-        {
-            int max = Carte.getTaille();
-            if (x1 < 0 || x1 > max)
+            get
             {
-                throw new System.ArgumentOutOfRangeException();
+                return x;
             }
-            else
+            set
             {
-                this.x = x1;
+                int max = Carte.getTaille();
+                if (value < 0 || value > max)
+                {
+                    throw new System.ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    this.x = value;
+                } 
             }
         }
 
-        public void setY(int y1)
+        public int Y
         {
-            int max = Carte.getTaille();
-            if (y1 < 0 || y1 > max)
+            get
             {
-                throw new System.ArgumentOutOfRangeException();
+                return y;
             }
-            else
+            set
             {
-                this.y = y1;
+                int max = Carte.getTaille();
+                if (value < 0 || value > max)
+                {
+                    throw new System.ArgumentOutOfRangeException();
+                }
+                else
+                {
+                    this.x = value;
+                }
             }
         }
+
 
         /// <summary>
         /// Renvoie l'indice unidimensionnel d'une coordonnée en prenant en compte la largeur de la carte.
