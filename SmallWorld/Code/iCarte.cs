@@ -5,18 +5,11 @@ using System.Text;
 
 namespace Code
 {
-    public interface Cases
-    {
-    }
 
     public interface iCarte
     {
-        void creerCarte();
+    //    void creerCarte();
 
         void definirTaille(int taille);
-
-        int getNbTours();
-
-        int getNbUnites();
     }
 }

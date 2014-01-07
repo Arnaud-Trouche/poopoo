@@ -7,10 +7,6 @@ namespace Code
 {
     public class CarteNormale : StrategieCarte
     {
-        private int nbHauteurCases;
-        private int nbTours;
-        private int nbUnites;
-
         public CarteNormale()
         {
             nbUnites = 8;

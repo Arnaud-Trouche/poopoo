@@ -8,10 +8,6 @@ namespace Code
 
     public class CartePetite : StrategieCarte
     {
-        private int nbUnites;
-        private int nbTours;
-        private int nbHauteurCases;
-
         public CartePetite()
         {
             nbUnites = 6;

@@ -16,7 +16,7 @@ namespace Code
         
         public Peuple creerPeuple(int peuple, int nbUnites, Coord pos)
         {
-            if (peuple == 0) return null;
+            if (peuple == -1) return null;
             switch (peuple)
             {
                  

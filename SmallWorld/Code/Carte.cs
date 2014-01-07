@@ -9,14 +9,14 @@ namespace Code
     {
         private iStrategieCarte strategie;
         private iCase[] listeCases;
-        private int nbTour;
+        private int nbTours;
         private int nbUnites;
         private static int TAILLE;
 
-        public void creerCarte()
-        {
-            strategie.creerCarte();
-        }
+        //public void creerCarte()
+        //{
+        //    strategie.creerCarte();
+        //}
 
         public void definirTaille(int taille)
         {
@@ -35,18 +35,33 @@ namespace Code
                     strategie = new CarteNormale();
                     break;
             }
-            this.nbTour = strategie.getNbTours();
+            this.nbTours = strategie.getNbTours();
             this.nbUnites = strategie.getNbUnites();
         }
 
-        public int getNbUnites()
+        public int NbUnites
         {
-            return nbUnites;
+            get
+            {
+                return nbUnites;
+
+            }
+            set
+            {
+                nbUnites = value;
+            }
         }
 
-        public int getNbTours()
+        public int NbTours
         {
-            return nbTour;
+            get
+            {
+                return nbTours;
+            }
+            set
+            {
+                nbTours = value;
+            }
         }
 
         public static int getTaille()

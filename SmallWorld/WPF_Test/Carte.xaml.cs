@@ -101,8 +101,8 @@ namespace WPF_Test
              tuile.StrokeThickness = 1;
 
             // mise à jour des attributs (column et Row) référencant la position dans la grille
-            Grid.SetColumn(tuile, c.getX());
-            Grid.SetRow(tuile, c.getY());
+            Grid.SetColumn(tuile, c.X);
+            Grid.SetRow(tuile, c.Y);
 
             //lien avec la case logique
             tuile.Tag = caseLogique;
@@ -118,7 +118,51 @@ namespace WPF_Test
         private void placerUnites()
         {
             //Placer les unités du Joueur 1
-            //foreach(Unite unite in MonteurPartie.INSTANCE.Joueur1.Peuple.)
+            foreach (Unite unite in MonteurPartie.INSTANCE.Joueur1.Peuple.Unites) {
+                int row = unite.Position.X;
+                int col = unite.Position.Y;
+
+                //création de l'ellipse
+                var e = new Ellipse();
+                e.Fill = Brushes.White;
+                e.Width = 15;                
+                e.Height = 15;
+
+                //lien entre l'ellipse et l'uniteLogique
+                e.Tag = unite;
+
+                //Ajout de l'évènement lors du clic
+                e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
+
+                //Positionnement de l'unité
+                Grid.SetColumn(e, row);
+                Grid.SetRow(e, col);
+                uniteGrid.Children.Add(e);
+            }
+
+            //Placer les unités du Joueur 2
+            foreach (Unite unite in MonteurPartie.INSTANCE.Joueur2.Peuple.Unites)
+            {
+                int row = unite.Position.X;
+                int col = unite.Position.Y;
+
+                //création de l'ellipse
+                var e = new Ellipse();
+                e.Fill = Brushes.White;
+                e.Width = 15;
+                e.Height = 15;
+
+                //lien entre l'ellipse et l'uniteLogique
+                e.Tag = unite;
+
+                //Ajout de l'évènement lors du clic
+                e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
+
+                //Positionnement de l'unité
+                Grid.SetColumn(e, row);
+                Grid.SetRow(e, col);
+                uniteGrid.Children.Add(e);
+            }
         }
 
         /// <summary>
