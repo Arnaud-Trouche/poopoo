@@ -23,7 +23,8 @@ namespace WPF_Test
     /// </summary>
     public partial class Carte : Page
     {
-        
+        //Définition des couleurs : Nain,Viking,Gaulois
+        SolidColorBrush[] couleurPeuple = {Brushes.Red, Brushes.Yellow, Brushes.Orange};
         public unsafe Carte()
         {
             InitializeComponent();
@@ -32,6 +33,10 @@ namespace WPF_Test
             MainWindow w = Application.Current.MainWindow as MainWindow;
             w.clearHistory();
             w.MouseLeftButtonDown += new MouseButtonEventHandler(window_MouseLeftButtonDown);
+
+            //Définition de la couleur des Joueurs
+            LabelJoueur1.Foreground = couleurPeuple[MonteurPartie.INSTANCE.P1];
+            LabelJoueur2.Foreground = couleurPeuple[MonteurPartie.INSTANCE.P2];
         }
 
         /// <summary>
@@ -69,6 +74,10 @@ namespace WPF_Test
 
             //Ajouter les unités
             placerUnites();
+
+            //Ajout des tags liant le score aux joueurs
+            Score1.Tag = MonteurPartie.INSTANCE.Joueur1.Score;
+            Score2.Tag = MonteurPartie.INSTANCE.Joueur2.Score;
         }
             
         /// <summary>
@@ -81,17 +90,17 @@ namespace WPF_Test
             var tuile = new Rectangle();
             var caseLogique = FabriqueCase.INSTANCE.obtenirCase(c);
 
-            if(caseLogique is Desert)
-                 tuile.Fill = Brushes.BlanchedAlmond;
+            if (caseLogique is Desert)
+                tuile.Fill = Brushes.Bisque;
                     
              if(caseLogique is Eau)
-                    tuile.Fill = Brushes.DarkBlue;
+                    tuile.Fill = Brushes.SkyBlue;
 
              if(caseLogique is Foret)
                     tuile.Fill = Brushes.DarkGreen;
 
-             if(caseLogique is Montagne)
-                    tuile.Fill = Brushes.Maroon;
+             if (caseLogique is Montagne)
+                 tuile.Fill = Brushes.BurlyWood;
 
              if(caseLogique is Plaine)
                     tuile.Fill = Brushes.Green;
@@ -126,7 +135,7 @@ namespace WPF_Test
 
                 //création de l'ellipse
                 var e = new Ellipse();
-                e.Fill = Brushes.Yellow;
+                e.Fill = couleurPeuple[MonteurPartie.INSTANCE.P1];
                 e.Width = 11;                
                 e.Height = 11;
 
@@ -152,7 +161,7 @@ namespace WPF_Test
 
                 //création de l'ellipse
                 var e = new Ellipse();
-                e.Fill = Brushes.White;
+                e.Fill = couleurPeuple[MonteurPartie.INSTANCE.P2];
                 e.Width = 11;
                 e.Height = 11;
 

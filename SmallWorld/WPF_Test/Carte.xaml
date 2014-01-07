@@ -16,41 +16,10 @@
         </StackPanel>
         
         <!-- INFOS JOUEURS ET UNITE -->
-        <DockPanel  DockPanel.Dock="Right" >
-            <!-- INFOS JOUEUR 1 -->
-            <Grid DockPanel.Dock="Top" HorizontalAlignment="Left" Width="165" Background="Azure" Height="150">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 1" FontSize="28" HorizontalAlignment="Center" />
-                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="" Name="Score1" FontSize="16"/>
-            </Grid>
+        <StackPanel  DockPanel.Dock="Right" >
             
-            <!-- INFOS JOUEUR 2 -->
-            <Grid DockPanel.Dock="Bottom" VerticalAlignment="Bottom" Width="165" Background="Azure" Height="150">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 2" FontSize="28" HorizontalAlignment="Center" />
-                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="" Name="Score2" FontSize="16"/>
-            </Grid>
-
             <!-- INFOS UNITE EN COURS (VIDE SINON) -->
-            <Grid VerticalAlignment="Center" Width="165" Background="Azure" Height="150">
+            <Grid Width="165" Background="LightGray" Height="150" Margin="0,20">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition />
@@ -72,7 +41,39 @@
                 <Label Grid.Row="4" Grid.Column="0" Content="Defense " FontSize="15" HorizontalAlignment="Right"/>
                 <Label Grid.Row="4" Grid.Column="1" Content="{Binding Tag.PointDefense, ElementName=UniteSelectionnee}" FontSize="16"/>
             </Grid>
-        </DockPanel>
+            
+            <!-- INFOS JOUEUR 1 -->
+            <Grid Width="165" Background="LightGray" Margin="0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 1" FontSize="28" HorizontalAlignment="Center" Name="LabelJoueur1" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag, ElementName=Score1}" Name="Score1" FontSize="16"/>
+            </Grid>
+            
+            <!-- INFOS JOUEUR 2 -->
+            <Grid Width="165" Background="LightGray" Margin="0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 2" FontSize="28" HorizontalAlignment="Center" Name="LabelJoueur2" />
+                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag, ElementName=Score2}" Name="Score2" FontSize="16"/>
+            </Grid>
+
+            
+        </StackPanel>
         
         <!-- CARTE -->
         <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseLeftButtonDown="window_MouseLeftButtonDown">
