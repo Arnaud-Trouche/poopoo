@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Wrapper;
 
 namespace Code
 {
@@ -13,6 +14,8 @@ namespace Code
         private String j2;
         private int p1;
         private int p2;
+        private Joueur joueur1;
+        private Joueur joueur2;
 
         private int nbCases;
         private int tailleCarte;
@@ -22,6 +25,21 @@ namespace Code
         private Carte carte;
         private Jeu jeu;
 
+        public Joueur Joueur1
+        {
+            get
+            {
+               return joueur1;
+            }
+        }
+
+        public Joueur Joueur2
+        {
+            get
+            {
+                return joueur2;
+            }
+        }
 
         public int NbCases
         { 
@@ -139,11 +157,22 @@ namespace Code
            }   
        }
 
-       public void creerCarte()
+       public unsafe void creerCarte()
        {
            carte.definirTaille(tailleCarte);
+           WrapperAlgo wrapperAlgo = new WrapperAlgo();
 
+           int* tabCases1Dimension = wrapperAlgo.creationCarte(tailleCarte);
+           int[] tab = new int[tailleCarte * tailleCarte];
+           int i;
+           for (i = 0; i < tailleCarte * tailleCarte; i++)
+               tab[i] = tabCases1Dimension[i];
+
+           FabriqueCase.INSTANCE.setTabCases(ref tab);
+
+           carte.creerCarte();
        }
+
        public Peuple creerPeuple(Coord c, int nbUnites)
        {
            return null;
@@ -174,6 +203,7 @@ namespace Code
            }
 
            creerCarte();
+          // creerPeuple()
            return true;
        }
 

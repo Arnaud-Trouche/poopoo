@@ -21,6 +21,7 @@ namespace Code
         }
 
         private Coord position;
+
         public Coord Position    // the position property
         {
             get
