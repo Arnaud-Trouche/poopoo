@@ -172,7 +172,7 @@ namespace Code
 
         public void deplacer(Coord caseDeplacement)
         {
-            throw new System.NotImplementedException();
+            this.position = caseDeplacement;
         }
 
         public void debutTour()

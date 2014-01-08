@@ -19,16 +19,9 @@ namespace Code
             }
         }
 
-        public Unite getUnite(Coord coordonnee)
+        public override String ToString()
         {
-            Unite result = unites.Find(
-            delegate(Unite uni)
-            {
-                return uni.Position == coordonnee;
-            }
-            );
-            //si pas trouvé, null est envoyé
-            return result;
+            return "Gaulois";
         }
     }
 }

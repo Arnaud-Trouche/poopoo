@@ -8,7 +8,6 @@ namespace Code
     public class Carte : iCarte
     {
         private iStrategieCarte strategie;
-        private iCase[] listeCases;
         private int nbTours;
         private int nbUnites;
         private static int TAILLE;
