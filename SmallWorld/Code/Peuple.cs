@@ -18,6 +18,14 @@ namespace Code
             }
         }
         
+        public void  remettrePtDeplacement(){
+            foreach (Unite unite in Unites)
+            {
+                unite.debutTour();
+            }
+
+        }
+
          public Peuple(int nbUnites, Coord pos)
         {
             this.nbUnites = nbUnites;

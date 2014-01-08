@@ -159,8 +159,31 @@ namespace Code
             return u.deplacementPossibles();
         }
 
-        public void action(Unite u, Coord posfinale)
+        public void finTour()
         {
+            //Si il y a une fin de partie
+            if (j1.Peuple.nombreUnitesRestantes() == 0 || j2.Peuple.nombreUnitesRestantes() == 0 || nbToursActuels == (nbTours + 1))
+                finPartie(); 
+            
+            nbActions++;
+            if ((nbActions % 2) == 0)
+                    nbToursActuels++;
+
+            //sinon on passe au joueur suivant
+            //Si c'était joueur1 qui jouait c'est au tour du joueur2
+            if (j1Joue == true)
+            {
+                j1Joue = false;
+                jActif = j2;
+            }
+            //Sinon c'est au tour du joueur1
+            else
+            {
+                j1Joue = true;
+                jActif = j1;
+            }
+
+            jActif.Peuple.remettrePtDeplacement();
 
 
         }
