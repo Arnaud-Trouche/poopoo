@@ -66,134 +66,74 @@ int* Algo::positionnerJoueurs(int* carte, int taille){
 	return tabPositions;
 }
 
-void Algo::deplacementPossibleGauloisInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl){
+int* Algo::deplacementPossibleGaulois1(int* carte, int taille, int pos){
 	int i;
+	int* carteDepRes = (int*)malloc(taille*taille*sizeof(int));
+
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
-	for (i = 0; i < (taille*taille); i++)
-		carteDepRes[i] = CASE_NONTRAITEE;
+	for (i = 0; i < taille*taille; i++)
+		carteDepRes[i] = CASE_IMPOSSIBLE;
 
-	//Initialise la Carte des Cout des déplacements
-	for (i = 0; i < (taille*taille); i++)
-		carteCoutDep[i] = 0;
-
-	//On autorise la case initiale pour démarrer l'algo de recherche
-	carteCoutDep[pos] = 1;
-
-	//Analyse la case actuelle car elle ne sera pas analysée par la suite. Si c'est une case Plaine -> la mettre comme Bonus
-	if (carte[pos] == CASE_PLAINE)
-	{
-		carteDepRes[pos] = CASE_BONUS;
-	}
-	else
-	{
-		carteDepRes[pos] = CASE_POSSIBLE;
-	}
-
-	carteCoutDep[pos] = ptDpl;
-
-	deplacementPossibleGauloisRec(carte, taille, pos, carteCoutDep, carteDepRes);
-}
-
-void Algo::deplacementPossibleGauloisRec(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes){
-
-	int posTemp = pos;
-	
 	//Si on est pas en haut
 	if (pos > taille - 1){
-		posTemp = pos - taille;
-		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
-			//On regarde la case du haut
-			deplacementPossibleGauloisCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
-			//Appel Recursif
-			deplacementPossibleGauloisRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
-		}
+		if (carte[pos - taille] != CASE_EAU)
+			carteDepRes[pos - taille] = CASE_POSSIBLE;
 	}
 
 	//Si on est pas en bas
-	if (pos < taille*(taille - 1) ) {
-		posTemp = pos + taille;
-		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
-			//On regarde la case de bas
-			deplacementPossibleGauloisCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
-			//Appel Recursif
-			deplacementPossibleGauloisRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
-		}
+	if (pos < taille*(taille - 1)) {
+		if (carte[pos + taille] != CASE_EAU)
+			carteDepRes[pos + taille] = CASE_POSSIBLE;
 	}
 
 	//Si on est pas a gauche
-	if (pos != 0 || (pos % taille) != 0) { 
-		posTemp = pos - 1;
-		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
-			//On regarde la case a gauche
-			deplacementPossibleGauloisCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
-			//Appel Recursif
-			deplacementPossibleGauloisRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
-		}
+	if ((pos % taille) != 0) {
+		if (carte[pos - 1] != CASE_EAU)
+			carteDepRes[pos - 1] = CASE_POSSIBLE;
 	}
 
 	//Si on est pas a droite
-	if (pos%(taille-1) != 0) {
-		posTemp = pos + 1;
-		if (carteDepRes[posTemp] == CASE_NONTRAITEE) {
-			//On regarde la case du haut
-			deplacementPossibleGauloisCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
-			//Appel Recursif
-			deplacementPossibleGauloisRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
-		}
+	if (((pos + 1)%taille) != 0) {
+		if (carte[pos + 1] != CASE_EAU)
+			carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
 
-
+	return carteDepRes;
 }
 
-void Algo::traitementCaseNormale(int* carte, int pos, double* carteCoutDep, int* carteDepRes, double PointDeDeplacement){
-	
-	if (PointDeDeplacement >= 1)
-	{
-		PointDeDeplacement--;
-		carteDepRes[pos] = CASE_POSSIBLE;
-		carteCoutDep[pos] = PointDeDeplacement;
-	}
-	else
-	{
-		carteDepRes[pos] = CASE_IMPOSSIBLE;
-	}
+int* Algo::deplacementPossibleGaulois2(int* carte, int taille, int pos){
+	int i;
+	int* carteDepRes = (int*)malloc(taille*taille*sizeof(int));
 
-}
+	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
+	for (i = 0; i < taille*taille; i++)
+		carteDepRes[i] = CASE_IMPOSSIBLE;
 
-void Algo::deplacementPossibleGauloisCase(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl){
-
-	double PointDeDeplacement = ptDeDepl;
-
-	//Comportement varie selon le type de la case
-	switch (carte[pos]) {
-
-	case CASE_DESERT:
-		traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement);
-		break;
-
-	case CASE_MONTAGNE:
-		traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement);
-		break;
-
-
-	case CASE_PLAINE:
-		if (PointDeDeplacement >= 0.5)
-		{
-			PointDeDeplacement -= 0.5;
-			carteDepRes[pos] = CASE_BONUS;
-			carteCoutDep[pos] = PointDeDeplacement;
-		}
-		else
-		{
-			carteDepRes[pos] = CASE_IMPOSSIBLE;
-		}
-		break;
-
-	default:
-		break;
-
+	//Si on est pas en haut
+	if (pos > taille - 1){
+		if (carte[pos - taille] == CASE_PLAINE)
+			carteDepRes[pos - taille] = CASE_POSSIBLE;
 	}
 
+	//Si on est pas en bas
+	if (pos < taille*(taille - 1)) {
+		if (carte[pos + taille] == CASE_PLAINE)
+			carteDepRes[pos + taille] = CASE_POSSIBLE;
+	}
+
+	//Si on est pas a gauche
+	if ((pos % taille) != 0) {
+		if (carte[pos - 1] != CASE_PLAINE)
+			carteDepRes[pos - 1] = CASE_POSSIBLE;
+	}
+
+	//Si on est pas a droite
+	if (((pos + 1)%taille) != 0) {
+		if (carte[pos + 1] != CASE_PLAINE)
+			carteDepRes[pos + 1] = CASE_POSSIBLE;
+	}
+
+	return carteDepRes;
 }
 
 
@@ -280,11 +220,8 @@ int* Algo_creationCarte(Algo* algo, int taille) { return algo->creationCarte(tai
 int Algo_positionnerJoueurHorsEau(Algo* algo, int* carte, int taille, int pos) { return algo->positionnerJoueurHorsEau(carte, taille, pos); }
 int* Algo_positionnerJoueurs(Algo* algo, int* carte, int taille) { return algo->positionnerJoueurs(carte, taille); }
 
-void Algo_traitementCaseNormale(Algo* algo, int* carte, int pos, double* carteCoutDep, int* carteDepRes, double PointDeDeplacement) { return algo->traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement); }
-
-void Algo_deplacementPossibleGauloisInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl) { return algo->deplacementPossibleGauloisInit(carte, taille, pos, carteCoutDep, carteDepRes,ptDpl); }
-void Algo_deplacementPossibleGauloisRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleGauloisRec(carte, taille, pos, carteCoutDep, carteDepRes); }
-void Algo_deplacementPossibleGauloisCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl) { return algo->deplacementPossibleGauloisCase(carte, taille, pos, carteCoutDep, carteDepRes, ptDeDepl); }
+int* Algo_deplacementPossibleGaulois1(Algo* algo, int* carte, int taille, int pos) { return algo->deplacementPossibleGaulois1(carte, taille, pos); }
+int* Algo_deplacementPossibleGaulois2(Algo* algo, int* carte, int taille, int pos) { return algo->deplacementPossibleGaulois2(carte, taille, pos); }
 
 int* Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos) { return algo->deplacementPossibleNainInit(carte, taille, pos); }
 

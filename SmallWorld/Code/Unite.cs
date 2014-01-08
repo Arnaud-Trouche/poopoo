@@ -97,16 +97,24 @@ namespace Code
 
             if (this.peuple is PeupleGaulois)
             {
-                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension());
+                if (pointDeDeplacement == 1)
+                {
+                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois1(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension());
+                }
+                //Il lui reste 0.5 points de depl et donc seuls les cases Plaines VOISINES SONT ok
+                else
+                {
+                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois2(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension());
+                }
             }
             else if (this.peuple is PeupleNain)
             {
-                tabDeplacement =  wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
+                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
             // ON est sur que se sera un Viking 
-            else 
+            else
             {
-                tabDeplacement =  wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
+                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
 
             int i = 0; 
