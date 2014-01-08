@@ -199,6 +199,8 @@ void Algo::deplacementPossibleGauloisCase(int* carte, int taille, int pos, doubl
 
 void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, int* carteDepRes){
 	int i;
+	carteDepRes = (int*)malloc(taille*taille*sizeof(int));
+	
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
 	for (i = 0; i < taille*taille; i++)
 		carteDepRes[i] = CASE_IMPOSSIBLE;
@@ -235,11 +237,13 @@ void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, int* car
 			carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
 
-
 }
 
 void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, int* carteDepRes){
 	int i;
+
+	carteDepRes = (int*)malloc(taille*taille*sizeof(int));
+
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
 	for (i = 0; i < taille*taille; i++)
 		carteDepRes[i] = CASE_IMPOSSIBLE;
@@ -263,7 +267,6 @@ void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, int* c
 	if (pos%(taille - 1) != 0) {
 		carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
-
 
 }
 
