@@ -154,8 +154,6 @@ namespace Code
 
         }
 
-
-
         public Joueur finPartie()
         {
             //Plusieurs cas de figure

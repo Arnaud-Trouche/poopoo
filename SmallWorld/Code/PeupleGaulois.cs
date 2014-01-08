@@ -8,15 +8,9 @@ namespace Code
     public class PeupleGaulois : Peuple
     {
 
-        public PeupleGaulois(int nbUnites, Coord pos)
+        public PeupleGaulois(int nbUnites,Coord pos) : base(nbUnites, pos)
         {
-            this.nbUnites = nbUnites;
-            unites = new List<Unite>(nbUnites);
-
-            for (int i = 0; i < nbUnites; i++)
-            {
-                unites.Add(new Unite(pos, Constants.GAULOIS));
-            }
+           
         }
 
         public override String ToString()

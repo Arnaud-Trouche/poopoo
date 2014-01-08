@@ -17,9 +17,16 @@ namespace Code
                 return unites;
             }
         }
-        public Unite creerUnite()
+        
+         public Peuple(int nbUnites, Coord pos)
         {
-            throw new NotImplementedException();
+            this.nbUnites = nbUnites;
+            unites = new List<Unite>(nbUnites);
+
+            for (int i = 0; i < nbUnites; i++)
+            {
+                unites.Add(new Unite(pos, this));
+            }
         }
 
         public Unite getUnite(Coord coordonnee)

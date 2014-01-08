@@ -154,14 +154,23 @@ namespace Code
             }
         }
     
-        /*
-        public int[] deplacementPossibles()
+        
+      /*  public int[] deplacementPossibles()
         {
             int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
             if (this.peuple is PeupleGaulois)
             {
 
             }
+            if (this.peuple is PeupleNain)
+            {
+
+            }
+            if (this.peuple is PeupleViking)
+            {
+
+            }
+
 
         }
         */

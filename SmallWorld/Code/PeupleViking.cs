@@ -7,15 +7,10 @@ namespace Code
 {
     public class PeupleViking : Peuple
     {
-        public PeupleViking(int nbUnites, Coord pos)
+       
+        public PeupleViking(int nbUnites,Coord pos) : base(nbUnites, pos)
         {
-            this.nbUnites = nbUnites;
-            unites = new List<Unite>(nbUnites);
-
-            for (int i = 0; i < nbUnites; i++)
-            {
-                unites.Add(new Unite(pos, Constants.VIKING));
-            }
+           
         }
 
         public override String ToString()

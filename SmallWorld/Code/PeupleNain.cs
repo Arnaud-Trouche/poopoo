@@ -7,16 +7,12 @@ namespace Code
 {
     public class PeupleNain : Peuple
     {
-        public PeupleNain(int nbUnites, Coord pos)
+    
+        public PeupleNain(int nbUnites,Coord pos) : base(nbUnites, pos)
         {
-            this.nbUnites = nbUnites;
-            unites = new List<Unite>(nbUnites);
-
-            for (int i = 0; i < nbUnites; i++)
-            {
-                unites.Add(new Unite(pos, Constants.NAIN));
-            }
+           
         }
+
 
         public override String ToString()
         {
