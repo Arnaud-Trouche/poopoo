@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.20827.3
+VisualStudioVersion = 12.0.20617.1 PREVIEW
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Wrapper", "Wrapper\Wrapper.vcxproj", "{4E9DB1D4-45C7-4922-BD88-8A8BB57B2852}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -17,16 +17,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Algo", "Algo\Algo.vcxproj",
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ProjetModelisation", "ProjetModelisation\ProjetModelisation.modelproj", "{8501E488-8162-4062-9D65-9DDD584378F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_Test", "WPF_Test\WPF_Test.csproj", "{946B2359-6753-401D-8A70-ECDAB068BDF6}"
-	ProjectSection(ProjectDependencies) = postProject
-		{C497677F-029B-4DF6-8073-F0977C8D652D} = {C497677F-029B-4DF6-8073-F0977C8D652D}
-		{4E9DB1D4-45C7-4922-BD88-8A8BB57B2852} = {4E9DB1D4-45C7-4922-BD88-8A8BB57B2852}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{7F349157-FEC3-4A97-8C16-AECE964C2CD6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{C497677F-029B-4DF6-8073-F0977C8D652D} = {C497677F-029B-4DF6-8073-F0977C8D652D}
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InterfaceSW", "WPF_Test\InterfaceSW.csproj", "{381397A6-7481-4126-ADE2-4A8F5241694B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,16 +74,6 @@ Global
 		{8501E488-8162-4062-9D65-9DDD584378F7}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{8501E488-8162-4062-9D65-9DDD584378F7}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{8501E488-8162-4062-9D65-9DDD584378F7}.Release|Win32.ActiveCfg = Release|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{946B2359-6753-401D-8A70-ECDAB068BDF6}.Release|Win32.ActiveCfg = Release|Any CPU
 		{7F349157-FEC3-4A97-8C16-AECE964C2CD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7F349157-FEC3-4A97-8C16-AECE964C2CD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F349157-FEC3-4A97-8C16-AECE964C2CD6}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -98,6 +84,16 @@ Global
 		{7F349157-FEC3-4A97-8C16-AECE964C2CD6}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{7F349157-FEC3-4A97-8C16-AECE964C2CD6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7F349157-FEC3-4A97-8C16-AECE964C2CD6}.Release|Win32.ActiveCfg = Release|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{381397A6-7481-4126-ADE2-4A8F5241694B}.Release|Win32.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -24,7 +24,7 @@
         <StackPanel  DockPanel.Dock="Right" >
             
             <!-- INFOS UNITE EN COURS (VIDE SINON) -->
-            <Grid Width="165" Background="LightGray" Height="150" Margin="0,20">
+            <Grid Width="165" Background="#FFF0F0F0" Margin="0,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition />
@@ -45,14 +45,14 @@
             </Grid>
             
             <!-- INFOS JOUEUR 1 -->
-            <Grid Width="165" Background="LightGray" Margin="0,20">
+            <Grid Width="165" Background="#FFF0F0F0" Margin="0,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=LabelJoueur1}" FontSize="22" HorizontalAlignment="Center" Name="LabelJoueur1" />
@@ -62,14 +62,14 @@
             </Grid>
             
             <!-- INFOS JOUEUR 2 -->
-            <Grid Width="165" Background="LightGray" Margin="0,20">
+            <Grid Width="165" Background="#FFF0F0F0" Margin="0,10">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=LabelJoueur2}" FontSize="22" HorizontalAlignment="Center" Name="LabelJoueur2" />
@@ -78,7 +78,14 @@
                 <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag, ElementName=Score2}" Name="Score2" FontSize="16"/>
             </Grid>
 
-            
+            <Button Style="{DynamicResource MiniButtonStyle}"  Margin="0,10,0,0" Click="FinTour_Click" >
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Center">Fin</TextBlock>
+                    <TextBlock HorizontalAlignment="Center">Tour</TextBlock>
+                </StackPanel>
+            </Button>
+
+
         </StackPanel>
         
         <!-- CARTE -->

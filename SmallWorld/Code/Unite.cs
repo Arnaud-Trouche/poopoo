@@ -122,7 +122,7 @@ namespace Code
 
         public void attaquer(Coord caseAttaquee)
         {
-            throw new System.NotImplementedException();
+            //TODO
         }
 
         public void deplacer(Coord caseDeplacement)
