@@ -17,7 +17,6 @@ namespace Code
         private Joueur joueur1;
         private Joueur joueur2;
 
-        private int nbCases;
         private int tailleCarte;
         private int nbTours;
         private int nbUnites;
@@ -54,15 +53,6 @@ namespace Code
             {
                 return joueur2;
             }
-        }
-
-        public int NbCases
-        { 
-            get
-            {
-                return nbCases;
-            }
-        
         }
         public int TailleCarte
         {
@@ -172,9 +162,50 @@ namespace Code
            }   
        }
 
+       public bool initialiser()
+       {
+           //Arnaud me send la diff le nom J1 J2 P1 P2 
+           carte = new Carte();
+           jeu = new Jeu();
+           joueur1 = new Joueur();
+           joueur2 = new Joueur();
+
+           switch (difficulte)
+           {
+               case Constants.DEMO:
+                   tailleCarte = Constants.DEMO;
+                   break;
+
+               case Constants.PETITE:
+                   tailleCarte = Constants.PETITE;
+                   break;
+
+               case Constants.NORMALE:
+                   tailleCarte = Constants.NORMALE;
+                   break;
+
+               default:
+                   break;
+           }
+
+           carte1D = new int[tailleCarte * tailleCarte];
+           // On a toutes les infos pour créer la Carte
+           creerCarte();
+
+           //Il faut maintenant créer les joueurs
+           //Commencons par créer le Peuple d'un joueur
+           creerJoueurs(j1, p1, j2, p2, nbUnites);
+
+           return true;
+       }
+
        public unsafe void creerCarte()
        {
            carte.definirTaille(tailleCarte);
+           //Récupération des caractéristiques
+           this.tailleCarte = Code.Carte.getTaille();
+           this.nbTours = carte.NbTours;
+           this.nbUnites = carte.NbUnites;
 
            tab1D = wrapperAlgo.creationCarte(tailleCarte);
            int i;
@@ -203,50 +234,9 @@ namespace Code
            joueur2.Peuple = peupleJ2;
 
        }
- 
-       /*public Peuple creerPeuple(Coord c, int nbUnites)
-       {
-           return null;
-       }*/
 
-       public bool initialiser()
-       {
-           //Arnaud me send la diff le nom J1 J2 P1 P2 
-           carte = new Carte();
-           jeu = new Jeu();
-           joueur1 = new Joueur();
-           joueur2 = new Joueur();
 
-           switch(difficulte)
-           {
-               case Constants.DEMO :
-                     tailleCarte = Constants.DEMO;
-               break;
-
-               case Constants.PETITE :
-                     tailleCarte = Constants.PETITE;
-               break;
-
-               case Constants.NORMALE :
-                    tailleCarte = Constants.NORMALE;
-               break;
-
-               default :
-               break;
-           }
-
-           carte1D = new int[tailleCarte * tailleCarte];
-           // On a toutes les infos pour créer la Carte
-           creerCarte();
-
-           nbUnites = carte.NbUnites;
-
-           //Il faut maintenant créer les joueurs
-           //Commencons par créer le Peuple d'un joueur
-           creerJoueurs(j1, p1, j2, p2, nbUnites);
-
-           return true;
-       }
+       
 
 
         private MonteurPartie()
