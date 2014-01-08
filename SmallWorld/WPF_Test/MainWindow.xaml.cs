@@ -36,52 +36,6 @@ namespace WPF_Test
             //Initialisation de l'historique
             history = new Stack<string>();
             pageActuelle = "accueil.xaml";
-
-            taille = 10;
-            s = "";
-            InitializeComponent();
-            //Appel à la DLL et mise à jour Label
-
-            /*wrap = new WrapperAlgo();
-            int* tab = wrap.creationCarte(taille);
-            int posa = wrap.positionnerJoueur(tab, taille, taille - 1);
-            int posb = wrap.positionnerJoueur(tab, taille, taille*(taille-1));
-            */
-            /*
-            for (int i = 0; i < taille; i++)
-            {
-                for (int j = 0; j < taille; j++)
-                {
-                   if (posa == i * taille + j) {
-                       s += "A";
-                   }
-                   if (posb == i * taille + j)
-                   {
-                       s +="B";
-                   }
-                   switch(tab[i * taille + j])
-                    {
-                       case 0:
-                        s += "¤¤       ";
-                        break;
-                       case 1:
-                        s += "~~       ";
-                        break;
-                       case 2:
-                        s += "||||       ";
-                        break;
-                       case 3:
-                        s += "^^       ";
-                        break;
-                       case 4:
-                        s += "__       ";
-                        break; 
-                    }
-                }
-                s += "\n\n";
-            }
-            labello.Content = s;
-             * */
         }
 
         /// <summary>

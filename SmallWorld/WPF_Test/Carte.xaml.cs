@@ -25,6 +25,9 @@ namespace WPF_Test
     {
         //Définition des couleurs : Nain,Viking,Gaulois
         SolidColorBrush[] couleurPeuple = {Brushes.Red, Brushes.Yellow, Brushes.Orange};
+        const double OPACITE_NON_POSSIBLE = 0.5;
+        Stack<Rectangle> listeOpacifiee;
+
         public unsafe Carte()
         {
             InitializeComponent();
@@ -35,8 +38,10 @@ namespace WPF_Test
             w.MouseLeftButtonDown += new MouseButtonEventHandler(window_MouseLeftButtonDown);
 
             //Définition de la couleur des Joueurs
-            LabelJoueur1.Foreground = couleurPeuple[MonteurPartie.INSTANCE.P1];
-            LabelJoueur2.Foreground = couleurPeuple[MonteurPartie.INSTANCE.P2];
+            PeupleJoueur1.Foreground = couleurPeuple[MonteurPartie.INSTANCE.P1];
+            PeupleJoueur2.Foreground = couleurPeuple[MonteurPartie.INSTANCE.P2];
+
+            listeOpacifiee = new Stack<Rectangle>();
         }
 
         /// <summary>
@@ -78,6 +83,18 @@ namespace WPF_Test
             //Ajout des tags liant le score aux joueurs
             Score1.Tag = MonteurPartie.INSTANCE.Joueur1.Score;
             Score2.Tag = MonteurPartie.INSTANCE.Joueur2.Score;
+
+            //Ajout des tags liant le tour et le nom du joueur en cours
+            //LabelJoueur.Tag = Jeu.INSTANCE.JoueurQuiJoue;
+            //LabelTourEnCours.Tag = Jeu.INSTANCE.Tour;
+            LabelTotalTour.Tag = MonteurPartie.INSTANCE.NbTours;
+
+            //Ajout des tags liant les noms des joueurs et des peuples
+            LabelJoueur1.Tag = MonteurPartie.INSTANCE.J1;
+            LabelJoueur2.Tag = MonteurPartie.INSTANCE.J2;
+            PeupleJoueur1.Tag = MonteurPartie.INSTANCE.Joueur1.Peuple.ToString();
+            PeupleJoueur2.Tag = MonteurPartie.INSTANCE.Joueur2.Peuple.ToString();
+            
         }
             
         /// <summary>
@@ -182,8 +199,8 @@ namespace WPF_Test
 
         /// <summary>
         /// Réaction à un clic sur une case de la carte
+        ///     - une unité doit être sélectionnée et le déplacement possible
         ///     - mise à jour du rectangle sélectionné
-        ///     - une unité doit être sélectionnée
         ///     - si déplacement possible, l'unité est déplacée
         /// </summary>
         /// <param name="sender"></param>
@@ -194,7 +211,11 @@ namespace WPF_Test
             var caseLogique = rectangle.Tag as iCase;
 
             //Si une unité est selectionnée
-            if (UniteSelectionnee.Visibility == System.Windows.Visibility.Visible) {            
+            if (UniteSelectionnee.Visibility == System.Windows.Visibility.Visible) { 
+                
+                //Si le déplacement/attaque est possible (case non grisée)
+                //TODO
+
                 //Mise à jour du rectangle sélectionné
                 int col = Grid.GetColumn(rectangle);
                 int row = Grid.GetRow(rectangle);
@@ -203,17 +224,26 @@ namespace WPF_Test
                 CaseSelectionnee.Tag = caseLogique;
                 CaseSelectionnee.Visibility = System.Windows.Visibility.Visible;
 
+                //TETSOUNETSS
+                (UniteSelectionnee.Tag as Unite).deplacer(new Coord(col,row));
+                UniteSelectionnee.Tag = null;
+                UniteSelectionnee.Visibility = System.Windows.Visibility.Collapsed;
+                uniteGrid.Children.Clear();
+                window_MouseLeftButtonDown(sender,e);
+                placerUnites();
+
                 //L'évènement a été traité, il ne faut pas appeler le handler de la fenêtre
                 e.Handled = true;
+                
             }
         }
 
         /// <summary>
         /// Réaction à un clic sur une unité de la carte
-        ///     - mise à jour de l'ellipse sélectionnée
         ///     - vérifier que c'est une unité du joueur en cours
+        ///     - mise à jour de l'ellipse sélectionnée
         ///     - afficher les suggestions de parcours
-        ///     - afficher les infos de l'unité dans le panel à droite
+        ///     - afficher les infos de l'unité dans le panel à droite -> binding
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -222,6 +252,8 @@ namespace WPF_Test
             var ellipse = sender as Ellipse;
             var uniteLogique = ellipse.Tag as Unite;
 
+            //Vérification que l'unité appartient bien au joueur en cours
+            // TODO 
             //Mise à jour de l'ellipse sélectionnée
             int col = Grid.GetColumn(ellipse);
             int row = Grid.GetRow(ellipse);
@@ -229,6 +261,23 @@ namespace WPF_Test
             Grid.SetRow(UniteSelectionnee, row);
             UniteSelectionnee.Tag = uniteLogique;
             UniteSelectionnee.Visibility = System.Windows.Visibility.Visible;
+
+            //Mise en surbrillance des cases où le déplacement/attaque est possible
+            //TODO
+            Rectangle r = new Rectangle();
+            r.Opacity = OPACITE_NON_POSSIBLE;
+            r.Fill = Brushes.White;
+            listeOpacifiee.Push(r);
+            Grid.SetColumn(r, 0);
+            Grid.SetRow(r, 0);
+            mapGrid.Children.Add(r);
+            r = new Rectangle();
+            r.Opacity = OPACITE_NON_POSSIBLE;
+            r.Fill = Brushes.White;
+            listeOpacifiee.Push(r);
+            Grid.SetColumn(r, 1);
+            Grid.SetRow(r, 0);
+            mapGrid.Children.Add(r);
 
             //L'évènement a été traité, il ne faut pas appeler le handler de la fenêtre
             e.Handled = true;
@@ -239,6 +288,7 @@ namespace WPF_Test
         ///  Réaction à un clic sur la fenêtre
         ///     - déselectionner unité
         ///     - déselectionner case
+        ///     - dégriser les cases pas possibles
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -251,6 +301,12 @@ namespace WPF_Test
             //Déselectionner la case
             CaseSelectionnee.Tag = null;
             CaseSelectionnee.Visibility = System.Windows.Visibility.Collapsed;
+
+            //dé-opacifier la carte
+            while (listeOpacifiee.Count > 0)
+            {
+                mapGrid.Children.Remove(listeOpacifiee.Pop());
+            }
         }
 
 

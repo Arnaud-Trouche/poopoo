@@ -25,7 +25,7 @@
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Démo</TextBlock>
                     <TextBlock HorizontalAlignment="Right">5x5</TextBlock>
-                    <TextBlock HorizontalAlignment="Right">10 tours</TextBlock>
+                    <TextBlock HorizontalAlignment="Right">5 tours</TextBlock>
                 </StackPanel>
             </Button>
 
@@ -33,7 +33,7 @@
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Petite</TextBlock>
                     <TextBlock HorizontalAlignment="Right">10x10</TextBlock>
-                    <TextBlock HorizontalAlignment="Right">15 tours</TextBlock>
+                    <TextBlock HorizontalAlignment="Right">20 tours</TextBlock>
                 </StackPanel>
             </Button>
 
@@ -41,7 +41,7 @@
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Normale</TextBlock>
                     <TextBlock HorizontalAlignment="Right">15x15</TextBlock>
-                    <TextBlock HorizontalAlignment="Right">20 tours</TextBlock>
+                    <TextBlock HorizontalAlignment="Right">30 tours</TextBlock>
                 </StackPanel>
             </Button>
         </Grid>

@@ -25,7 +25,6 @@ namespace Code
         private unsafe int* tab1D;
 
         private Carte carte;
-        private Jeu jeu;
 
         public int[] Carte1D
         {
@@ -89,18 +88,6 @@ namespace Code
                 carte = value;
             }
         }
-
-       public Jeu Jeu
-       {
-           get
-           {
-               return jeu;
-           }
-           set
-           {
-               jeu = value;
-           }
-       }
 
        // ATTENTION !!
        // penser à transmettre le tableau de case à FabriqueCase
@@ -178,7 +165,6 @@ namespace Code
        {
            //Arnaud me send la diff le nom J1 J2 P1 P2 
            carte = new Carte();
-           jeu = new Jeu();
            joueur1 = new Joueur();
            joueur2 = new Joueur();
 
@@ -261,19 +247,9 @@ namespace Code
         {
             throw new System.NotImplementedException();
         }
-
-        public void definirTaille(int taille){
-
-        }
-
-
-        public void definirRace(String nom){
-
-
-        }
        
         public void lancerJeu(){
-            jeu.lancerJeu(carte, joueur1, joueur2, nbTours);
+            Jeu.INSTANCE.lancerJeu(carte, joueur1, joueur2, nbTours);
 
         }
     }

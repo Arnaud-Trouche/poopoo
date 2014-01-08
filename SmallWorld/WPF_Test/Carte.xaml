@@ -12,7 +12,12 @@
         <!-- HEADER -->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <Button Style="{DynamicResource FlecheBack}" Click="Back_Top_Click" ></Button>
-            <Label Content="Tour 1 - Joueur 1" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="Tour " FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="{Binding Tag, ElementName=LabelTourEnCours}" Name="LabelTourEnCours" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="/" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="{Binding Tag, ElementName=LabelTotalTour}" Name="LabelTotalTour" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content=" - " FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+            <Label Content="{Binding Tag, ElementName=LabelJoueur}" Name="LabelJoueur" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </StackPanel>
         
         <!-- INFOS JOUEURS ET UNITE -->
@@ -28,18 +33,15 @@
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="28"/>
                     <RowDefinition Height="28"/>
-                    <RowDefinition Height="28"/>
                     <RowDefinition Height="28" />
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Unité" FontSize="28" HorizontalAlignment="Center" />
                 <Label Grid.Row="1" Grid.Column="0" Content="Vie " FontSize="15" HorizontalAlignment="Right"/>
                 <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag.PointVie, ElementName=UniteSelectionnee}" FontSize="16"/>
-                <Label Grid.Row="2" Grid.Column="0" Content="Déplacement " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag.PointDeplacement, ElementName=UniteSelectionnee}" FontSize="16"/>
-                <Label Grid.Row="3" Grid.Column="0" Content="Attaque " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="3" Grid.Column="1" Content="{Binding Tag.PointAttaque, ElementName=UniteSelectionnee}" FontSize="16"/>
-                <Label Grid.Row="4" Grid.Column="0" Content="Defense " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="4" Grid.Column="1" Content="{Binding Tag.PointDefense, ElementName=UniteSelectionnee}" FontSize="16"/>
+                <Label Grid.Row="2" Grid.Column="0" Content="Attaque " FontSize="15" HorizontalAlignment="Right"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag.PointAttaque, ElementName=UniteSelectionnee}" FontSize="16"/>
+                <Label Grid.Row="3" Grid.Column="0" Content="Defense " FontSize="15" HorizontalAlignment="Right"/>
+                <Label Grid.Row="3" Grid.Column="1" Content="{Binding Tag.PointDefense, ElementName=UniteSelectionnee}" FontSize="16"/>
             </Grid>
             
             <!-- INFOS JOUEUR 1 -->
@@ -50,11 +52,13 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 1" FontSize="28" HorizontalAlignment="Center" Name="LabelJoueur1" />
-                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag, ElementName=Score1}" Name="Score1" FontSize="16"/>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=LabelJoueur1}" FontSize="22" HorizontalAlignment="Center" Name="LabelJoueur1" />
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=PeupleJoueur1}" FontSize="22" HorizontalAlignment="Center" Name="PeupleJoueur1" />
+                <Label Grid.Row="2" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag, ElementName=Score1}" Name="Score1" FontSize="16"/>
             </Grid>
             
             <!-- INFOS JOUEUR 2 -->
@@ -65,11 +69,13 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Joueur 2" FontSize="28" HorizontalAlignment="Center" Name="LabelJoueur2" />
-                <Label Grid.Row="1" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag, ElementName=Score2}" Name="Score2" FontSize="16"/>
+                <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=LabelJoueur2}" FontSize="22" HorizontalAlignment="Center" Name="LabelJoueur2" />
+                <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=PeupleJoueur2}" FontSize="22" HorizontalAlignment="Center" Name="PeupleJoueur2" />
+                <Label Grid.Row="2" Grid.Column="0" Content="Score " FontSize="16" HorizontalAlignment="Right"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag, ElementName=Score2}" Name="Score2" FontSize="16"/>
             </Grid>
 
             
