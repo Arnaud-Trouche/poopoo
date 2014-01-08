@@ -234,7 +234,7 @@ namespace Code
 
             j1.Score = score;
 
-            score = calculeScore(j1);
+            score = calculeScore(j2);
             j2.Score = score;
 
         }
@@ -242,7 +242,7 @@ namespace Code
         public int calculeScore(Joueur j)
         {
 
-
+            return 0;
         }
 
         private int RandomNumber(int min, int max)
