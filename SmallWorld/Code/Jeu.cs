@@ -172,6 +172,9 @@ namespace Code
             if ((nbActions % 2) == 0)
                     nbToursActuels++;
 
+
+            jActif.Peuple.remettrePtDeplacement();
+
             //sinon on passe au joueur suivant
             //Si c'était joueur1 qui jouait c'est au tour du joueur2
             if (j1Joue == true)
@@ -186,7 +189,6 @@ namespace Code
                 jActif = j1;
             }
 
-            jActif.Peuple.remettrePtDeplacement();
             return true;
 
         }
