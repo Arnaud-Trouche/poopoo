@@ -60,5 +60,17 @@ namespace Code
         {
             this.score += delta;
         }
+
+        public int calculeScore()
+        {
+            int score = 0;
+
+            foreach(Unite unite in Peuple.Unites)
+            {
+                score += unite.score();
+            }
+
+            return score;
+        }
     }
 }

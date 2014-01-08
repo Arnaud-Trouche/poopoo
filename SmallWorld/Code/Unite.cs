@@ -146,8 +146,6 @@ namespace Code
                 else 
                     pointDeDeplacement--;
 
-                
-
                 this.position = caseDeplacement;
 
                 Peuple p = Jeu.INSTANCE.recupAdversaire().Peuple;
@@ -160,6 +158,58 @@ namespace Code
 
         }
 
+        public int score()
+        {
+           
+
+            if (this.peuple is PeupleGaulois)
+            {
+                if (FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                {
+                    return 2;
+                }
+                else if (FabriqueCase.INSTANCE.obtenirCase(position) is Montagne)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else if (this.peuple is PeupleNain)
+            {
+                if (FabriqueCase.INSTANCE.obtenirCase(position) is Foret)
+                {
+                    return 2;
+                }
+                else if (FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            //C'est forcement un Viking
+            else
+            {
+                if (FabriqueCase.INSTANCE.obtenirCase(position) is Eau)
+                {
+                    return 1;
+                }
+                else if (FabriqueCase.INSTANCE.obtenirCase(position) is Desert)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+
+        }
         public void debutTour()
         {
             this.pointDeDeplacement = 1;

@@ -241,8 +241,8 @@ namespace Code
 
         public int calculeScore(Joueur j)
         {
+            return j.calculeScore();
 
-            return 0;
         }
 
         private int RandomNumber(int min, int max)
