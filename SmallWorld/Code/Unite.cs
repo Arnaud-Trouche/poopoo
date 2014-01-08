@@ -15,8 +15,6 @@ namespace Code
         private Peuple peuple;
         private Coord position;
         protected WrapperAlgo wrapperAlgo;
-        private double* tabCout;
-        private int* tabDeplacement;
         protected int* tabCarte;
 
         public int PointVie
@@ -143,11 +141,12 @@ namespace Code
 
             if (deplacementPossible)
             {
-                if (this.peuple is PeupleNain || this.peuple is PeupleViking)
+                if ((this.peuple is PeupleGaulois)  && (FabriqueCase.INSTANCE.obtenirCase(caseDeplacement) is Plaine))
+                        PointDeplacement = PointDeplacement - 0.5;
+                else 
                     pointDeDeplacement--;
 
-                if (this.peuple is PeupleGaulois)
-                    PointDeplacement = -0.5;
+                
 
                 this.position = caseDeplacement;
 

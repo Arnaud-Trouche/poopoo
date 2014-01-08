@@ -29,6 +29,10 @@ namespace Code
             {
                 return score;
             }
+            set 
+            {
+                score = value;
+            }
         }
 
         public String Nom

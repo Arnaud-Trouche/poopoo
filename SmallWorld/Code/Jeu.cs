@@ -227,6 +227,23 @@ namespace Code
             
         }
 
+        public void updateScore()
+        {
+            int score = 0;
+            score = calculeScore(j1);
+
+            j1.Score = score;
+
+            score = calculeScore(j1);
+            j2.Score = score;
+
+        }
+
+        public int calculeScore(Joueur j)
+        {
+
+
+        }
 
         private int RandomNumber(int min, int max)
         {
