@@ -112,11 +112,12 @@ namespace Code
             {
                 tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension());
             }
-            if (this.peuple is PeupleNain)
+            else if (this.peuple is PeupleNain)
             {
                 tabDeplacement =  wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
-            if (this.peuple is PeupleViking)
+            // ON est sur que se sera un Viking 
+            else 
             {
                 tabDeplacement =  wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }

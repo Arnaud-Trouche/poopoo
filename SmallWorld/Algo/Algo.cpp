@@ -197,9 +197,9 @@ void Algo::deplacementPossibleGauloisCase(int* carte, int taille, int pos, doubl
 }
 
 
-void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, int* carteDepRes){
+int* Algo::deplacementPossibleNainInit(int* carte, int taille, int pos){
 	int i;
-	carteDepRes = (int*)malloc(taille*taille*sizeof(int));
+	int* carteDepRes = (int*)malloc(taille*taille*sizeof(int));
 	
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
 	for (i = 0; i < taille*taille; i++)
@@ -237,12 +237,13 @@ void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, int* car
 			carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
 
+	return carteDepRes;
 }
 
-void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, int* carteDepRes){
+int* Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos){
 	int i;
 
-	carteDepRes = (int*)malloc(taille*taille*sizeof(int));
+	int* carteDepRes = (int*)malloc(taille*taille*sizeof(int));
 
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
 	for (i = 0; i < taille*taille; i++)
@@ -268,6 +269,7 @@ void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, int* c
 		carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
 
+	return carteDepRes;
 }
 
 
@@ -284,9 +286,9 @@ void Algo_deplacementPossibleGauloisInit(Algo* algo, int* carte, int taille, int
 void Algo_deplacementPossibleGauloisRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleGauloisRec(carte, taille, pos, carteCoutDep, carteDepRes); }
 void Algo_deplacementPossibleGauloisCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl) { return algo->deplacementPossibleGauloisCase(carte, taille, pos, carteCoutDep, carteDepRes, ptDeDepl); }
 
-void Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos,int* carteDepRes) { return algo->deplacementPossibleNainInit(carte, taille, pos, carteDepRes); }
+int* Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos) { return algo->deplacementPossibleNainInit(carte, taille, pos); }
 
-void Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos, int* carteDepRes) { return algo->deplacementPossibleVikingInit(carte, taille, pos, carteDepRes); }
+int* Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos) { return algo->deplacementPossibleVikingInit(carte, taille, pos); }
 
 
 //void Algo_deplacementPossibleGauloisVerifCase
