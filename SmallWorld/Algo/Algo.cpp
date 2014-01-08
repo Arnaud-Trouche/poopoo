@@ -226,13 +226,13 @@ int* Algo::deplacementPossibleNainInit(int* carte, int taille, int pos){
 	}
 
 	//Si on est pas a gauche
-	if (pos != 0 || (pos % taille) != 0) {
+	if ((pos % taille) != 0) {
 		if (carte[pos - 1] != CASE_EAU)
 			carteDepRes[pos - 1] = CASE_POSSIBLE;
 	}
 
 	//Si on est pas a droite
-	if (pos%(taille - 1) != 0) {
+	if (((pos+1)%taille) != 0) {
 		if (carte[pos + 1] != CASE_EAU)
 			carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
@@ -260,12 +260,12 @@ int* Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos){
 	}
 
 	//Si on est pas a gauche
-	if (pos != 0 || (pos % taille) != 0) {
+	if ((pos % taille) != 0) {
 		carteDepRes[pos - 1] = CASE_POSSIBLE;
 	}
 
 	//Si on est pas a droite
-	if (pos%(taille - 1) != 0) {
+	if (((pos+1) % taille) != 0) {
 		carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
 
