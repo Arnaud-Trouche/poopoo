@@ -137,8 +137,8 @@ namespace Code
             this.j1 = j1;
             this.j2 = j2;
             nbTours = nombreTours;
-            nbActions = 0;
-            nbToursActuels = 0;
+            nbActions = 2;
+            nbToursActuels = 1;
 
             //choix joueurs au hasard
             if (RandomNumber(0, 100) < 50)
