@@ -159,6 +159,13 @@ namespace Code
             return u.deplacementPossibles();
         }
 
+        public void action(Unite u, Coord posfinale)
+        {
+
+
+        }
+
+
         public Joueur finPartie()
         {
             //Plusieurs cas de figure

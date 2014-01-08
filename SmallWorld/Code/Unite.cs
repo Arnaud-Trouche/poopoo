@@ -161,15 +161,15 @@ namespace Code
 
             if (this.peuple is PeupleGaulois)
             {
-                wrapperAlgo.Algo_deplacementPossibleGauloisInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension(), tabCout, tabDeplacement, pointDeDeplacement);
+                wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension(), tabDeplacement);
             }
             if (this.peuple is PeupleNain)
             {
-                wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(), this.tabCout, this.tabDeplacement, pointDeDeplacement);
+                wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(),this.tabDeplacement);
             }
             if (this.peuple is PeupleViking)
             {
-                wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(), this.tabCout, this.tabDeplacement, pointDeDeplacement);
+                wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(),this.tabDeplacement);
             }
 
             int i = 0; 

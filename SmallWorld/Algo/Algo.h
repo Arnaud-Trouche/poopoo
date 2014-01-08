@@ -26,13 +26,9 @@ public:
 	void Algo::deplacementPossibleGauloisRec(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes);
 	void Algo::deplacementPossibleGauloisCase(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl);
 	//Nain
-	void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl);
-	void Algo::deplacementPossibleNainRec(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes);
-	void Algo::deplacementPossibleNainCase(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl);
+	void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, int* carteDepRes);
 	//Viking
-	void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl);
-	void Algo::deplacementPossibleVikingRec(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes);
-	void Algo::deplacementPossibleVikingCase(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl);
+	void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos,  int* carteDepRes);
 
 };
 
@@ -48,11 +44,9 @@ EXTERNC DLL void Algo_traitementCaseNormale(Algo* algo, int* carte, int pos, dou
 EXTERNC DLL void Algo_deplacementPossibleGauloisInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl);
 EXTERNC DLL void Algo_deplacementPossibleGauloisRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes);
 EXTERNC DLL void Algo_deplacementPossibleGauloisCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl);
+
 //Nain
-EXTERNC DLL void Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl);
-EXTERNC DLL void Algo_deplacementPossibleNainRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes);
-EXTERNC DLL void Algo_deplacementPossibleNainCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl);
+EXTERNC DLL void Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos, int* carteDepRes);
+
 //Viking
-EXTERNC DLL void Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl);
-EXTERNC DLL void Algo_deplacementPossibleVikingRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes);
-EXTERNC DLL void Algo_deplacementPossibleVikingCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl);
+EXTERNC DLL void Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos, int* carteDepRes);
