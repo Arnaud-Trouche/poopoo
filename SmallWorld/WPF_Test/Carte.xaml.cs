@@ -41,28 +41,8 @@ namespace WPF_Test
             couleurPeuple.Add("Nains", Brushes.Red);
             couleurPeuple.Add("Gaulois", Brushes.Yellow);
             couleurPeuple.Add("Vikings", Brushes.Orange);
-            PeupleJoueur1.Foreground = couleurPeuple[Jeu.INSTANCE.J1.Peuple.ToString()];
-            PeupleJoueur2.Foreground = couleurPeuple[Jeu.INSTANCE.J2.Peuple.ToString()];
-
-            listeOpacifiee = new Dictionary<Coord,Rectangle>();
-
-            //Ajouter les unités
-            placerUnites();
-
-            //Ajout des tags liant le score aux joueurs
-            Score1.Tag = Jeu.INSTANCE.J1.Score;
-            Score2.Tag = Jeu.INSTANCE.J2.Score;
-
-            //Ajout des tags liant le tour et le nom du joueur en cours
-            LabelJoueur.Tag = Jeu.INSTANCE.JActif.Nom;
-            LabelTourEnCours.Tag = Jeu.INSTANCE.NbToursActuels;
-            LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
-
-            //Ajout des tags liant les noms des joueurs et des peuples
-            LabelJoueur1.Tag = Jeu.INSTANCE.J1.Nom;
-            LabelJoueur2.Tag = Jeu.INSTANCE.J2.Nom;
-            PeupleJoueur1.Tag = Jeu.INSTANCE.J1.Peuple.ToString();
-            PeupleJoueur2.Tag = Jeu.INSTANCE.J2.Peuple.ToString();
+            
+            listeOpacifiee = new Dictionary<Coord, Rectangle>();
             
         }
 
@@ -90,7 +70,9 @@ namespace WPF_Test
                 uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
                 uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
             }
-            remplirCarte(tailleCarte);
+
+            //Affichage
+            refresh();
         }
 
 
@@ -368,6 +350,27 @@ namespace WPF_Test
             listeOpacifiee.Clear();
             mapGrid.Children.Clear();
             remplirCarte(tailleCarte);
+            placerUnites();
+
+            //"Mise à jour" des labels
+            PeupleJoueur1.Foreground = couleurPeuple[Jeu.INSTANCE.J1.Peuple.ToString()];
+            PeupleJoueur2.Foreground = couleurPeuple[Jeu.INSTANCE.J2.Peuple.ToString()];
+
+            //Ajout des tags liant le tour et le nom du joueur en cours
+            LabelJoueur.Tag = Jeu.INSTANCE.JActif.Nom;
+            LabelTourEnCours.Tag = Jeu.INSTANCE.NbToursActuels;
+            LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
+
+            //Ajout des tags liant les noms des joueurs et des peuples
+            LabelJoueur1.Tag = Jeu.INSTANCE.J1.Nom;
+            LabelJoueur2.Tag = Jeu.INSTANCE.J2.Nom;
+            PeupleJoueur1.Tag = Jeu.INSTANCE.J1.Peuple.ToString();
+            PeupleJoueur2.Tag = Jeu.INSTANCE.J2.Peuple.ToString();
+
+
+            //Ajout des tags liant le score aux joueurs
+            Score1.Tag = Jeu.INSTANCE.J1.Score;
+            Score2.Tag = Jeu.INSTANCE.J2.Score;
         }
 
         /// <summary>
