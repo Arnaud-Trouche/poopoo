@@ -162,7 +162,7 @@ namespace Code
         public bool finTour()
         {
             //Si il y a une fin de partie
-            if (j1.Peuple.nombreUnitesRestantes() == 0 || j2.Peuple.nombreUnitesRestantes() == 0 || nbToursActuels == (nbTours + 1))
+            if (j1.Peuple.nombreUnitesRestantes() == 0 || j2.Peuple.nombreUnitesRestantes() == 0 || nbActions == (nbTours*2 + 1))
             {
                 finPartie();
                 return false;
