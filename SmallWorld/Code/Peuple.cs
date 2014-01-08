@@ -26,5 +26,19 @@ namespace Code
         {
             throw new NotImplementedException();
         }
+
+        public int nombreUnitesRestantes()
+        {
+            int alive = 0;
+            //Parcours des Unités d'un Peuple
+            foreach (Unite unite in Unites)
+            {
+                if (unite.PointVie > 0)
+                    alive++;
+            }
+
+            return alive;
+        }
+
     }
 }

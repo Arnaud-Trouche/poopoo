@@ -240,7 +240,7 @@ namespace Code
            creerCarte();
 
            nbUnites = carte.NbUnites;
-
+           nbTours = carte.NbTours;
            //Il faut maintenant créer les joueurs
            //Commencons par créer le Peuple d'un joueur
            creerJoueurs(j1, p1, j2, p2, nbUnites);
@@ -275,7 +275,7 @@ namespace Code
         }
        
         public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nbTours){
-
+            jeu.lancerJeu(c, joueur1, joueur2, nbTours);
 
         }
     }

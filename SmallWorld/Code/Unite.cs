@@ -2,23 +2,81 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Wrapper;
 
 namespace Code
 {
-    public class Unite : iUnite
+    public unsafe class Unite : iUnite
     {
         private int pointVie;
         private int pointDefense;
         private int pointAttaque;
         private int pointDeDeplacement;
-        private int peuple;
+        private Peuple peuple;
         private Coord position;
+        protected WrapperAlgo wrapperAlgo;
+        private double* tabCout;
+        private int* tabDeplacement;
+        protected int* tabCarte;
+
+        /**
+        * @fn TabCarte
+        * @brief Properties pour l'attribut tabCarte
+        */
+        public int* TabCarte
+        {
+            get
+            {
+                return tabCarte;
+            }
+            set
+            {
+                tabCarte = value;
+            }
+        }
+
+        /**
+         * @fn CartePartie
+         * @brief Properties pour l'attribut tabDeplacement
+         */
+        public int* TabDeplacement
+        {
+            get
+            {
+                return tabDeplacement;
+            }
+            set
+            {
+                tabDeplacement = value;
+            }
+        }
+
+        /**
+         * @fn TabCout
+         * @brief Properties pour l'attribut tabCout
+         */
+        public double* TabCout
+        {
+            get
+            {
+                return tabCout;
+            }
+            set
+            {
+                tabCout = value;
+            }
+        }
+
 
         public int PointVie
         {
             get
             {
                 return pointVie;
+            }
+            set
+            {
+                pointVie = value;
             }
         }
 
@@ -28,6 +86,10 @@ namespace Code
             {
                 return pointAttaque;
             }
+            set
+            {
+                PointAttaque = value;
+            }
         }
         public int PointDefense
         {
@@ -35,12 +97,20 @@ namespace Code
             {
                 return pointDefense;
             }
+            set
+            {
+                pointDefense = value;
+            }
         }
         public int PointDeplacement
         {
             get
             {
                 return pointDeDeplacement;
+            }
+            set
+            {
+                pointDeDeplacement = value;
             }
         }
 
@@ -60,7 +130,7 @@ namespace Code
             }
         }
 
-        public Unite(Coord pos, int peuple)
+        public Unite(Coord pos, Peuple peuple)
         {
             this.pointVie = 2;
             this.pointDefense = 1;
@@ -68,6 +138,7 @@ namespace Code
             this.position = pos;
             this.peuple = peuple;
             this.pointDeDeplacement = 0;
+            wrapperAlgo = new WrapperAlgo();
         }
 
         public void action(Coord casecliquee)
@@ -83,6 +154,17 @@ namespace Code
             }
         }
     
+        public int[] deplacementPossibles()
+        {
+            int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
+            if (this.peuple is PeupleGaulois)
+            {
+
+            }
+
+        }
+
+
         public void attaquer(Coord caseAttaquee)
         {
             throw new System.NotImplementedException();
