@@ -19,55 +19,6 @@ namespace Code
         private int* tabDeplacement;
         protected int* tabCarte;
 
-        /**
-        * @fn TabCarte
-        * @brief Properties pour l'attribut tabCarte
-        */
-        public int* TabCarte
-        {
-            get
-            {
-                return tabCarte;
-            }
-            set
-            {
-                tabCarte = value;
-            }
-        }
-
-        /**
-         * @fn CartePartie
-         * @brief Properties pour l'attribut tabDeplacement
-         */
-        public int* TabDeplacement
-        {
-            get
-            {
-                return tabDeplacement;
-            }
-            set
-            {
-                tabDeplacement = value;
-            }
-        }
-
-        /**
-         * @fn TabCout
-         * @brief Properties pour l'attribut tabCout
-         */
-        public double* TabCout
-        {
-            get
-            {
-                return tabCout;
-            }
-            set
-            {
-                tabCout = value;
-            }
-        }
-
-
         public int PointVie
         {
             get
@@ -79,7 +30,6 @@ namespace Code
                 pointVie = value;
             }
         }
-
         public int PointAttaque
         {
             get
@@ -113,7 +63,6 @@ namespace Code
                 pointDeDeplacement = value;
             }
         }
-
         public Peuple Peuple    // the peuple property
         {
             get
@@ -121,7 +70,6 @@ namespace Code
                 return peuple;
             }
         }
-
         public Coord Position    // the position property
         {
             get
@@ -158,18 +106,19 @@ namespace Code
         public int[] deplacementPossibles()
         {
             int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
+            int* tabDeplacement;
 
             if (this.peuple is PeupleGaulois)
             {
-                wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension(), tabDeplacement);
+                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension());
             }
             if (this.peuple is PeupleNain)
             {
-                wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(),this.tabDeplacement);
+                tabDeplacement =  wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
             if (this.peuple is PeupleViking)
             {
-                wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(),this.tabDeplacement);
+                tabDeplacement =  wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
 
             int i = 0; 
