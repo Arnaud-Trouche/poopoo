@@ -162,6 +162,18 @@ namespace Code
            }   
        }
 
+       public unsafe int* Tab1D
+       {
+           set
+           {
+               tab1D = value;
+           }
+           get
+           {
+               return tab1D;
+           }
+       }
+
        public bool initialiser()
        {
            //Arnaud me send la diff le nom J1 J2 P1 P2 
@@ -195,7 +207,7 @@ namespace Code
            //Il faut maintenant créer les joueurs
            //Commencons par créer le Peuple d'un joueur
            creerJoueurs(j1, p1, j2, p2, nbUnites);
-
+           lancerJeu();
            return true;
        }
 
@@ -260,8 +272,8 @@ namespace Code
 
         }
        
-        public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nbTours){
-            jeu.lancerJeu(c, joueur1, joueur2, nbTours);
+        public void lancerJeu(){
+            jeu.lancerJeu(carte, joueur1, joueur2, nbTours);
 
         }
     }
