@@ -154,6 +154,11 @@ namespace Code
 
         }
 
+        public int[] suggestionDeplacement(Unite u)
+        {
+            return u.deplacementPossibles();
+        }
+
         public Joueur finPartie()
         {
             //Plusieurs cas de figure

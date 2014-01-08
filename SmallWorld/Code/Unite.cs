@@ -11,7 +11,7 @@ namespace Code
         private int pointVie;
         private int pointDefense;
         private int pointAttaque;
-        private int pointDeDeplacement;
+        private double pointDeDeplacement;
         private Peuple peuple;
         private Coord position;
         protected WrapperAlgo wrapperAlgo;
@@ -102,7 +102,7 @@ namespace Code
                 pointDefense = value;
             }
         }
-        public int PointDeplacement
+        public double PointDeplacement
         {
             get
             {
@@ -155,25 +155,33 @@ namespace Code
         }
     
         
-      /*  public int[] deplacementPossibles()
+        public int[] deplacementPossibles()
         {
             int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
+
             if (this.peuple is PeupleGaulois)
             {
-
+                wrapperAlgo.Algo_deplacementPossibleGauloisInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension(), tabCout, tabDeplacement, pointDeDeplacement);
             }
             if (this.peuple is PeupleNain)
             {
-
+                wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(), this.tabCout, this.tabDeplacement, pointDeDeplacement);
             }
             if (this.peuple is PeupleViking)
             {
-
+                wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension(), this.tabCout, this.tabDeplacement, pointDeDeplacement);
             }
 
+            int i = 0; 
+            for(i= 0; i < Carte.getTaille() * Carte.getTaille(); i++)
+            {
+                tabRes[i] = tabDeplacement[i];
+            }
+
+            return tabRes;
 
         }
-        */
+        
 
         public void attaquer(Coord caseAttaquee)
         {

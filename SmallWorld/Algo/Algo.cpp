@@ -66,7 +66,7 @@ int* Algo::positionnerJoueurs(int* carte, int taille){
 	return tabPositions;
 }
 
-void Algo::deplacementPossibleGauloisInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes){
+void Algo::deplacementPossibleGauloisInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl){
 	int i;
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
 	for (i = 0; i < (taille*taille); i++)
@@ -89,6 +89,7 @@ void Algo::deplacementPossibleGauloisInit(int* carte, int taille, int pos, doubl
 		carteDepRes[pos] = CASE_POSSIBLE;
 	}
 
+	carteCoutDep[pos] = ptDpl;
 
 	deplacementPossibleGauloisRec(carte, taille, pos, carteCoutDep, carteDepRes);
 }
@@ -196,7 +197,7 @@ void Algo::deplacementPossibleGauloisCase(int* carte, int taille, int pos, doubl
 }
 
 
-void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes){
+void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl){
 	int i;
 
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
@@ -229,6 +230,7 @@ void Algo::deplacementPossibleNainInit(int* carte, int taille, int pos, double* 
 	{
 		carteDepRes[pos] = CASE_POSSIBLE;
 	}
+	carteCoutDep[pos] = ptDpl;
 
 	deplacementPossibleNainRec(carte, taille, pos, carteCoutDep, carteDepRes);
 }
@@ -331,7 +333,7 @@ void Algo::deplacementPossibleNainCase(int* carte, int taille, int pos, double* 
 }
 
 
-void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes){
+void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl){
 	int i;
 
 	//Initialise la Carte Resultat des déplacement possible avec la valeur NonTraitee
@@ -346,7 +348,9 @@ void Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos, double
 	//On autorise la case initiale pour démarrer l'algo de recherche
 	carteCoutDep[pos] = 1;
 	carteDepRes[pos] = CASE_POSSIBLE;
-		
+
+	carteCoutDep[pos] = ptDpl;
+
 	deplacementPossibleVikingRec(carte, taille, pos, carteCoutDep, carteDepRes);
 }
 
@@ -446,15 +450,15 @@ int* Algo_positionnerJoueurs(Algo* algo, int* carte, int taille) { return algo->
 
 void Algo_traitementCaseNormale(Algo* algo, int* carte, int pos, double* carteCoutDep, int* carteDepRes, double PointDeDeplacement) { return algo->traitementCaseNormale(carte, pos, carteCoutDep, carteDepRes, PointDeDeplacement); }
 
-void Algo_deplacementPossibleGauloisInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleGauloisInit(carte, taille, pos, carteCoutDep, carteDepRes); }
+void Algo_deplacementPossibleGauloisInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl) { return algo->deplacementPossibleGauloisInit(carte, taille, pos, carteCoutDep, carteDepRes,ptDpl); }
 void Algo_deplacementPossibleGauloisRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleGauloisRec(carte, taille, pos, carteCoutDep, carteDepRes); }
 void Algo_deplacementPossibleGauloisCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl) { return algo->deplacementPossibleGauloisCase(carte, taille, pos, carteCoutDep, carteDepRes, ptDeDepl); }
 
-void Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleNainInit(carte, taille, pos, carteCoutDep, carteDepRes); }
+void Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl) { return algo->deplacementPossibleNainInit(carte, taille, pos, carteCoutDep, carteDepRes, ptDpl); }
 void Algo_deplacementPossibleNainRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleNainRec(carte, taille, pos, carteCoutDep, carteDepRes); }
 void Algo_deplacementPossibleNainCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl) { return algo->deplacementPossibleNainCase(carte, taille, pos, carteCoutDep, carteDepRes, ptDeDepl); }
 
-void Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleVikingInit(carte, taille, pos, carteCoutDep, carteDepRes); }
+void Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDpl) { return algo->deplacementPossibleVikingInit(carte, taille, pos, carteCoutDep, carteDepRes, ptDpl); }
 void Algo_deplacementPossibleVikingRec(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes) { return algo->deplacementPossibleVikingRec(carte, taille, pos, carteCoutDep, carteDepRes); }
 void Algo_deplacementPossibleVikingCase(Algo* algo, int* carte, int taille, int pos, double* carteCoutDep, int* carteDepRes, double ptDeDepl) { return algo->deplacementPossibleVikingCase(carte, taille, pos, carteCoutDep, carteDepRes, ptDeDepl); }
 
