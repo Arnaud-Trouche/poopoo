@@ -19,7 +19,7 @@ namespace Code
             }
         }
 
-        public String ToString()
+        public override String ToString()
         {
             return "Gaulois";
         }

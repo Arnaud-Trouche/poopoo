@@ -34,9 +34,5 @@ namespace Code
             return result;
         }
 
-        public String ToString()
-        {
-            return "Peuple";
-        }
     }
 }
