@@ -159,12 +159,15 @@ namespace Code
             return u.deplacementPossibles();
         }
 
-        public void finTour()
+        public bool finTour()
         {
             //Si il y a une fin de partie
             if (j1.Peuple.nombreUnitesRestantes() == 0 || j2.Peuple.nombreUnitesRestantes() == 0 || nbToursActuels == (nbTours + 1))
-                finPartie(); 
-            
+            {
+                finPartie();
+                return false;
+            }
+                
             nbActions++;
             if ((nbActions % 2) == 0)
                     nbToursActuels++;
@@ -184,7 +187,7 @@ namespace Code
             }
 
             jActif.Peuple.remettrePtDeplacement();
-
+            return true;
 
         }
 
