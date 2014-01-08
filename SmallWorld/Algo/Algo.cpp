@@ -123,13 +123,13 @@ int* Algo::deplacementPossibleGaulois2(int* carte, int taille, int pos){
 
 	//Si on est pas a gauche
 	if ((pos % taille) != 0) {
-		if (carte[pos - 1] != CASE_PLAINE)
+		if (carte[pos - 1] == CASE_PLAINE)
 			carteDepRes[pos - 1] = CASE_POSSIBLE;
 	}
 
 	//Si on est pas a droite
 	if (((pos + 1)%taille) != 0) {
-		if (carte[pos + 1] != CASE_PLAINE)
+		if (carte[pos + 1] == CASE_PLAINE)
 			carteDepRes[pos + 1] = CASE_POSSIBLE;
 	}
 
