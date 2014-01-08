@@ -114,7 +114,7 @@ namespace Code
             }
         }
 
-        public int Peuple    // the peuple property
+        public Peuple Peuple    // the peuple property
         {
             get
             {
@@ -154,6 +154,7 @@ namespace Code
             }
         }
     
+        /*
         public int[] deplacementPossibles()
         {
             int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
@@ -163,7 +164,7 @@ namespace Code
             }
 
         }
-
+        */
 
         public void attaquer(Coord caseAttaquee)
         {
