@@ -85,24 +85,11 @@ namespace Code
             this.pointAttaque = 2;
             this.position = pos;
             this.peuple = peuple;
-            this.pointDeDeplacement = 0;
+            this.pointDeDeplacement = 1;
             wrapperAlgo = new WrapperAlgo();
         }
 
-        public void action(Coord casecliquee)
-        {
-            Peuple p = Jeu.INSTANCE.recupAdversaire().Peuple;
-            if (p.getUnite(casecliquee) != null)
-            {
-                attaquer(casecliquee);
-            }
-            else
-            {
-                deplacer(casecliquee);    
-            }
-        }
-    
-        
+     
         public int[] deplacementPossibles()
         {
             int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
@@ -140,7 +127,30 @@ namespace Code
 
         public void deplacer(Coord caseDeplacement)
         {
-            this.position = caseDeplacement;
+            bool deplacementPossible = false;
+            if (pointDeDeplacement > 0)
+            {
+                deplacementPossible = true;
+            }
+
+            if (deplacementPossible)
+            {
+                if (this.peuple is PeupleNain || this.peuple is PeupleViking)
+                    pointDeDeplacement--;
+
+                if (this.peuple is PeupleGaulois)
+                    PointDeplacement = -0.5;
+
+                this.position = caseDeplacement;
+
+                Peuple p = Jeu.INSTANCE.recupAdversaire().Peuple;
+                if (p.getUnite(position) != null)
+                {
+                    attaquer(position);
+                }
+               
+            }
+
         }
 
         public void debutTour()
