@@ -17,5 +17,10 @@ namespace Code
                 unites.Add(new Unite(pos, Constants.NAIN));
             }
         }
+
+        public String ToString()
+        {
+            return "Nains";
+        }
     }
 }

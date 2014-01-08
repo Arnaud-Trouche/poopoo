@@ -33,5 +33,10 @@ namespace Code
             //si pas trouvé, null est envoyé
             return result;
         }
+
+        public String ToString()
+        {
+            return "Peuple";
+        }
     }
 }

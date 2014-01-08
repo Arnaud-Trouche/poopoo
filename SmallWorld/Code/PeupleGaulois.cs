@@ -18,5 +18,10 @@ namespace Code
                 unites.Add(new Unite(pos, Constants.GAULOIS));
             }
         }
+
+        public String ToString()
+        {
+            return "Gaulois";
+        }
     }
 }

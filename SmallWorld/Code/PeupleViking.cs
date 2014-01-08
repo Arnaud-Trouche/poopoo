@@ -17,5 +17,10 @@ namespace Code
                 unites.Add(new Unite(pos, Constants.VIKING));
             }
         }
+
+        public String ToString()
+        {
+            return "Vikings";
+        }
     }
 }
