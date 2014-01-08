@@ -246,7 +246,7 @@ void Algo::deplacementPossibleNainRec(int* carte, int taille, int pos, double* c
 			//On regarde la case du haut
 			deplacementPossibleNainCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
@@ -257,7 +257,7 @@ void Algo::deplacementPossibleNainRec(int* carte, int taille, int pos, double* c
 			//On regarde la case de bas
 			deplacementPossibleNainCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
@@ -268,7 +268,7 @@ void Algo::deplacementPossibleNainRec(int* carte, int taille, int pos, double* c
 			//On regarde la case a gauche
 			deplacementPossibleNainCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
@@ -279,7 +279,7 @@ void Algo::deplacementPossibleNainRec(int* carte, int taille, int pos, double* c
 			//On regarde la case du haut
 			deplacementPossibleNainCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleNainRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
@@ -365,7 +365,7 @@ void Algo::deplacementPossibleVikingRec(int* carte, int taille, int pos, double*
 			//On regarde la case du haut
 			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
@@ -376,7 +376,7 @@ void Algo::deplacementPossibleVikingRec(int* carte, int taille, int pos, double*
 			//On regarde la case de bas
 			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
@@ -387,7 +387,7 @@ void Algo::deplacementPossibleVikingRec(int* carte, int taille, int pos, double*
 			//On regarde la case a gauche
 			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
@@ -398,7 +398,7 @@ void Algo::deplacementPossibleVikingRec(int* carte, int taille, int pos, double*
 			//On regarde la case du haut
 			deplacementPossibleVikingCase(carte, taille, posTemp, carteCoutDep, carteDepRes, carteDepRes[pos]);
 			//Appel Recursif
-			deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
+			//deplacementPossibleVikingRec(carte, taille, posTemp, carteCoutDep, carteDepRes);
 		}
 	}
 
