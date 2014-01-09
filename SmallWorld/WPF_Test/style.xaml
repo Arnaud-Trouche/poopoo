@@ -4,7 +4,7 @@
 
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="Background"
-          Value="Coral" />
+          Value="SkyBlue" />
         <Setter Property="Foreground"
           Value="White" />
         <Setter Property="FontSize"
@@ -24,7 +24,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Red" TargetName="bg" />
+                            <Setter Property="Background" Value="LightBlue" TargetName="bg" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -34,7 +34,7 @@
 
     <Style x:Key="MiniButtonStyle" TargetType="Button">
         <Setter Property="Background"
-          Value="Coral" />
+          Value="SkyBlue" />
         <Setter Property="Foreground"
           Value="White" />
         <Setter Property="FontSize"
@@ -53,7 +53,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Red" TargetName="bg" />
+                            <Setter Property="Background" Value="LightBlue" TargetName="bg" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -62,7 +62,7 @@
     </Style>
     
     <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
-        <Setter Property="Background" Value="Coral" />
+        <Setter Property="Background" Value="SkyBlue" />
         <Setter Property="Foreground"
           Value="White" />
         <Setter Property="FontSize"
@@ -82,10 +82,10 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="Red" TargetName="bg" />
+                            <Setter Property="Background" Value="LightBlue" TargetName="bg" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="Background" Value="Red" TargetName="bg" />
+                            <Setter Property="Background" Value="LightBlue" TargetName="bg" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
