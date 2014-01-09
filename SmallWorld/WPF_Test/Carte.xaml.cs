@@ -182,7 +182,7 @@ namespace WPF_Test
                     }
                     else // Sinon
                     {
-                        e.Fill = couleurPeuple[Jeu.INSTANCE.J1.Peuple.ToString()];
+                        e.Fill = couleurPeuple[Jeu.INSTANCE.JActif.Peuple.ToString()];
                     }
                     e.Width = 11;
                     e.Height = 11;
@@ -246,6 +246,10 @@ namespace WPF_Test
             LabelJoueur.Tag = Jeu.INSTANCE.JActif.Nom;
             LabelTourEnCours.Tag = Jeu.INSTANCE.NbToursActuels;
             LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
+
+
+            // On met à jour le score
+            Jeu.INSTANCE.updateScore();
 
             //Ajout des tags liant le score aux joueurs
             Score1.Tag = Jeu.INSTANCE.J1.Score;
