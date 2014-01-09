@@ -174,11 +174,11 @@ namespace WPF_Test
                     //Sélection de la couleur
                     if (u.Peuple != Jeu.INSTANCE.JActif.Peuple) // Si elle n'est pas au joueur actif
                     {
-                        e.Fill = Brushes.Black;
+                        e.Fill = Brushes.DarkGray;
                     }
                     else if (u.PointDeplacement == 0) // Si elle n'a plus de vie
                     {
-                        e.Fill = Brushes.DarkGray;
+                        e.Fill = Brushes.Black;
                     }
                     else // Sinon
                     {
