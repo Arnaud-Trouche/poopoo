@@ -8,7 +8,7 @@
 	  Title="Carte"
       Loaded="Window_Loaded">
 
-    <DockPanel>
+    <DockPanel Name="BigDock">
         <!-- HEADER -->
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
             <Button Style="{DynamicResource FlecheBack}" Click="Back_Top_Click" ></Button>
@@ -85,11 +85,51 @@
                 </StackPanel>
             </Button>
 
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=BigDock}" Name="FinPartie" Placement="Center" Width="600" Height="500">
+                <StackPanel Background="White">
+                    <TextBlock FontSize="75" HorizontalAlignment="Right" Margin="0,0,5,0" Foreground="SkyBlue" FontWeight="ExtraLight">
+                        Partie Terminée
+                    </TextBlock>
+                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180">Le joueur {Binding Tag, ele} a gagné </TextBlock>
+                    
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
 
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0"> <!--="Nouvelle_Partie_Click"-->
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Right">Nouvelle</TextBlock>
+                                <TextBlock HorizontalAlignment="Right">Partie</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0"> <!-- Click="Restaurer_Partie_Click"> -->
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Right">Menu</TextBlock>
+                                <TextBlock HorizontalAlignment="Right">Principal</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0"> <!-- Click="Restaurer_Partie_Click"> -->
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Right">Quitter</TextBlock>
+                                <TextBlock HorizontalAlignment="Right">Small</TextBlock>
+                                <TextBlock HorizontalAlignment="Right">World</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
         </StackPanel>
         
         <!-- CARTE -->
-        <ScrollViewer ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseLeftButtonDown="window_MouseLeftButtonDown">
+        <ScrollViewer Name="ScrollCarte" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" MouseLeftButtonDown="window_MouseLeftButtonDown">
             <Grid>
                 <!-- Grille des cases -->
                 <Grid Name="mapGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
@@ -107,6 +147,8 @@
                     <!-- Les unités seront ajoutées ici -->
                 </Grid>
             </Grid>
-        </ScrollViewer>        
+        </ScrollViewer>
+
+        
     </DockPanel>
 </Page>

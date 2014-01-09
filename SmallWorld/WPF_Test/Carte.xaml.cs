@@ -35,6 +35,7 @@ namespace WPF_Test
             MainWindow w = Application.Current.MainWindow as MainWindow;
             w.clearHistory();
             w.MouseLeftButtonDown += new MouseButtonEventHandler(window_MouseLeftButtonDown);
+            w.Closing += w_Closing;
 
             //Définition de la couleur de chaque peuple
             couleurPeuple = new Dictionary<string, SolidColorBrush>();
@@ -220,6 +221,9 @@ namespace WPF_Test
             //dé-opacifier la carte
             transGrid.Children.Clear();
             placerUnites();
+
+            //mise à jour du Score
+            miseAJourScore();
         }
 
         /// <summary>
@@ -246,8 +250,10 @@ namespace WPF_Test
             LabelJoueur.Tag = Jeu.INSTANCE.JActif.Nom;
             LabelTourEnCours.Tag = Jeu.INSTANCE.NbToursActuels;
             LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
+        }
 
-
+        private void miseAJourScore()
+        {
             // On met à jour le score
             Jeu.INSTANCE.updateScore();
 
@@ -383,6 +389,12 @@ namespace WPF_Test
         {
             quitter_handler();
         }
+        
+        void w_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!quitter_handler()) // Si annuler
+                e.Cancel = true;
+        }
 
         private void FinTour_Click(object sender, RoutedEventArgs e)
         {
@@ -396,8 +408,10 @@ namespace WPF_Test
             }
         }
 
-        private void quitter_handler()
+        private bool quitter_handler()
         {
+            FinPartie.IsOpen = false; // On masque la popup dès qu'on appuie
+
             string messageBoxText = "Si vous quittez le jeu, la progression sera perdue. Voulez-vous sauvegarder ?";
             string caption = "Quitter la partie";
             MessageBoxButton button = MessageBoxButton.YesNoCancel;
@@ -449,12 +463,18 @@ namespace WPF_Test
             {
                 MainWindow parent = (Application.Current.MainWindow as MainWindow);
                 parent.goBack();
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
 
         private void finPartie()
         {
-            MessageBox.Show("Fini !");
+            //MessageBox.Show("Fini !");
+            FinPartie.IsOpen = true;
         }
     }
 }
