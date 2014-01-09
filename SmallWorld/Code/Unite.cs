@@ -126,9 +126,82 @@ namespace Code
         }
         
 
-        public void attaquer(Coord caseAttaquee)
+        public bool attaquer(Coord caseAttaquee)
         {
-            //TODO
+                    Joueur adversaire = Jeu.INSTANCE.recupAdversaire();
+                    List<Unite> lesAdversaires = adversaire.Peuple.getUnitesPos(caseAttaquee);
+                    int nbCombatsAFaire = lesAdversaires.Count;
+
+                    int i = 0;
+                    bool gagne = false;
+             //on génère un nombre de combat aléatoire
+                        int nbRoundCombat;
+                        
+                        for(i = 0; i < nbCombatsAFaire; i++)
+                        {
+                            Unite meilleureU = adversaire.Peuple.meilleureUnite(caseAttaquee);
+                            Random r = new Random();
+                            nbRoundCombat = 3 + r.Next(Math.Max(this.PointVie, meilleureU.PointVie));
+
+                            gagne = this.combat(meilleureU, nbRoundCombat);
+
+                             //L'unité attaquante est morte, le combat est perdu 
+                             if (this.PointVie == 0) //l'attaquant a perdu, son unité meurt
+                             {
+                                (Jeu.INSTANCE.JActif).Peuple.Unites.Remove(this);
+                                return gagne;
+                             }
+                             //Sinon l'unité attaqué est morte
+                             if (meilleureU.pointVie == 0)
+                             {
+                                 adversaire.Peuple.Unites.Remove(meilleureU);
+                             }
+
+                        }
+                        //Si l'unite attaquante a survecu a toutes les unites adverses on a gagné le combat
+                        gagne = true;
+                        return gagne;
+
+             }
+
+                
+        public bool combat(Unite adverse, int nbCombats)
+        {
+            while ((nbCombats > 0) && (pointVie > 0) && (adverse.pointVie > 0))
+            {
+                double probaAttaquantPerd = 0.5; //Par défaut on est à 50%
+                if (PointAttaque != adverse.PointDefense)
+                {
+                    double coefficient = (Math.Abs(PointAttaque - adverse.PointDefense) / Math.Max(PointAttaque, adverse.PointDefense));
+                    double ponderation = coefficient * 0.5;
+
+                    if (PointAttaque > adverse.PointDefense)
+                        probaAttaquantPerd = 0.5 - ponderation;
+
+                    if (PointAttaque < adverse.PointDefense)
+                        probaAttaquantPerd = 0.5 + ponderation;
+                }
+
+                Random r = new Random();
+                if ((r.Next(100) * probaAttaquantPerd) > 50)
+                {
+                    PointVie--;
+                }
+                else
+                {
+                    adverse.PointVie--;
+                }
+                nbCombats--;
+            }
+            //On a gagne le combat, il faut retourner dans la fonction pour enchainer les autres
+            if (pointVie > 0)
+                return true;
+
+            //On a perdu le combat
+            if (adverse.pointVie > 0)
+                return false;
+
+            return true;
         }
 
         public void deplacer(Coord caseDeplacement)
@@ -141,18 +214,22 @@ namespace Code
 
             if (deplacementPossible)
             {
+                bool combatGagne = true;
+
                 if ((this.peuple is PeupleGaulois)  && (FabriqueCase.INSTANCE.obtenirCase(caseDeplacement) is Plaine))
                         PointDeplacement = PointDeplacement - 0.5;
                 else 
                     pointDeDeplacement--;
 
-                this.position = caseDeplacement;
-
+                //Verifie s'il y'a un adversaire sur la case et donc combat
                 Peuple p = Jeu.INSTANCE.recupAdversaire().Peuple;
                 if (p.getUnite(position) != null)
                 {
-                    attaquer(position);
+                   combatGagne = attaquer(position);
                 }
+                //Si on a gagné le combat, on se deplace sur la case gagnée
+                if (combatGagne)
+                    this.position = caseDeplacement;
                
             }
 
