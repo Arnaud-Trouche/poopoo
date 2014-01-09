@@ -195,19 +195,51 @@ namespace Code
             //C'est forcement un Viking
             else
             {
-                if (FabriqueCase.INSTANCE.obtenirCase(position) is Eau)
-                {
-                    return 1;
+            
+                    int sc = 0;
+
+                    //Si pas a gauche
+                    if (position.X > 0)
+                    { 
+                        Coord pos = new Coord(position.X-1,position.Y);
+                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                            sc++;
+
+                    }
+
+                    //Si pas a droite
+                    if (position.X < Carte.getTaille() - 2)
+                    {
+                        Coord pos = new Coord(position.X + 1, position.Y);
+                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                            sc++;
+
+
+                    }
+
+                    //Si pas en haut
+                    if (position.Y > 0)
+                    {
+                        Coord pos = new Coord(position.X, position.Y - 1);
+                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                            sc++;
+
+                    }
+
+                    //Si pas en bas
+                    if (position.Y < Carte.getTaille() - 2)
+                    {
+                        Coord pos = new Coord(position.X, position.Y + 1);
+                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                            sc++;
+
+                    }
+
+                    if (FabriqueCase.INSTANCE.obtenirCase(position) is Montagne || FabriqueCase.INSTANCE.obtenirCase(position) is Foret || FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                        sc++;
+
+                    return sc;
                 }
-                else if (FabriqueCase.INSTANCE.obtenirCase(position) is Desert)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return 1;
-                }
-            }
 
         }
         public void debutTour()
