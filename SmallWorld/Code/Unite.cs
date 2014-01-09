@@ -208,7 +208,7 @@ namespace Code
                     }
 
                     //Si pas a droite
-                    if (position.X < Carte.getTaille() - 2)
+                    if (position.X < Carte.getTaille() - 1)
                     {
                         Coord pos = new Coord(position.X + 1, position.Y);
                         if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
@@ -227,7 +227,7 @@ namespace Code
                     }
 
                     //Si pas en bas
-                    if (position.Y < Carte.getTaille() - 2)
+                    if (position.Y < Carte.getTaille() - 1)
                     {
                         Coord pos = new Coord(position.X, position.Y + 1);
                         if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
