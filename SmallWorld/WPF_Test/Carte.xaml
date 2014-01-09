@@ -20,7 +20,7 @@
             <Label Content="{Binding Tag, ElementName=LabelJoueur}" Name="LabelJoueur" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
         </StackPanel>
         
-        <!-- INFOS JOUEURS ET UNITE -->
+        <!-- INFOS JOUEURS ET UNITE COTE DROIT -->
         <StackPanel  DockPanel.Dock="Right" >
             
             <!-- INFOS UNITE EN COURS (VIDE SINON) -->
@@ -45,14 +45,14 @@
             </Grid>
             
             <!-- INFOS JOUEUR 1 -->
-            <Grid Width="165" Background="#FFF0F0F0" Margin="0,10">
+            <Grid Width="165" Background="#FFF0F0F0" Margin="0,10" Name="InfosJoueur1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=LabelJoueur1}" FontSize="22" HorizontalAlignment="Center" Name="LabelJoueur1" />
@@ -62,14 +62,14 @@
             </Grid>
             
             <!-- INFOS JOUEUR 2 -->
-            <Grid Width="165" Background="#FFF0F0F0" Margin="0,10">
+            <Grid Width="165" Background="#FFF0F0F0" Margin="0,10"  Name="InfosJoueur2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35"/>
-                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="40"/>
                     <RowDefinition Height="30"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Tag,ElementName=LabelJoueur2}" FontSize="22" HorizontalAlignment="Center" Name="LabelJoueur2" />
@@ -96,7 +96,11 @@
                     <Rectangle Style="{StaticResource CaseSelectionnee}" Name="CaseSelectionnee" />
                     <!-- Les cases seront ajoutées ici -->
                 </Grid>
-                
+
+                <!-- Grille pour la transparence des cases non sélectionnables-->
+                <Grid Name="transGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                </Grid>
+
                 <!-- Grille des unités-->
                 <Grid Name="uniteGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
                     <Ellipse Style="{StaticResource UniteSelectionnee}" Name="UniteSelectionnee" />

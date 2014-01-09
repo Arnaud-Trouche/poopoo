@@ -24,8 +24,8 @@ namespace WPF_Test
     {
         //Définition des couleurs : Nain,Viking,Gaulois
         Dictionary<String,SolidColorBrush> couleurPeuple;
+        //Constante pour la transparence des cases non possibles
         const double OPACITE_NON_POSSIBLE = 0.85;
-        Dictionary<Coord,Rectangle> listeOpacifiee;
 
         public unsafe Carte()
         {
@@ -36,13 +36,11 @@ namespace WPF_Test
             w.clearHistory();
             w.MouseLeftButtonDown += new MouseButtonEventHandler(window_MouseLeftButtonDown);
 
-            //Définition de la couleur des Joueurs
+            //Définition de la couleur de chaque peuple
             couleurPeuple = new Dictionary<string, SolidColorBrush>();
             couleurPeuple.Add("Nains", Brushes.Red);
             couleurPeuple.Add("Gaulois", Brushes.Yellow);
             couleurPeuple.Add("Vikings", Brushes.Orange);
-            
-            listeOpacifiee = new Dictionary<Coord, Rectangle>();
             
         }
 
@@ -54,11 +52,14 @@ namespace WPF_Test
         private void Window_Loaded(object sender, RoutedEventArgs e){
             int tailleCarte = Code.Carte.getTaille();
 
-            // on initialise la Grid (mapGrid défini dans le xaml) à partir de la map du modèle (engine)             
+            //On crée les lignes et colonnes pour les 3 grilles          
             for (int y = 0; y < tailleCarte; y++)
             {
+                //Grille de la carte (avec cases colorées)
                 mapGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(48, GridUnitType.Pixel) });
-                //grille des unités 3x plus grande pour permettre d'en mettre plusieurs
+                //Grille des transparences
+                transGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(48, GridUnitType.Pixel) });
+                //Grille des unités 3x plus grande pour permettre d'en mettre plusieurs
                 uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(16, GridUnitType.Pixel) } );
                 uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(16, GridUnitType.Pixel) });
                 uniteGrid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(16, GridUnitType.Pixel) });
@@ -66,16 +67,31 @@ namespace WPF_Test
             for (int x = 0; x < tailleCarte; x++)
             {
                 mapGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(48, GridUnitType.Pixel) });
+                transGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(48, GridUnitType.Pixel) });
                 uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
                 uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
                 uniteGrid.RowDefinitions.Add(new RowDefinition() { Height = new GridLength(16, GridUnitType.Pixel) });
             }
 
-            //Affichage
-            refresh();
+            //Remplissage de la carte
+            remplirCarte(tailleCarte);
+
+            //Affichage des unités
+            miseAJourUnites();
+
+            //Initialisation des Tags
+            miseAJourTags();
+            //Ajout des tags liant les noms des joueurs et des peuples (ne vont pas évoluer)
+            LabelJoueur1.Tag = Jeu.INSTANCE.J1.Nom;
+            LabelJoueur2.Tag = Jeu.INSTANCE.J2.Nom;
+            PeupleJoueur1.Tag = Jeu.INSTANCE.J1.Peuple.ToString();
+            PeupleJoueur2.Tag = Jeu.INSTANCE.J2.Peuple.ToString();
         }
 
-
+        /// <summary>
+        /// Ajoute les cases physiques liées aux cases logiques sur la carte physique
+        /// </summary>
+        /// <param name="tailleCarte">La taille de la carte</param>
         private void remplirCarte(int tailleCarte)
         {
             for (int x = 0; x < tailleCarte; x++)
@@ -89,7 +105,6 @@ namespace WPF_Test
                 }
             }
         }
-
 
         /// <summary>
         /// Crée un Rectangle physique qui représente la case, avec un tag sur la case logique
@@ -138,77 +153,105 @@ namespace WPF_Test
         {
             //on nettoie avant au cas où (notamment pour l'ellipse de selection au premier tour)
             uniteGrid.Children.Clear();
-            int j1 = 0;
-            int j2 = 0;
+            int i = 0;
 
-            //Placer les unités du Joueur 1
-            foreach (Unite unite in Jeu.INSTANCE.J1.Peuple.Unites) {
-                int row = (unite.Position.X)*3;
-                int col = (unite.Position.Y)*3;
+            //On crée une liste de Joueurs pour ne ps écrire 2 fois la même chose
+            List<Joueur> listeJ = new List<Joueur>();
+            listeJ.Add(Jeu.INSTANCE.J1);
+            listeJ.Add(Jeu.INSTANCE.J2);
 
-                //création de l'ellipse
-                var e = new Ellipse();
-                if (unite.PointDeplacement == 0)
-                {
-                    e.Fill = Brushes.DarkGray;
-                }
-                else { 
-                    e.Fill = couleurPeuple[Jeu.INSTANCE.J1.Peuple.ToString()];
-                }
-                e.Width = 11;                
-                e.Height = 11;
-
-                //lien entre l'ellipse et l'uniteLogique
-                e.Tag = unite;
-
-                //Ajout de l'évènement lors du clic
-                e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
-
-                //Positionnement de l'unité
-                Grid.SetColumn(e, row+(j1%3));
-                Grid.SetRow(e, col+(j1/3));
-                uniteGrid.Children.Add(e);
-
-                j1++;
-            }
-
-            //Placer les unités du Joueur 2
-            foreach (Unite unite in Jeu.INSTANCE.J2.Peuple.Unites)
+            foreach (Joueur j in listeJ)
             {
-                int row = (unite.Position.X)*3;
-                int col = (unite.Position.Y)*3;
-
-                //création de l'ellipse
-                var e = new Ellipse();
-
-                if (unite.PointDeplacement == 0)
+                i = 0;
+                foreach (Unite u in j.Peuple.Unites)
                 {
-                    e.Fill = Brushes.DarkGray;
+                    int row = (u.Position.X) * 3;
+                    int col = (u.Position.Y) * 3;
+
+                    //création de l'ellipse
+                    var e = new Ellipse();
+
+                    //Sélection de la couleur
+                    if (u.Peuple != Jeu.INSTANCE.JActif.Peuple) // Si elle n'est pas au joueur actif
+                    {
+                        e.Fill = Brushes.Black;
+                    }
+                    else if (u.PointDeplacement == 0) // Si elle n'a plus de vie
+                    {
+                        e.Fill = Brushes.DarkGray;
+                    }
+                    else // Sinon
+                    {
+                        e.Fill = couleurPeuple[Jeu.INSTANCE.J1.Peuple.ToString()];
+                    }
+                    e.Width = 11;
+                    e.Height = 11;
+
+                    //lien entre l'ellipse et l'uniteLogique
+                    e.Tag = u;
+
+                    //Ajout de l'évènement lors du clic
+                    e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
+
+                    //Positionnement de l'unité
+                    Grid.SetColumn(e, row + (i % 3));
+                    Grid.SetRow(e, col + (i / 3));
+                    uniteGrid.Children.Add(e);
+
+                    i++;
                 }
-                else
-                {
-                    e.Fill = couleurPeuple[Jeu.INSTANCE.J2.Peuple.ToString()];
-                }
-                e.Width = 11;
-                e.Height = 11;
-
-                //lien entre l'ellipse et l'uniteLogique
-                e.Tag = unite;
-
-                //Ajout de l'évènement lors du clic
-                e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
-
-                //Positionnement de l'unité
-                Grid.SetColumn(e, row + (j2 % 3));
-                Grid.SetRow(e, col + (j2 / 3));
-                uniteGrid.Children.Add(e);
-
-                j2++;
             }
 
             //Placer l'ellipse
             uniteGrid.Children.Add(UniteSelectionnee);
         }
+
+        /// <summary>
+        /// Rafraichissement de la carte
+        ///     - déselectionner unité & case
+        ///     - dégriser les cases pas possibles
+        /// </summary>
+        private void miseAJourUnites()
+        {
+            //Déselectionner l'unité
+            UniteSelectionnee.Tag = null;
+            UniteSelectionnee.Visibility = System.Windows.Visibility.Collapsed;
+
+            //dé-opacifier la carte
+            transGrid.Children.Clear();
+            placerUnites();
+        }
+
+        /// <summary>
+        /// Rafraichissement des Tags à la fin de Tour
+        ///     - redefinir les tags pour la mise à jour
+        ///     - uniquement ceux qui necessitent une mise à jour
+        /// </summary>
+        private void miseAJourTags()
+        {
+            //Coloration des cases d'infos des peuples
+            if (Jeu.INSTANCE.JActif == Jeu.INSTANCE.J1)
+            {
+                InfosJoueur1.Background = couleurPeuple[Jeu.INSTANCE.J1.Peuple.ToString()];
+                InfosJoueur2.Background = new BrushConverter().ConvertFromString("#FFF0F0F0") as System.Windows.Media.Brush;
+            }
+            else
+            {
+                InfosJoueur1.Background = new BrushConverter().ConvertFromString("#FFF0F0F0") as System.Windows.Media.Brush;
+                InfosJoueur2.Background = couleurPeuple[Jeu.INSTANCE.J2.Peuple.ToString()];
+
+            }
+
+            //Ajout des tags liant le tour et le nom du joueur en cours
+            LabelJoueur.Tag = Jeu.INSTANCE.JActif.Nom;
+            LabelTourEnCours.Tag = Jeu.INSTANCE.NbToursActuels;
+            LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
+
+            //Ajout des tags liant le score aux joueurs
+            Score1.Tag = Jeu.INSTANCE.J1.Score;
+            Score2.Tag = Jeu.INSTANCE.J2.Score;
+        }
+
 
         /// <summary>
         /// Réaction à un clic sur une case de la carte
@@ -221,7 +264,7 @@ namespace WPF_Test
         private void tuile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             var rectangle = sender as Rectangle;
-            var caseLogique = rectangle.Tag as iCase;
+            //var caseLogique = rectangle.Tag as iCase;
 
             //Si une unité est selectionnée
             if (UniteSelectionnee.Visibility == System.Windows.Visibility.Visible) { 
@@ -229,22 +272,16 @@ namespace WPF_Test
                 //Si le déplacement/attaque est possible (case non grisée) et que ce n'est pas la case où se trouve l'unité
                 //Géré par le overlay transparent qui "masque" les autres cases du clic, ah ah ah
 
-                //Mise à jour du rectangle sélectionné
+                //Récupération des coordonnées
                 int col = Grid.GetColumn(rectangle);
                 int row = Grid.GetRow(rectangle);
-                Grid.SetColumn(CaseSelectionnee, col);
-                Grid.SetRow(CaseSelectionnee, row);
-                CaseSelectionnee.Tag = caseLogique;
-                CaseSelectionnee.Visibility = System.Windows.Visibility.Visible;
 
                 //DEPLACEMENT/ATTAQUE
                 (UniteSelectionnee.Tag as Unite).deplacer(new Coord(col,row));
-                refresh();
-                placerUnites();
+                miseAJourUnites();
 
                 //L'évènement a été traité, il ne faut pas appeler le handler de la fenêtre
-                e.Handled = true;
-                
+                e.Handled = true;                
             }
         }
 
@@ -263,13 +300,13 @@ namespace WPF_Test
             var ellipse = sender as Ellipse;
             var uniteLogique = ellipse.Tag as Unite;
 
-            //Vérification que l'unité appartient bien au joueur en cours et qu'elle  des pts de déplacement
-            bool uniteAujoueur = false;
-            foreach (Unite uni in Jeu.INSTANCE.JActif.Peuple.Unites)
+            //Vérification qu'il lui reste des pts de déplacement et que l'unité appartient bien au joueur en cours 
+            bool clickable = false;
+            if(uniteLogique.PointDeplacement > 0)
             {
-                if ((uni == uniteLogique) && uniteLogique.PointDeplacement > 0)
+                if(uniteLogique.Peuple == Jeu.INSTANCE.JActif.Peuple)
                 {
-                    uniteAujoueur = true;
+                    clickable = true;
                 }
             }
 
@@ -278,10 +315,11 @@ namespace WPF_Test
             {
                 e.Handled = true;
             }
-            else if (uniteAujoueur)
+            else if (clickable)
             {
-                //On refresh si ça marche
-                refresh();
+                //Si c'est une nouvelle unité, on nettoie la grille des transparences
+                transGrid.Children.Clear();
+
                 //Mise à jour de l'ellipse sélectionnée
                 int col = Grid.GetColumn(ellipse);
                 int row = Grid.GetRow(ellipse);
@@ -303,10 +341,9 @@ namespace WPF_Test
                             Rectangle r = new Rectangle();
                             r.Opacity = OPACITE_NON_POSSIBLE;
                             r.Fill = Brushes.White;
-                            listeOpacifiee.Add(c, r);
                             Grid.SetColumn(r, i);
                             Grid.SetRow(r, j);
-                            mapGrid.Children.Add(r);
+                            transGrid.Children.Add(r);
                         }
                     }
                 }
@@ -326,52 +363,10 @@ namespace WPF_Test
         /// <param name="e"></param>
         private void window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            refresh();
+            miseAJourUnites();
         }
 
-        /// <summary>
-        /// Réaction à un clic sur la fenêtre
-        ///     - déselectionner unité
-        ///     - déselectionner case
-        ///     - dégriser les cases pas possibles
-        /// </summary>
-        private void refresh()
-        {
-            //Déselectionner l'unité
-            UniteSelectionnee.Tag = null;
-            UniteSelectionnee.Visibility = System.Windows.Visibility.Collapsed;
-
-            //Déselectionner la case
-            CaseSelectionnee.Tag = null;
-            CaseSelectionnee.Visibility = System.Windows.Visibility.Collapsed;
-
-            //dé-opacifier la carte
-            int tailleCarte = Code.Carte.getTaille();
-            listeOpacifiee.Clear();
-            mapGrid.Children.Clear();
-            remplirCarte(tailleCarte);
-            placerUnites();
-
-            //"Mise à jour" des labels
-            PeupleJoueur1.Foreground = couleurPeuple[Jeu.INSTANCE.J1.Peuple.ToString()];
-            PeupleJoueur2.Foreground = couleurPeuple[Jeu.INSTANCE.J2.Peuple.ToString()];
-
-            //Ajout des tags liant le tour et le nom du joueur en cours
-            LabelJoueur.Tag = Jeu.INSTANCE.JActif.Nom;
-            LabelTourEnCours.Tag = Jeu.INSTANCE.NbToursActuels;
-            LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
-
-            //Ajout des tags liant les noms des joueurs et des peuples
-            LabelJoueur1.Tag = Jeu.INSTANCE.J1.Nom;
-            LabelJoueur2.Tag = Jeu.INSTANCE.J2.Nom;
-            PeupleJoueur1.Tag = Jeu.INSTANCE.J1.Peuple.ToString();
-            PeupleJoueur2.Tag = Jeu.INSTANCE.J2.Peuple.ToString();
-
-
-            //Ajout des tags liant le score aux joueurs
-            Score1.Tag = Jeu.INSTANCE.J1.Score;
-            Score2.Tag = Jeu.INSTANCE.J2.Score;
-        }
+        
 
         /// <summary>
         /// Clic sur le bouton en haut à gauche
@@ -381,6 +376,23 @@ namespace WPF_Test
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void Back_Top_Click(object sender, RoutedEventArgs e)
+        {
+            quitter_handler();
+        }
+
+        private void FinTour_Click(object sender, RoutedEventArgs e)
+        {
+            if (Jeu.INSTANCE.finTour()) {
+                miseAJourUnites();
+                miseAJourTags();
+            }
+            else
+            {
+                finPartie();
+            }
+        }
+
+        private void quitter_handler()
         {
             string messageBoxText = "Si vous quittez le jeu, la progression sera perdue. Voulez-vous sauvegarder ?";
             string caption = "Quitter la partie";
@@ -429,20 +441,10 @@ namespace WPF_Test
                 }
             }
 
-            if (quitter) { 
+            if (quitter)
+            {
                 MainWindow parent = (Application.Current.MainWindow as MainWindow);
                 parent.goBack();
-            }
-        }
-
-        private void FinTour_Click(object sender, RoutedEventArgs e)
-        {
-            if (Jeu.INSTANCE.finTour()) {
-                refresh();
-            }
-            else
-            {
-                finPartie();
             }
         }
 
