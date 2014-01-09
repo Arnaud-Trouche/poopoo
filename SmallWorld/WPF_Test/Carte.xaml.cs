@@ -26,6 +26,8 @@ namespace WPF_Test
         Dictionary<String,SolidColorBrush> couleurPeuple;
         //Constante pour la transparence des cases non possibles
         const double OPACITE_NON_POSSIBLE = 0.85;
+        //Pour la sauvegarde menu ou pas
+        bool retournerMenu = true;
 
         public unsafe Carte()
         {
@@ -374,9 +376,7 @@ namespace WPF_Test
         private void window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             miseAJourUnites();
-        }
-
-        
+        }        
 
         /// <summary>
         /// Clic sur le bouton en haut à gauche
@@ -387,13 +387,31 @@ namespace WPF_Test
         /// <param name="e"></param>
         private void Back_Top_Click(object sender, RoutedEventArgs e)
         {
-            quitter_handler();
+            MenuOuPas();
+        }
+        
+        private void finPartie()
+        {
+            String blablafin = "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\navec un score de ";
+            if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
+            {
+                blablafin += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
+            }
+            else
+            {
+                blablafin += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
+            }
+            blablafin += "\nBravo !";
+            PopUpResultat.Text = blablafin;
+            FinPartie.IsOpen = true;
+
+            //TODO et s'il y a égalité ??? :p
         }
         
         void w_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (!quitter_handler()) // Si annuler
-                e.Cancel = true;
+            QuitterOuPas();
+            e.Cancel = true;
         }
 
         private void FinTour_Click(object sender, RoutedEventArgs e)
@@ -408,61 +426,59 @@ namespace WPF_Test
             }
         }
 
-        private bool quitter_handler()
+        /// <summary>
+        /// Lance la boite de dialogue de sauvegarde dans le but de quitter le jeu
+        /// </summary>
+        private void QuitterOuPas()
+        {            
+            //Demander si l'utilisateur veut sauvegarder
+            Sauver.IsOpen = true; 
+            retournerMenu = false;
+        }
+
+        /// <summary>
+        /// Lance la boite de dialogue de sauvegarde dans le but de retourner au menu
+        /// </summary>
+        private void MenuOuPas()
         {
-            FinPartie.IsOpen = false; // On masque la popup dès qu'on appuie
+            //Demander si l'utilisateur veut sauvegarder
+            Sauver.IsOpen = true;
+            retournerMenu = true;
+        }
 
-            string messageBoxText = "Si vous quittez le jeu, la progression sera perdue. Voulez-vous sauvegarder ?";
-            string caption = "Quitter la partie";
-            MessageBoxButton button = MessageBoxButton.YesNoCancel;
-            MessageBoxImage icon = MessageBoxImage.Warning;
-            MessageBoxResult MsgBoxResult = MessageBox.Show(messageBoxText, caption, button, icon);
-            bool sauver = false;
-            bool quitter = false;
-            switch (MsgBoxResult)
+        /// <summary>
+        /// Retourne au menu
+        /// </summary>
+        private void retourMenu()
+        {
+            MainWindow w = (Application.Current.MainWindow as MainWindow);
+            w.changePage("Accueil.xaml");
+            w.clearHistory();
+        }
+
+        /// <summary>
+        /// Tente de sauvegarder la partie et dit ça c'est bien passé
+        /// </summary>
+        /// <returns></returns>
+        private bool sauver()
+        {
+            // Configure save file dialog box
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Partie"; // Default file name
+            dlg.DefaultExt = ".sw"; // Default file extension
+            dlg.Filter = "Parties SmallWolrd (.sw)|*.sw"; // Filter files by extension
+            dlg.AddExtension = true;
+            dlg.OverwritePrompt = true;
+            dlg.Title = "Sauvegarder la partie";
+
+            // Show save file dialog box
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Process save file dialog box results
+            if (result == true)
             {
-                case MessageBoxResult.Yes:
-                    sauver = true;
-                    quitter = true;
-                    break;
-                case MessageBoxResult.No:
-                    quitter = true;
-                    break;
-
-                case MessageBoxResult.Cancel:
-                    break;
-            }
-
-            if (sauver)
-            {
-                // Configure save file dialog box
-                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-                dlg.FileName = "Partie"; // Default file name
-                dlg.DefaultExt = ".sw"; // Default file extension
-                dlg.Filter = "Parties SmallWolrd (.sw)|*.sw"; // Filter files by extension
-                dlg.AddExtension = true;
-                dlg.OverwritePrompt = true;
-                dlg.Title = "Sauvegarder la partie";
-
-                // Show save file dialog box
-                Nullable<bool> result = dlg.ShowDialog();
-
-                // Process save file dialog box results
-                if (result == true)
-                {
-                    //TODO faire la sauvegarde !
-                    MessageBox.Show("Pas sauvegardé :p");
-                }
-                else
-                {
-                    quitter = false;
-                }
-            }
-
-            if (quitter)
-            {
-                MainWindow parent = (Application.Current.MainWindow as MainWindow);
-                parent.goBack();
+                //TODO faire la sauvegarde !
+                MessageBox.Show("Pas sauvegardé :p");
                 return true;
             }
             else
@@ -471,10 +487,101 @@ namespace WPF_Test
             }
         }
 
-        private void finPartie()
+        /// <summary>
+        /// Quitte la fenêtre
+        /// </summary>
+        private void quitter()
         {
-            //MessageBox.Show("Fini !");
-            FinPartie.IsOpen = true;
+            Application.Current.Shutdown();
+        }
+
+        /// <summary>
+        /// Fin de partie : l'utilisateur veut une nouvelle partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Nouvelle_PartieClick(object sender, RoutedEventArgs e)
+        {
+            FinPartie.IsOpen = false;
+            MainWindow w = (Application.Current.MainWindow as MainWindow);
+            w.changePage("Difficulte.xaml");
+            w.clearHistory();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Fin de partie : l'utilisateur veut revenir au menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Menu_PrincipalClick(object sender, RoutedEventArgs e)
+        {
+            FinPartie.IsOpen = false;
+            retourMenu();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Fin de partie : l'utilisateur veut quitter le jeu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void QuitterClick(object sender, RoutedEventArgs e)
+        {
+            FinPartie.IsOpen = false;
+            quitter();
+        }
+
+        /// <summary>
+        /// Boite sauver ou pas : l'utilisateur veut sauvegarder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SauverOuiClick(object sender, RoutedEventArgs e)
+        {
+            Sauver.IsOpen = false;
+            if (sauver())
+            {
+                if (retournerMenu)
+                {
+                    retourMenu();
+                }
+                else
+                {
+                    quitter();
+                }
+            }
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Boite sauver ou pas : l'utilisateur veut pas sauvegarder
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SauverNonClick(object sender, RoutedEventArgs e)
+        {
+            Sauver.IsOpen = false;
+            if (retournerMenu)
+            {
+                retourMenu();
+            }
+            else
+            {
+                quitter();
+            }
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Boite sauver ou pas : l'utilisateur veut annuler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SauverCancelClick(object sender, RoutedEventArgs e)
+        {
+            Sauver.IsOpen = false;
+            e.Handled = true;
         }
     }
 }

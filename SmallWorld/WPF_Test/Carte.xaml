@@ -90,7 +90,7 @@
                     <TextBlock FontSize="75" HorizontalAlignment="Right" Margin="0,0,5,0" Foreground="SkyBlue" FontWeight="ExtraLight">
                         Partie Terminée
                     </TextBlock>
-                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180">Le joueur {Binding Tag, ele} a gagné </TextBlock>
+                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180" Name="PopUpResultat"> </TextBlock>
                     
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -102,25 +102,66 @@
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0"> <!--="Nouvelle_Partie_Click"-->
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Nouvelle_PartieClick">
                             <StackPanel>
                                 <TextBlock HorizontalAlignment="Right">Nouvelle</TextBlock>
                                 <TextBlock HorizontalAlignment="Right">Partie</TextBlock>
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0"> <!-- Click="Restaurer_Partie_Click"> -->
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" Click="Menu_PrincipalClick">
                             <StackPanel>
                                 <TextBlock HorizontalAlignment="Right">Menu</TextBlock>
                                 <TextBlock HorizontalAlignment="Right">Principal</TextBlock>
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0"> <!-- Click="Restaurer_Partie_Click"> -->
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0" Click="QuitterClick">
                             <StackPanel>
                                 <TextBlock HorizontalAlignment="Right">Quitter</TextBlock>
                                 <TextBlock HorizontalAlignment="Right">Small</TextBlock>
                                 <TextBlock HorizontalAlignment="Right">World</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
+
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=BigDock}" Name="Sauver" Placement="Center" Width="600" Height="500">
+                <StackPanel Background="White">
+                    <TextBlock FontSize="75" HorizontalAlignment="Right" Margin="0,0,5,0" Foreground="SkyBlue" FontWeight="ExtraLight">
+                        Attention !
+                    </TextBlock>
+                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180" > Voulez-vous sauvegarder la partie ?</TextBlock>
+
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" Click="SauverOuiClick">
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Right"></TextBlock>
+                                <TextBlock FontSize="30" HorizontalAlignment="Center">Oui</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" Click="SauverNonClick">
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Right"></TextBlock>
+                                <TextBlock FontSize="30" HorizontalAlignment="Center">Non</TextBlock>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0" Click="SauverCancelClick">
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Right"></TextBlock>
+                                <TextBlock FontSize="30" HorizontalAlignment="Center">Annuler</TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>

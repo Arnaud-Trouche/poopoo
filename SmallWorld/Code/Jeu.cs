@@ -7,148 +7,49 @@ using Wrapper;
 namespace Code
 {
     public class Jeu : iJeu
-    {
-        private Carte c;
-        private Joueur j1;
-        private Joueur j2;
+    {                        
+        public Carte Carte { get; set; }
+        public Joueur J1 { get; set; }
+        public Joueur J2 { get; set; }
         private bool j1Joue;
-        private Joueur jActif;
-        private Joueur jVainceur;
+        public Joueur JActif { get; set; }
+        public Joueur JVainqueur { get; set; }
+        public int NbToursActuels { get; set; }
         private int nbActions;
-        private int nbTours;
-        private int nbToursActuels;
+        public int NbTours { get; set; }
+        public bool PartieFinie { get; set; }
         public static Jeu INSTANCE = new Jeu();
         private WrapperAlgo wrapperAlgo;
 
-
-        public Joueur JVainceur
-        {
-            get
-            {
-                return jVainceur;
-            }
-            set
-            {
-                jVainceur = value;
-            }
-        }
-
-
-        public int NbToursActuels
-        {
-            get
-            {
-                return nbToursActuels;
-            }
-            set
-            {
-                nbToursActuels = value;
-            }
-        }
-
-        public int NbTours
-        {
-            get
-            {
-                return nbTours;
-            }
-            set
-            {
-                nbTours = value;
-            }
-
-        }
-        public int NbActions
-        {
-            get
-            {
-                return nbActions;
-            }
-            set
-            {
-                nbActions = value;
-            }
-
-        }
-        public Joueur JActif
-        {
-            get
-            {
-                return jActif;
-            }
-            set
-            {
-                jActif = value;
-            }
-
-        }
-        public Joueur J2
-        {
-            get
-            {
-                return j2;
-            }
-            set
-            {
-                j2 = value;
-            }
-
-        }
-
-        public Joueur J1
-        {
-            get
-            {
-                return j1;
-            }
-            set
-            {
-                j1 = value;
-            }
-
-        }
-        public Carte Carte
-        {
-            get
-            {
-                return c;
-            }
-            set
-            {
-                c = value;
-            }
-
-        }
-
         public Jeu()
-       {
+        {
            wrapperAlgo = new WrapperAlgo();
+           PartieFinie = false;
         }
 
         public Joueur recupAdversaire(){
-            if (j1Joue) return j2;
-            return j1;
+            if (j1Joue) return J2;
+            return J1;
         }
     
         public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nombreTours)
-        {
-            
-            this.c = c;
-            this.j1 = j1;
-            this.j2 = j2;
-            nbTours = nombreTours;
+        {            
+            this.Carte = c;
+            this.J1 = j1;
+            this.J2 = j2;
+            NbTours = nombreTours;
             nbActions = 2;
-            nbToursActuels = 1;
+            NbToursActuels = 1;
 
             //choix joueurs au hasard
             if (RandomNumber(0, 100) < 50)
             {
-                jActif = j1;
+                JActif = j1;
                 j1Joue = true;
             }
             else
             {
-                jActif = j2;
+                JActif = j2;
                 j1Joue = false;
             }
 
@@ -162,31 +63,32 @@ namespace Code
         public bool finTour()
         {
             //Si il y a une fin de partie
-            if (j1.Peuple.nombreUnitesRestantes() == 0 || j2.Peuple.nombreUnitesRestantes() == 0 || nbActions == (nbTours*2 + 1))
+            if (J1.Peuple.nombreUnitesRestantes() == 0 || J2.Peuple.nombreUnitesRestantes() == 0 || nbActions == (NbTours*2 + 1))
             {
+                PartieFinie = true;
                 finPartie();
                 return false;
             }
                 
             nbActions++;
             if ((nbActions % 2) == 0)
-                    nbToursActuels++;
+                    NbToursActuels++;
 
 
-            jActif.Peuple.remettrePtDeplacement();
+            JActif.Peuple.remettrePtDeplacement();
 
             //sinon on passe au joueur suivant
             //Si c'était joueur1 qui jouait c'est au tour du joueur2
             if (j1Joue == true)
             {
                 j1Joue = false;
-                jActif = j2;
+                JActif = J2;
             }
             //Sinon c'est au tour du joueur1
             else
             {
                 j1Joue = true;
-                jActif = j1;
+                JActif = J1;
             }
 
             return true;
@@ -197,32 +99,32 @@ namespace Code
         public Joueur finPartie()
         {
             //Plusieurs cas de figure
-            if (nbToursActuels == nbTours) 
+            if (NbToursActuels == NbTours) 
             {
-                if (j1.Score >= j2.Score) 
+                if (J1.Score >= J2.Score) 
                 {
-                    jVainceur = j1;
+                    JVainqueur = J1;
                 }
                 else
                 {
-                    jVainceur = j2;
+                    JVainqueur = J2;
                 }
 
-                return jVainceur;
+                return JVainqueur;
             }
             else 
             {
                 //Un des deux joueurs est mort
-                if (j1.Peuple.nombreUnitesRestantes() == 0)
+                if (J1.Peuple.nombreUnitesRestantes() == 0)
                 {
-                    jVainceur = j2;
+                    JVainqueur = J2;
                 }
                 else 
                 {
-                    jVainceur = j1;
+                    JVainqueur = J1;
                 }
             
-                return jVainceur;
+                return JVainqueur;
             }
             
         }
@@ -230,12 +132,12 @@ namespace Code
         public void updateScore()
         {
             int score = 0;
-            score = calculeScore(j1);
+            score = calculeScore(J1);
 
-            j1.Score = score;
+            J1.Score = score;
 
-            score = calculeScore(j2);
-            j2.Score = score;
+            score = calculeScore(J2);
+            J2.Score = score;
 
         }
 
