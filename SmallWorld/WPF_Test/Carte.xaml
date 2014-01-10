@@ -37,11 +37,11 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Unité" FontSize="28" HorizontalAlignment="Center" />
                 <Label Grid.Row="1" Grid.Column="0" Content="Vie " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag.PointVie, ElementName=UniteSelectionnee}" FontSize="16"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="{Binding Tag.PointVie, ElementName=UniteSurvolee}" FontSize="16"/>
                 <Label Grid.Row="2" Grid.Column="0" Content="Attaque " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag.PointAttaque, ElementName=UniteSelectionnee}" FontSize="16"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag.PointAttaque, ElementName=UniteSurvolee}" FontSize="16"/>
                 <Label Grid.Row="3" Grid.Column="0" Content="Defense " FontSize="15" HorizontalAlignment="Right"/>
-                <Label Grid.Row="3" Grid.Column="1" Content="{Binding Tag.PointDefense, ElementName=UniteSelectionnee}" FontSize="16"/>
+                <Label Grid.Row="3" Grid.Column="1" Content="{Binding Tag.PointDefense, ElementName=UniteSurvolee}" FontSize="16"/>
             </Grid>
             
             <!-- INFOS JOUEUR 1 -->
@@ -174,7 +174,6 @@
             <Grid>
                 <!-- Grille des cases -->
                 <Grid Name="mapGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
-                    <Rectangle Style="{StaticResource CaseSelectionnee}" Name="CaseSelectionnee" />
                     <!-- Les cases seront ajoutées ici -->
                 </Grid>
 
@@ -184,6 +183,7 @@
 
                 <!-- Grille des unités-->
                 <Grid Name="uniteGrid" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <Ellipse Style="{StaticResource UniteSelectionnee}" Name="UniteSurvolee" />
                     <Ellipse Style="{StaticResource UniteSelectionnee}" Name="UniteSelectionnee" />
                     <!-- Les unités seront ajoutées ici -->
                 </Grid>

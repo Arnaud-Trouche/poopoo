@@ -87,7 +87,7 @@ namespace Code
             wrapperAlgo = new WrapperAlgo();
         }
 
-     
+
         public int[] deplacementPossibles()
         {
             int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
@@ -115,8 +115,8 @@ namespace Code
                 tabDeplacement = wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
 
-            int i = 0; 
-            for(i= 0; i < Carte.getTaille() * Carte.getTaille(); i++)
+            int i = 0;
+            for (i = 0; i < Carte.getTaille() * Carte.getTaille(); i++)
             {
                 tabRes[i] = tabDeplacement[i];
             }
@@ -124,47 +124,47 @@ namespace Code
             return tabRes;
 
         }
-        
+
 
         public bool attaquer(Coord caseAttaquee)
         {
-                    Joueur adversaire = Jeu.INSTANCE.recupAdversaire();
-                    List<Unite> lesAdversaires = adversaire.Peuple.getUnitesPos(caseAttaquee);
-                    int nbCombatsAFaire = lesAdversaires.Count;
+            Joueur adversaire = Jeu.INSTANCE.recupAdversaire();
+            List<Unite> lesAdversaires = adversaire.Peuple.getUnitesPos(caseAttaquee);
+            int nbCombatsAFaire = lesAdversaires.Count;
 
-                    int i = 0;
-                    bool gagne = false;
-             //on génère un nombre de combat aléatoire
-                        int nbRoundCombat;
-                        
-                        for(i = 0; i < nbCombatsAFaire; i++)
-                        {
-                            Unite meilleureU = adversaire.Peuple.meilleureUnite(caseAttaquee);
-                            Random r = new Random();
-                            nbRoundCombat = 3 + r.Next(Math.Max(this.PointVie, meilleureU.PointVie));
+            int i = 0;
+            bool gagne = false;
+            //on génère un nombre de combat aléatoire
+            int nbRoundCombat;
 
-                            gagne = this.combat(meilleureU, nbRoundCombat);
+            for (i = 0; i < nbCombatsAFaire; i++)
+            {
+                Unite meilleureU = adversaire.Peuple.meilleureUnite(caseAttaquee);
+                Random r = new Random();
+                nbRoundCombat = 3 + r.Next(Math.Max(this.PointVie, meilleureU.PointVie));
 
-                             //L'unité attaquante est morte, le combat est perdu 
-                             if (this.PointVie == 0) //l'attaquant a perdu, son unité meurt
-                             {
-                                (Jeu.INSTANCE.JActif).Peuple.Unites.Remove(this);
-                                return gagne;
-                             }
-                             //Sinon l'unité attaqué est morte
-                             if (meilleureU.pointVie == 0)
-                             {
-                                 adversaire.Peuple.Unites.Remove(meilleureU);
-                             }
+                gagne = this.combat(meilleureU, nbRoundCombat);
 
-                        }
-                        //Si l'unite attaquante a survecu a toutes les unites adverses on a gagné le combat
-                        gagne = true;
-                        return gagne;
+                //L'unité attaquante est morte, le combat est perdu 
+                if (this.PointVie == 0) //l'attaquant a perdu, son unité meurt
+                {
+                    (Jeu.INSTANCE.JActif).Peuple.Unites.Remove(this);
+                    return gagne;
+                }
+                //Sinon l'unité attaqué est morte
+                if (meilleureU.pointVie == 0)
+                {
+                    adversaire.Peuple.Unites.Remove(meilleureU);
+                }
 
-             }
+            }
+            //Si l'unite attaquante a survecu a toutes les unites adverses on a gagné le combat
+            gagne = true;
+            return gagne;
 
-                
+        }
+
+
         public bool combat(Unite adverse, int nbCombats)
         {
             while ((nbCombats > 0) && (pointVie > 0) && (adverse.pointVie > 0))
@@ -216,28 +216,33 @@ namespace Code
             {
                 bool combatGagne = true;
 
-                if ((this.peuple is PeupleGaulois)  && (FabriqueCase.INSTANCE.obtenirCase(caseDeplacement) is Plaine))
-                        PointDeplacement = PointDeplacement - 0.5;
-                else 
+                if ((this.peuple is PeupleGaulois) && (FabriqueCase.INSTANCE.obtenirCase(caseDeplacement) is Plaine))
+                    PointDeplacement = PointDeplacement - 0.5;
+                else
                     pointDeDeplacement--;
 
                 //Verifie s'il y'a un adversaire sur la case et donc combat
-                Peuple p = Jeu.INSTANCE.recupAdversaire().Peuple;
-                if (p.getUnite(position) != null)
+                foreach (var uni in Jeu.INSTANCE.recupAdversaire().Peuple.Unites)
                 {
-                   combatGagne = attaquer(position);
+                    //le == marche pas je sais pas pk
+                    if (uni.Position.Equals(caseDeplacement))
+                    {
+                        combatGagne = attaquer(caseDeplacement);
+                        //Il faut sortir de foreach
+                        break;
+                    }
                 }
                 //Si on a gagné le combat, on se deplace sur la case gagnée
                 if (combatGagne)
                     this.position = caseDeplacement;
-               
+
             }
 
         }
 
         public int score()
         {
-           
+
 
             if (this.peuple is PeupleGaulois)
             {
@@ -272,51 +277,51 @@ namespace Code
             //C'est forcement un Viking
             else
             {
-            
-                    int sc = 0;
 
-                    //Si pas a gauche
-                    if (position.X > 0)
-                    { 
-                        Coord pos = new Coord(position.X-1,position.Y);
-                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
-                            sc++;
+                int sc = 0;
 
-                    }
-
-                    //Si pas a droite
-                    if (position.X < Carte.getTaille() - 1)
-                    {
-                        Coord pos = new Coord(position.X + 1, position.Y);
-                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
-                            sc++;
-
-
-                    }
-
-                    //Si pas en haut
-                    if (position.Y > 0)
-                    {
-                        Coord pos = new Coord(position.X, position.Y - 1);
-                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
-                            sc++;
-
-                    }
-
-                    //Si pas en bas
-                    if (position.Y < Carte.getTaille() - 1)
-                    {
-                        Coord pos = new Coord(position.X, position.Y + 1);
-                        if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
-                            sc++;
-
-                    }
-
-                    if (FabriqueCase.INSTANCE.obtenirCase(position) is Montagne || FabriqueCase.INSTANCE.obtenirCase(position) is Foret || FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                //Si pas a gauche
+                if (position.X > 0)
+                {
+                    Coord pos = new Coord(position.X - 1, position.Y);
+                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
                         sc++;
 
-                    return sc;
                 }
+
+                //Si pas a droite
+                if (position.X < Carte.getTaille() - 1)
+                {
+                    Coord pos = new Coord(position.X + 1, position.Y);
+                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                        sc++;
+
+
+                }
+
+                //Si pas en haut
+                if (position.Y > 0)
+                {
+                    Coord pos = new Coord(position.X, position.Y - 1);
+                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                        sc++;
+
+                }
+
+                //Si pas en bas
+                if (position.Y < Carte.getTaille() - 1)
+                {
+                    Coord pos = new Coord(position.X, position.Y + 1);
+                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                        sc++;
+
+                }
+
+                if (FabriqueCase.INSTANCE.obtenirCase(position) is Montagne || FabriqueCase.INSTANCE.obtenirCase(position) is Foret || FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                    sc++;
+
+                return sc;
+            }
 
         }
         public void debutTour()

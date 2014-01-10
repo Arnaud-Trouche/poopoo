@@ -7,7 +7,7 @@ namespace Code
 {
     public interface iUnite
     {
-        void attaquer(Coord caseAttaquee);
+        bool attaquer(Coord caseAttaquee);
 
         void deplacer(Coord caseDeplacement);
 

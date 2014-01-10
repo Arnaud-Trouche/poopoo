@@ -80,17 +80,6 @@ namespace Code
             }
         }
 
-        public Unite getUnite(Coord coordonnee)
-        {
-            Unite result = unites.Find(
-            delegate(Unite uni)
-            {
-                return uni.Position == coordonnee;
-            }
-            );
-            //si pas trouvé, null est envoyé
-            return result;
-        }
 
         public int nombreUnitesRestantes()
         {

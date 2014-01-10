@@ -24,7 +24,7 @@ namespace WPF_Test
         {            
             InitializeComponent();
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
-            parent.Closing += parent_Closing;
+            //parent.Closing += parent_Closing;
         }
 
         private void Nouvelle_Partie_Click(object sender, RoutedEventArgs e)
@@ -59,7 +59,7 @@ namespace WPF_Test
             Application.Current.Shutdown();
         }
 
-        void parent_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        public void parent_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
         }

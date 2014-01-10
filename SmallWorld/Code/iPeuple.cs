@@ -7,6 +7,5 @@ namespace Code
 {
     public interface iPeuple
     {
-        Unite getUnite(Coord coordonnee);
     }
 }

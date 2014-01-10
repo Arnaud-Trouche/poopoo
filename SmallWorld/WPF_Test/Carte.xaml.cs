@@ -194,7 +194,10 @@ namespace WPF_Test
                     e.Tag = u;
 
                     //Ajout de l'évènement lors du clic
-                    e.MouseLeftButtonDown += new MouseButtonEventHandler(unite_MouseLeftButtonDown);
+                    e.MouseEnter += unite_MouseEnter;
+                    e.MouseLeave += unite_MouseLeave;
+                    e.PreviewMouseLeftButtonDown += unite_MouseLeftButtonDown;
+                    e.IsHitTestVisible = true;
 
                     //Positionnement de l'unité
                     Grid.SetColumn(e, row + (i % 3));
@@ -208,6 +211,7 @@ namespace WPF_Test
             //Placer l'ellipse
             uniteGrid.Children.Add(UniteSelectionnee);
         }
+
 
         /// <summary>
         /// Rafraichissement de la carte
@@ -322,12 +326,7 @@ namespace WPF_Test
                 }
             }
 
-            //On regarde si on reclique sur la même case, dans ce cas, on ne fait rien
-            if (UniteSelectionnee.Tag == uniteLogique)
-            {
-                e.Handled = true;
-            }
-            else if (clickable)
+            if (clickable)
             {
                 //Si c'est une nouvelle unité, on nettoie la grille des transparences
                 transGrid.Children.Clear();
@@ -364,6 +363,34 @@ namespace WPF_Test
             }
         }
 
+        /// <summary>
+        /// Au survol de la souris, les infos de l'unité
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void unite_MouseEnter(object sender, MouseEventArgs e)
+        {
+            var ellipse = sender as Ellipse;
+            var uniteLogique = ellipse.Tag as Unite;
+            
+            //Mise à jour de l'ellipse sélectionnée
+            int col = Grid.GetColumn(ellipse);
+            int row = Grid.GetRow(ellipse);
+            Grid.SetColumn(UniteSurvolee, col);
+            Grid.SetRow(UniteSurvolee, row);
+            UniteSurvolee.Tag = uniteLogique;
+            
+        }
+ 
+        /// <summary>
+        /// On efface les infos quand on part
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void unite_MouseLeave(object sender, MouseEventArgs e)
+        {
+            UniteSurvolee.Tag = null;
+        }
 
         /// <summary>
         ///  Réaction à un clic sur la fenêtre
