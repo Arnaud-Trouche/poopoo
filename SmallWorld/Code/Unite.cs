@@ -172,7 +172,7 @@ namespace Code
                 double probaAttaquantPerd = 0.5; //Par défaut on est à 50%
                 if (PointAttaque != adverse.PointDefense)
                 {
-                    double coefficient = (Math.Abs(PointAttaque - adverse.PointDefense) / Math.Max(PointAttaque, adverse.PointDefense));
+                    double coefficient = (double)(Math.Abs(PointAttaque - adverse.PointDefense)) / (double)(Math.Max(PointAttaque, adverse.PointDefense));
                     double ponderation = coefficient * 0.5;
 
                     if (PointAttaque > adverse.PointDefense)
@@ -183,7 +183,7 @@ namespace Code
                 }
 
                 Random r = new Random();
-                if ((r.Next(100) * probaAttaquantPerd) > 50)
+                if (r.Next(100) < probaAttaquantPerd*100)
                 {
                     PointVie--;
                 }
