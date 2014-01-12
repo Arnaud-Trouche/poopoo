@@ -424,25 +424,26 @@ namespace WPF_Test
             {
                 // PARTIE PAS FINIE PAS D'EGALITE
                 blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + ".";
-                blablafin += "\nL'adversaire est mort !";
+                blablafin += "\nL'adversaire est mort, score de ";
+                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
+                {
+                    blablafin += Jeu.INSTANCE.J1.Score;
+                }
+                else
+                {
+                    blablafin += Jeu.INSTANCE.J2.Score;
+                }
+                blablafin += " à O.\nBravo !";
             }
             else if (Jeu.INSTANCE.J1.Score == Jeu.INSTANCE.J2.Score)
             {
                 // PARTIE FINIE EGALITE
-                blablafin += "Egalité " + Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score + "! C'est pas de chance ";
-                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
-                {
-                    blablafin += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
-                }
-                else
-                {
-                    blablafin += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
-                }
+                blablafin += "Egalité " + Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score + "!  \nC'est pas de chance :/";
             }
             else
             {
                 // PARTIE FINIE PAS D'EGALITE
-                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\navec un score de ";
+                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\net un score de ";
                 if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
                 {
                     blablafin += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
@@ -451,8 +452,8 @@ namespace WPF_Test
                 {
                     blablafin += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
                 }
+                blablafin += "\nBravo !";
             }            
-            blablafin += "\nBravo !";
             PopUpResultat.Text = blablafin;
             FinPartie.IsOpen = true;
 
