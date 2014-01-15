@@ -54,7 +54,7 @@
     <Compile Include="iCarte.cs" />
     <Compile Include="iCase.cs" />
     <Compile Include="Coord.cs" />
-    <Compile Include="iFabriqueCarte.cs" />
+    <Compile Include="iFabriqueCase.cs" />
     <Compile Include="iFabriquePeuple.cs" />
     <Compile Include="iJeu.cs" />
     <Compile Include="iJoueur.cs" />

@@ -5,6 +5,16 @@
 #pragma comment(lib, "../Debug/Algo.lib") // Changé
 
 using namespace System;
+/**
+* @file Wrapper.h
+* @brief Fichier wrapper pour les algos
+*
+* @author <a href="mailto:samuel.coz@insa-rennes.fr">Samuel COZ</a>
+* @author <a href="mailto:arnaud.trouche@insa-rennes.fr">Arnaud Trouche</a>
+*
+* @date 15/01/2014
+* @version 0.1
+*/
 
 namespace Wrapper {
 
