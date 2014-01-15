@@ -64,5 +64,10 @@ namespace WPF_Test
             Application.Current.Shutdown();
         }
 
+        private void tuto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

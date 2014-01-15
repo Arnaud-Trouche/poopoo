@@ -12,9 +12,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
                 <ColumnDefinition />
-                <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition />
                 <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -32,7 +32,13 @@
                 </StackPanel>
             </Button>
 
-            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0" Click="Quitter_Click">
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="1" Click="tuto_Click">
+                <StackPanel>
+                    <TextBlock HorizontalAlignment="Right">Tutoriel</TextBlock>
+                </StackPanel>
+            </Button>
+            
+            <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="1" Click="Quitter_Click">
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Right">Quitter</TextBlock>
                     <TextBlock HorizontalAlignment="Right">Small</TextBlock>
