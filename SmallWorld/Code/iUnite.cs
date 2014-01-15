@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Code
 {
+
     public interface iUnite
     {
         bool attaquer(Coord caseAttaquee);

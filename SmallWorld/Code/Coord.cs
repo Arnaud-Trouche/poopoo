@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe représentant une Coordonnée en abscisse et ordonnée
+    /// </summary>
     [Serializable]
     public class Coord
     {

@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe comprenant toutes les constantes du projet
+    /// </summary>
     public class Constants
     {
         public const int DESERT = 0;

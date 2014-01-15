@@ -5,6 +5,10 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe faisant partie du patron de conception StratégieCarte
+    /// Carte de Normale
+    /// </summary>
     [Serializable]
     public class CarteNormale : StrategieCarte
     {

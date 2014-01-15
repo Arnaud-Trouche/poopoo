@@ -13,6 +13,6 @@ namespace Code
 
         int getHauteurCases();
 
-        //void creerCarte();
+  
     }
 }

@@ -56,12 +56,15 @@ namespace Code
         {
             iCase cas = null;
 
-            //Si on n'a jamais crée  
+            //Si on n'a jamais crée la Case à cette coordonnée; on la créer 
             if (!mapCases.ContainsKey(c))
             {
+                //On cherche son type dans le tableau unidimensionnel
                 int type = casesInt[c.getIndiceTab1Dimension()];
+                //Switch sur le type de la case
                 switch (type)
                 {
+                        //Créer la bonne case et la rajoute dans la table associative
                     case Code.Constants.MONTAGNE:
                         cas = montagne;
                         mapCases.Add(c, montagne);
@@ -89,6 +92,7 @@ namespace Code
                 }
             }
             else {
+                //Si la case à déja été créer on la renvoit directement
                 cas = mapCases[c];
             }
             return cas;
