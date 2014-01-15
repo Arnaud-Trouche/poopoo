@@ -42,7 +42,7 @@ int* Algo::creationCarte(int taille) {
 	return cases;
 }
 
-int Algo::positionnerJoueurHorsEau(int* carte, int taille, int pos){
+int Algo::positionnerJoueurHorsEau(int* carte, int taille, int pos, int dir){
 	bool trouve = false;
 	while(!trouve){
 		if(carte[pos] == EAU){
@@ -58,10 +58,10 @@ int* Algo::positionnerJoueurs(int* carte, int taille){
 	int* tabPositions = (int*)malloc(2*sizeof(int));
 	
 	int posSouhaitee = taille - 1; //Placement souhaité en haut à droite pour le Joueur 1
-	tabPositions[0] = positionnerJoueurHorsEau(carte, taille, posSouhaitee); //Placement du Joueur 1
+	tabPositions[0] = positionnerJoueurHorsEau(carte, taille, posSouhaitee, -1); //Placement du Joueur 1
 
 	posSouhaitee = taille*(taille - 1); //Placement souhaité en bas à gauche pour le Joueur 2
-	tabPositions[1] = positionnerJoueurHorsEau(carte, taille, posSouhaitee); //Placement du Joueur 2
+	tabPositions[1] = positionnerJoueurHorsEau(carte, taille, posSouhaitee, 1); //Placement du Joueur 2
 
 	return tabPositions;
 }
@@ -212,12 +212,15 @@ int* Algo::deplacementPossibleVikingInit(int* carte, int taille, int pos){
 	return carteDepRes;
 }
 
+int* Algo::mymalloc(int taille){
+	return (int*)malloc(taille*taille*sizeof(int));
+}
 
 Algo* Algo_new() { return new Algo(); }
 void Algo_delete(Algo* algo) { delete algo; }
 int* Algo_creationCarte(Algo* algo, int taille) { return algo->creationCarte(taille); } 
 
-int Algo_positionnerJoueurHorsEau(Algo* algo, int* carte, int taille, int pos) { return algo->positionnerJoueurHorsEau(carte, taille, pos); }
+int Algo_positionnerJoueurHorsEau(Algo* algo, int* carte, int taille, int pos, int dir) { return algo->positionnerJoueurHorsEau(carte, taille, pos, dir); }
 int* Algo_positionnerJoueurs(Algo* algo, int* carte, int taille) { return algo->positionnerJoueurs(carte, taille); }
 
 int* Algo_deplacementPossibleGaulois1(Algo* algo, int* carte, int taille, int pos) { return algo->deplacementPossibleGaulois1(carte, taille, pos); }
@@ -227,5 +230,5 @@ int* Algo_deplacementPossibleNainInit(Algo* algo, int* carte, int taille, int po
 
 int* Algo_deplacementPossibleVikingInit(Algo* algo, int* carte, int taille, int pos) { return algo->deplacementPossibleVikingInit(carte, taille, pos); }
 
-
+int* Algo_mymalloc(Algo* algo,  int taille) { return algo->mymalloc(taille); }
 //void Algo_deplacementPossibleGauloisVerifCase

@@ -15,7 +15,6 @@ namespace Code
         private double pointDeDeplacement;
         private Peuple peuple;
         private Coord position;
-        protected int* tabCarte;
 
         public int PointVie
         {
@@ -90,6 +89,11 @@ namespace Code
         public int[] deplacementPossibles()
         {
             WrapperAlgo wrapperAlgo = new WrapperAlgo();
+            int tailleCarte = Jeu.INSTANCE.Carte.getTaille();
+            int* tabCases = wrapperAlgo.Algo_mymalloc(tailleCarte);
+            for (int i = 0; i < tailleCarte * tailleCarte; i++)
+                tabCases[i] = Jeu.INSTANCE.carte1D[i];
+
             int[] tabRes = new int[Jeu.INSTANCE.Carte.getTaille() * Jeu.INSTANCE.Carte.getTaille()];
             int* tabDeplacement;
 
@@ -97,26 +101,25 @@ namespace Code
             {
                 if (pointDeDeplacement == 1)
                 {
-                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois1(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), position.getIndiceTab1Dimension());
+                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois1(tabCases, Jeu.INSTANCE.Carte.getTaille(), position.getIndiceTab1Dimension());
                 }
                 //Il lui reste 0.5 points de depl et donc seuls les cases Plaines VOISINES SONT ok
                 else
                 {
-                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois2(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), position.getIndiceTab1Dimension());
+                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois2(tabCases, Jeu.INSTANCE.Carte.getTaille(), position.getIndiceTab1Dimension());
                 }
             }
             else if (this.peuple is PeupleNain)
             {
-                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), this.position.getIndiceTab1Dimension());
+                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(tabCases, Jeu.INSTANCE.Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
             // ON est sur que se sera un Viking 
             else
             {
-                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), this.position.getIndiceTab1Dimension());
+                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleVikingInit(tabCases, Jeu.INSTANCE.Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
 
-            int i = 0;
-            for (i = 0; i < Jeu.INSTANCE.Carte.getTaille() * Jeu.INSTANCE.Carte.getTaille(); i++)
+            for (int i = 0; i < Jeu.INSTANCE.Carte.getTaille() * Jeu.INSTANCE.Carte.getTaille(); i++)
             {
                 tabRes[i] = tabDeplacement[i];
             }

@@ -255,7 +255,7 @@ namespace Code
         }
        
         public void lancerJeu(){
-            Jeu.INSTANCE.lancerJeu(carte, joueur1, joueur2, nbTours, fab);
+            Jeu.INSTANCE.lancerJeu(carte, joueur1, joueur2, nbTours, fab, carte1D);
 
         }
     }

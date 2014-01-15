@@ -15,7 +15,7 @@ public:
 WrapperAlgo(){ algo = Algo_new(); }
 ~WrapperAlgo(){ Algo_delete(algo); }
 int* creationCarte(int taille) { return algo->creationCarte(taille); }
-int positionnerJoueurHorsEau(int* carte, int taille, int pos) { return algo->positionnerJoueurHorsEau(carte, taille, pos); }
+int positionnerJoueurHorsEau(int* carte, int taille, int pos, int dir) { return algo->positionnerJoueurHorsEau(carte, taille, pos, dir); }
 int* positionnerJoueurs(int* carte, int taille) { return algo->positionnerJoueurs(carte, taille); }
 
 //Gaulois
@@ -26,6 +26,7 @@ int* Algo_deplacementPossibleNainInit(int* carte, int taille, int pos) { return 
 //Viking
 int* Algo_deplacementPossibleVikingInit(int* carte, int taille, int pos) { return algo->deplacementPossibleVikingInit(carte, taille, pos); }
 
+int* Algo_mymalloc(int taille) { return algo->mymalloc(taille); }
 };
 }
 #endif

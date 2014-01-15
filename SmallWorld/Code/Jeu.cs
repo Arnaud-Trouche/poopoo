@@ -22,6 +22,7 @@ namespace Code
         public int NbTours { get; set; }
         public bool PartieFinie { get; set; }
         public FabriqueCase fab { get; set; }
+        public int[] carte1D { get; set; }
 
         [NonSerialized]
         public static Jeu INSTANCE = new Jeu();
@@ -39,12 +40,13 @@ namespace Code
             return J1;
         }
     
-        public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nombreTours, FabriqueCase fab)
+        public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nombreTours, FabriqueCase fab, int[] tab)
         {            
             this.Carte = c;
             this.J1 = j1;
             this.J2 = j2;
             this.fab = fab;
+            this.carte1D = tab;
             NbTours = nombreTours;
             nbActions = 2;
             NbToursActuels = 1;
@@ -187,6 +189,8 @@ namespace Code
             this.PartieFinie = obj.PartieFinie;
             this.NbTours = obj.NbTours;
             this.fab = obj.fab;
+            this.carte1D = obj.carte1D;
          }
+
     }
 }

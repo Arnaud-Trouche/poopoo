@@ -7,6 +7,6 @@ namespace Code
 {
     public interface iJeu
     {
-        void lancerJeu(Carte c, Joueur j1, Joueur j2, int nnombreTours, FabriqueCase fab);
+        void lancerJeu(Carte c, Joueur j1, Joueur j2, int nnombreTours, FabriqueCase fab, int[] tab);
     }
 }
