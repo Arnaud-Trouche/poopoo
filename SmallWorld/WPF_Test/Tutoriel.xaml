@@ -148,7 +148,7 @@
                         Sont également indiqués les informations sur chaque joueur.
                         <LineBreak/>
                         Le joueur actuel voit sa couleur de peuple mise en fond.
-                        Ici c'est le joueur 2 avec les gaulois.
+                        Ici c'est le joueur 2 avec les Gaulois.
                     </TextBlock>
 
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
@@ -175,7 +175,7 @@
                     </TextBlock>
                     <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
                         Pour jouer, rien de plus simple ! Si c'est votre tour, votre nom est affiché en haut et votre carte d'infos à droite 
-                        est colorée selon la couleur de votre peuple. Vous allez donc jouer pour Joueur2 avec les Vikings.
+                        est colorée selon la couleur de votre peuple. Vous allez donc jouer pour Joueur2 avec les Gaulois.
                         <LineBreak/>
                         Après avoir cliqué sur OK, cliquez sur l'une de vos unités (colorées en jaune).
                     </TextBlock>
@@ -205,6 +205,8 @@
                     <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
                         Vous pouvez voir que lorsque vous cliquez sur une unité, la carte s'eclaircit et 
                         seules les cases sur les lesquelles vous pouvez vous déplacer sont colorés.
+                        Ici vous pouvez vous déplacer sur la
+                        <LineBreak/>
                     </TextBlock>
 
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">

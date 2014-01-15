@@ -72,7 +72,17 @@ namespace Code
                 return peuple;
             }
         }
-        public Coord Position    {get;set;}
+        public Coord Position
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
+            }
+        }
 
         /// <summary>
         /// Constructeur d'une Unité 
@@ -98,14 +108,7 @@ namespace Code
         public int[] deplacementPossibles()
         {
             WrapperAlgo wrapperAlgo = new WrapperAlgo();
-            int tailleCarte = Jeu.INSTANCE.Carte.getTaille();
-
-            //Réalise un malloc pour allouer le tableau représentant la carte en unidimensionnel
-            int* tabCases = wrapperAlgo.Algo_mymalloc(tailleCarte);
-
-            //Affecte cases par cases le tableau nouvellement alloué par la carte unidimensionnel 
-            for (int i = 0; i < tailleCarte * tailleCarte; i++)
-                tabCases[i] = Jeu.INSTANCE.carte1D[i];
+            int* tabCases = MonteurPartie.transformePointeur(Jeu.INSTANCE.carte1D);
 
             //Initialisation du tableau qui va contenir les déplacements possibles
             int[] tabRes = new int[Jeu.INSTANCE.Carte.getTaille() * Jeu.INSTANCE.Carte.getTaille()];

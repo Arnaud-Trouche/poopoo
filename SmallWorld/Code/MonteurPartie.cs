@@ -32,140 +32,63 @@ namespace Code
         //Les cartes unidimensionnelles servent à faire la communication 
         //avec le wrapper qui renvoie des tableauxv en int*
         private int[] carte1D;
-        private unsafe int* tab1D;
 
         private Carte carte;
 
-        public int[] Carte1D
-        {
+
+        public int Difficulte {
             get
             {
-                return carte1D;
+                return difficulte;
             }
             set
             {
-                carte1D = value;
+                difficulte = value;
+            }
+        }   
+        public String J1 {
+            get
+            {
+                return j1;
+            }
+            set
+            {
+                j1 = value;
             }
         }
-
-        public Joueur Joueur1
+        public String J2
         {
             get
             {
-               return joueur1;
+                return j2;
+            }
+            set
+            {
+                j2 = value;
             }
         }
-
-        public Joueur Joueur2
+        public int P1
         {
             get
             {
-                return joueur2;
+                return p1;
+            }
+            set
+            {
+                p1 = value;
             }
         }
-        public int TailleCarte
+        public int P2
         {
             get
             {
-                return tailleCarte;
+                return p2;
             }
-
-        }
-        public int NbTours
-        {
-            get
+            set
             {
-                return nbTours;
-            }
-
-        }
-        public int NbUnites
-        {
-            get
-            {
-                return nbUnites;
-            }
-
-        }
-       public Carte Carte
-        {
-            get
-            {
-                return carte;
-            }
-           set
-            {
-                carte = value;
+                p2 = value;
             }
         }
-
-       public int Difficulte
-       {
-           set
-           {
-               difficulte = value;
-           }
-           get
-           {
-               return difficulte;
-           }   
-       }
-       public String J1
-       {
-           set
-           {
-               j1 = value;
-           }
-           get
-           {
-               return j1;
-           }   
-       }
-       public String J2
-       {
-           set
-           {
-               j2 = value;
-           }
-           get
-           {
-               return j2;
-           }   
-       }
-       public int P1
-       {
-           set
-           {
-               p1 = value;
-           }
-           get
-           {
-               return p1;
-           }   
-       }
-       public int P2
-       {
-           set
-           {
-               p2 = value;
-           }
-           get
-           {
-               return p2;
-           }   
-       }
-
-       public unsafe int* Tab1D
-       {
-           set
-           {
-               tab1D = value;
-           }
-           get
-           {
-               return tab1D;
-           }
-       }
 
        /// <summary>
        /// Initialise les éléments du Monteur (Carte, Joueurs, Peuples).
@@ -229,12 +152,13 @@ namespace Code
            this.nbUnites = carte.NbUnites;
 
            //Invoque le wrapper qui créer la carte de la bonne taille.
-           tab1D = wrapperAlgo.creationCarte(tailleCarte);
+           int* tab1D = wrapperAlgo.creationCarte(tailleCarte);
            int i;
            //Copie le tableau du Wrapper dans le tableau compatible C sharp
            for (i = 0; i < tailleCarte * tailleCarte; i++)
                carte1D[i] = tab1D[i];
 
+           Jeu.INSTANCE.carte1D = carte1D;
            //Transmet le tableau des types de cases à la Fabrique
            fab.setTabCases(ref carte1D);
 
@@ -250,7 +174,7 @@ namespace Code
        /// <param name="nbUnitesParJoueurs">Nombre d'unités par joueurs</param>
        public unsafe void creerJoueurs(String j1, int p1, String j2, int p2, int nbUnitesParJoueurs) 
        {
-           
+          int* tab1D = transformePointeur(carte1D); 
            // On obtient la position du Joueur1 et du Joueur2
            int* positionsJ = wrapperAlgo.positionnerJoueurs(tab1D, tailleCarte);
            Coord posJ1 = new Coord(positionsJ[0]);
@@ -279,6 +203,23 @@ namespace Code
        /// </summary>
         public void lancerJeu(){
             Jeu.INSTANCE.lancerJeu(carte, joueur1, joueur2, nbTours, fab, carte1D);
+        }
+
+        /// <summary>
+        /// Transforme un tableau c# [] en pointeur pour le wrapper
+        /// </summary>
+        /// <param name="tab">Le tableau c# à transformer (de taille tailleCarte*tailleCarte*sizeof(int))</param>
+        /// <returns></returns>
+        public static unsafe int* transformePointeur(int[] tab)
+        {
+            WrapperAlgo wrapperAlgo = new WrapperAlgo();
+            int tailleCarte = Jeu.INSTANCE.Carte.getTaille();  
+            //Réalise un malloc pour allouer le tableau représentant la carte en unidimensionnel
+            int* tabCases = wrapperAlgo.Algo_mymalloc(tailleCarte); 
+            //Affecte cases par cases le tableau nouvellement alloué par la carte unidimensionnel 
+            for (int i = 0; i < tailleCarte * tailleCarte; i++)
+                tabCases[i] = Jeu.INSTANCE.carte1D[i];
+            return tabCases;
         }
     }
 }

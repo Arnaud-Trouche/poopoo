@@ -52,7 +52,7 @@ namespace WPF_Test
 
             //on pine le joueur actif pour le tuto
             Jeu.INSTANCE.JActif = Jeu.INSTANCE.J2;
-
+            Jeu.INSTANCE.carte1D = carte;                                                    
         }
 
         /// <summary>
@@ -87,17 +87,6 @@ namespace WPF_Test
 
             //Remplissage de la carte
             remplirCarte(tailleCarte);
-
-            //on déplace les joueurs où on veut 
-            foreach (Unite u in Jeu.INSTANCE.J1.Peuple.Unites)
-            {
-                u.Position = new Coord(0,4);
-            }
-            foreach (Unite u in Jeu.INSTANCE.J2.Peuple.Unites)
-            {
-                u.Position = new Coord(4,0);
-            }
-            
 
             //Affichage des unités
             miseAJourUnites();
@@ -136,23 +125,22 @@ namespace WPF_Test
         /// <returns></returns>
         private Rectangle creerTuile(Coord c)
         {
-            //on remplit la carte "à la main" pour le tuto pour pouvoir commenter
             var tuile = new Rectangle();
-            var i = c.getIndiceTab1Dimension();
+            var caseLogique = Jeu.INSTANCE.fab.obtenirCase(c);
 
-            if (carte[i] == 0)
+            if (caseLogique is Desert)
                 tuile.Fill = Brushes.Bisque;
 
-            if (carte[i] == 1)
+            if (caseLogique is Eau)
                 tuile.Fill = Brushes.SkyBlue;
 
-            if (carte[i] == 2)
+            if (caseLogique is Foret)
                 tuile.Fill = Brushes.DarkGreen;
 
-            if (carte[i] == 3)
+            if (caseLogique is Montagne)
                 tuile.Fill = Brushes.BurlyWood;
 
-            if (carte[i] == 4)
+            if (caseLogique is Plaine)
                 tuile.Fill = Brushes.Green;
 
             tuile.Stroke = Brushes.WhiteSmoke;
@@ -161,6 +149,9 @@ namespace WPF_Test
             // mise à jour des attributs (column et Row) référencant la position dans la grille
             Grid.SetColumn(tuile, c.X);
             Grid.SetRow(tuile, c.Y);
+
+            //lien avec la case logique
+            tuile.Tag = caseLogique;
 
             // enregistrement d'un écouteur d'evt sur la tuile : 
             tuile.MouseLeftButtonDown += new MouseButtonEventHandler(tuile_MouseLeftButtonDown);
