@@ -5,25 +5,12 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe réprésentant une case de type Foret
+    /// </summary>
     [Serializable]
     public class Foret : iCase
     {
 
-        public int getPtScore(int peuple)
-        {
-            if (peuple == Constants.NAIN)
-            {
-                return 2;
-            }
-            else
-            {
-                return 1;
-            }
-        }
-
-        public bool deplacementPossible(int peuple, Coord init, Coord nouvelle)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

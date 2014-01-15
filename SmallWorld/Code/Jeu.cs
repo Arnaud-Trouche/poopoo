@@ -102,14 +102,14 @@ namespace Code
         }
 
         /// <summary>
-        /// Retourne Vrai si la partie est terminée, faux sinon. Réalise des traitements 
-        /// si la partie est finie (affectation joueur ayant gagné).
+        /// Retourne Vrai si le tour terminée, faux sinon. Réalise des traitements 
+        /// si le tour est finie (affectation nouveau qui va jouer joueur, ect).
         /// </summary>
-        /// <returns>Retourne Vrai si la partie est terminée, faux sinon.</returns>
+        /// <returns>Retourne Vrai si le tour est terminée, faux sinon.</returns>
         public bool finTour()
         {
-            //Plusieurs cas de fin de parite
-            //Un des joueurs sans unité ou alors nombre de tours épuisé
+
+            //Un des joueurs sans unité ou alors nombre de d'actions épuisé
             if (J1.Peuple.nombreUnitesRestantes() == 0 || J2.Peuple.nombreUnitesRestantes() == 0 || nbActions == (NbTours*2 + 1))
             {
                 PartieFinie = true;
@@ -123,10 +123,10 @@ namespace Code
             if ((nbActions % 2) == 0)
                     NbToursActuels++;
 
-
+            //On remet le point de déplacement au joueur qui vient de jouer
             JActif.Peuple.remettrePtDeplacement();
 
-            //sinon on passe au joueur suivant
+            //On passe au joueur suivant
             //Si c'était joueur1 qui jouait c'est au tour du joueur2
             if (j1Joue == true)
             {
@@ -144,12 +144,18 @@ namespace Code
 
         }
 
-
+        /// <summary>
+        ///  Retourne Vrai si la partie est terminée, faux sinon. Réalise des traitements 
+        /// si la partie est finie (affectation joueur ayant gagné).
+        /// </summary>
+        /// <returns>Retourne Vrai si la partie est terminée, faux sinon.</returns>
         public Joueur finPartie()
         {
             //Plusieurs cas de figure
+            //Nombre de tours épuisé
             if (NbToursActuels == NbTours) 
             {
+                //Détermine le vainceur avec le score
                 if (J1.Score >= J2.Score) 
                 {
                     JVainqueur = J1;
@@ -178,6 +184,9 @@ namespace Code
             
         }
 
+        /// <summary>
+        /// Met à jour le score des deux joueurs.
+        /// </summary>
         public void updateScore()
         {
             int score = 0;
@@ -190,18 +199,33 @@ namespace Code
 
         }
 
+        /// <summary>
+        /// Calcule le score d'un joueur.
+        /// </summary>
+        /// <param name="j">Joueur voulue</param>
+        /// <returns>Le score du Joueur</returns>
         public int calculeScore(Joueur j)
         {
             return j.calculeScore();
 
         }
 
+        /// <summary>
+        /// Fonction réalisant un rand entre deux nombre.
+        /// </summary>
+        /// <param name="min">Limite basse</param>
+        /// <param name="max">Limite Haute</param>
+        /// <returns>Un entier entre min et maw.</returns>
         private int RandomNumber(int min, int max)
         {
             Random random = new Random();
             return random.Next(min, max);
         }
 
+        /// <summary>
+        /// Serialize dans un fichier binaire, l'instance courante de jeu.
+        /// </summary>
+        /// <param name="nomFich">Le nom du fichier sauvegarde</param>
         public void sauvegarder(String nomFich)
         {          
             IFormatter formatter = new BinaryFormatter();
@@ -210,6 +234,10 @@ namespace Code
             stream.Close();
         }
 
+        /// <summary>
+        /// Déserialize un fichier pour reprendre une partie.
+        /// </summary>
+        /// <param name="nomFich">Nom du fichier sauvegardé à charger</param>
         public void charger(String nomFich)
         {
             IFormatter formatter = new BinaryFormatter();
@@ -217,6 +245,8 @@ namespace Code
             Jeu obj = (Jeu)formatter.Deserialize(stream);
             stream.Close();
 
+            //Affecte champs par champs l'instance courante de Jeu
+            //par celle qui a été sauvegardé;
             this.Carte = obj.Carte;
             this.J1 = obj.J1;
             this.J2 = obj.J2;

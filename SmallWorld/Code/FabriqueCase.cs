@@ -5,17 +5,29 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe FabriqueCase. Elle fait office de poids-mouche. 
+    /// Elle sert à créer les cases en faisant une instanciation paresseuse.
+    /// </summary>
     [Serializable]
     public class FabriqueCase : iFabriqueCase
     {
+        //Tableau associatif liant une coordonnée à une Case 
         private Dictionary<Coord, iCase> mapCases;
+
+        //Tableau unidimensionnel qui traduit le type des cases selon la coordonnée.
         private int[] casesInt;
+
+        //Possède une instance de chaque Case
         private Montagne montagne;
         private Eau eau;
         private Desert desert;
         private Plaine plaine;
         private Foret foret;
 
+        /// <summary>
+        /// Constructeur de la FabriqueCase qui initialise ses attributs
+        /// </summary>
         public FabriqueCase()
         {
             mapCases = new Dictionary<Coord, iCase>();
@@ -34,9 +46,17 @@ namespace Code
             casesInt = tab;
         }
 
+        /// <summary>
+        /// Renvoit la Case (et donc son type) présente à la coordonnée en paramètre
+        /// ou si la Case n'existe pas, on la rajoute dans le tableau associatif.
+        /// </summary>
+        /// <param name="c">La coordonnée concernée</param>
+        /// <returns>La Case présente à la coordonnée c.</returns>
         public iCase obtenirCase(Coord c)
         {
             iCase cas = null;
+
+            //Si on n'a jamais crée  
             if (!mapCases.ContainsKey(c))
             {
                 int type = casesInt[c.getIndiceTab1Dimension()];

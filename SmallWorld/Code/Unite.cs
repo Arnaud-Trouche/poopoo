@@ -72,13 +72,7 @@ namespace Code
                 return peuple;
             }
         }
-        public Coord Position    // the position property
-        {
-            get
-            {
-                return position;
-            }
-        }
+        public Coord Position    {get;set;}
 
         /// <summary>
         /// Constructeur d'une Unité 
