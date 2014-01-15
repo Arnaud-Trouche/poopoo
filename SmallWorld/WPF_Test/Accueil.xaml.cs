@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Code;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -49,8 +50,9 @@ namespace WPF_Test
             // Process save file dialog box results
             if (result == true)
             {
-                //TODO faire la restauration !
-                MessageBox.Show("Pas chargé :p");
+                Jeu.INSTANCE.charger(dlg.FileName);
+                MainWindow parent = (Application.Current.MainWindow as MainWindow);
+                parent.changePage("Carte.xaml"); 
             }
         }
 

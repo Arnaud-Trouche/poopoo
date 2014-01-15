@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public class FabriquePeuple : iFabriquePeuple
     {
         public static FabriquePeuple INSTANCE = new FabriquePeuple();

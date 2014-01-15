@@ -6,6 +6,7 @@ using Wrapper;
 
 namespace Code
 {
+    [Serializable]
     public unsafe class Unite : iUnite
     {
         private int pointVie;
@@ -14,7 +15,6 @@ namespace Code
         private double pointDeDeplacement;
         private Peuple peuple;
         private Coord position;
-        protected WrapperAlgo wrapperAlgo;
         protected int* tabCarte;
 
         public int PointVie
@@ -84,39 +84,39 @@ namespace Code
             this.position = pos;
             this.peuple = peuple;
             this.pointDeDeplacement = 1;
-            wrapperAlgo = new WrapperAlgo();
         }
 
 
         public int[] deplacementPossibles()
         {
-            int[] tabRes = new int[Carte.getTaille() * Carte.getTaille()];
+            WrapperAlgo wrapperAlgo = new WrapperAlgo();
+            int[] tabRes = new int[Jeu.INSTANCE.Carte.getTaille() * Jeu.INSTANCE.Carte.getTaille()];
             int* tabDeplacement;
 
             if (this.peuple is PeupleGaulois)
             {
                 if (pointDeDeplacement == 1)
                 {
-                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois1(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension());
+                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois1(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), position.getIndiceTab1Dimension());
                 }
                 //Il lui reste 0.5 points de depl et donc seuls les cases Plaines VOISINES SONT ok
                 else
                 {
-                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois2(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), position.getIndiceTab1Dimension());
+                    tabDeplacement = wrapperAlgo.Algo_deplacementPossibleGaulois2(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), position.getIndiceTab1Dimension());
                 }
             }
             else if (this.peuple is PeupleNain)
             {
-                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
+                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleNainInit(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
             // ON est sur que se sera un Viking 
             else
             {
-                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Carte.getTaille(), this.position.getIndiceTab1Dimension());
+                tabDeplacement = wrapperAlgo.Algo_deplacementPossibleVikingInit(MonteurPartie.INSTANCE.Tab1D, Jeu.INSTANCE.Carte.getTaille(), this.position.getIndiceTab1Dimension());
             }
 
             int i = 0;
-            for (i = 0; i < Carte.getTaille() * Carte.getTaille(); i++)
+            for (i = 0; i < Jeu.INSTANCE.Carte.getTaille() * Jeu.INSTANCE.Carte.getTaille(); i++)
             {
                 tabRes[i] = tabDeplacement[i];
             }
@@ -216,7 +216,7 @@ namespace Code
             {
                 bool combatGagne = true;
 
-                if ((this.peuple is PeupleGaulois) && (FabriqueCase.INSTANCE.obtenirCase(caseDeplacement) is Plaine))
+                if ((this.peuple is PeupleGaulois) && (Jeu.INSTANCE.fab.obtenirCase(caseDeplacement) is Plaine))
                     PointDeplacement = PointDeplacement - 0.5;
                 else
                     pointDeDeplacement--;
@@ -246,11 +246,11 @@ namespace Code
 
             if (this.peuple is PeupleGaulois)
             {
-                if (FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                if (Jeu.INSTANCE.fab.obtenirCase(position) is Plaine)
                 {
                     return 2;
                 }
-                else if (FabriqueCase.INSTANCE.obtenirCase(position) is Montagne)
+                else if (Jeu.INSTANCE.fab.obtenirCase(position) is Montagne)
                 {
                     return 0;
                 }
@@ -261,11 +261,11 @@ namespace Code
             }
             else if (this.peuple is PeupleNain)
             {
-                if (FabriqueCase.INSTANCE.obtenirCase(position) is Foret)
+                if (Jeu.INSTANCE.fab.obtenirCase(position) is Foret)
                 {
                     return 2;
                 }
-                else if (FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                else if (Jeu.INSTANCE.fab.obtenirCase(position) is Plaine)
                 {
                     return 0;
                 }
@@ -284,16 +284,16 @@ namespace Code
                 if (position.X > 0)
                 {
                     Coord pos = new Coord(position.X - 1, position.Y);
-                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                    if (Jeu.INSTANCE.fab.obtenirCase(pos) is Eau)
                         sc++;
 
                 }
 
                 //Si pas a droite
-                if (position.X < Carte.getTaille() - 1)
+                if (position.X < Jeu.INSTANCE.Carte.getTaille() - 1)
                 {
                     Coord pos = new Coord(position.X + 1, position.Y);
-                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                    if (Jeu.INSTANCE.fab.obtenirCase(pos) is Eau)
                         sc++;
 
 
@@ -303,21 +303,21 @@ namespace Code
                 if (position.Y > 0)
                 {
                     Coord pos = new Coord(position.X, position.Y - 1);
-                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                    if (Jeu.INSTANCE.fab.obtenirCase(pos) is Eau)
                         sc++;
 
                 }
 
                 //Si pas en bas
-                if (position.Y < Carte.getTaille() - 1)
+                if (position.Y < Jeu.INSTANCE.Carte.getTaille() - 1)
                 {
                     Coord pos = new Coord(position.X, position.Y + 1);
-                    if (FabriqueCase.INSTANCE.obtenirCase(pos) is Eau)
+                    if (Jeu.INSTANCE.fab.obtenirCase(pos) is Eau)
                         sc++;
 
                 }
 
-                if (FabriqueCase.INSTANCE.obtenirCase(position) is Montagne || FabriqueCase.INSTANCE.obtenirCase(position) is Foret || FabriqueCase.INSTANCE.obtenirCase(position) is Plaine)
+                if (Jeu.INSTANCE.fab.obtenirCase(position) is Montagne || Jeu.INSTANCE.fab.obtenirCase(position) is Foret || Jeu.INSTANCE.fab.obtenirCase(position) is Plaine)
                     sc++;
 
                 return sc;

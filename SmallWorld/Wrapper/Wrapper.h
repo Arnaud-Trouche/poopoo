@@ -7,6 +7,7 @@
 using namespace System;
 
 namespace Wrapper {
+
 public ref class WrapperAlgo {
 private:
 Algo* algo;

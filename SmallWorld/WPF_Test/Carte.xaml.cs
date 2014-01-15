@@ -53,7 +53,7 @@ namespace WPF_Test
         ///   - création des emplacements pour les unités
         /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e){
-            int tailleCarte = Code.Carte.getTaille();
+            int tailleCarte = Jeu.INSTANCE.Carte.getTaille();
 
             //On crée les lignes et colonnes pour les 3 grilles          
             for (int y = 0; y < tailleCarte; y++)
@@ -117,7 +117,7 @@ namespace WPF_Test
         private Rectangle creerTuile(Coord c)
         {
             var tuile = new Rectangle();
-            var caseLogique = FabriqueCase.INSTANCE.obtenirCase(c);
+            var caseLogique = Jeu.INSTANCE.fab.obtenirCase(c);
 
             if (caseLogique is Desert)
                 tuile.Fill = Brushes.Bisque;
@@ -341,7 +341,7 @@ namespace WPF_Test
 
                 //Mise en surbrillance des cases où le déplacement/attaque est possible, si pas déjà fait
                 int[] cases = Jeu.INSTANCE.suggestionDeplacement(uniteLogique);
-                int tailleCarte = Code.Carte.getTaille();
+                int tailleCarte = Jeu.INSTANCE.Carte.getTaille();
                 for (int i = 0; i < tailleCarte; i++)
                 {
                     for (int j = 0; j < tailleCarte; j++)
@@ -424,25 +424,26 @@ namespace WPF_Test
             {
                 // PARTIE PAS FINIE PAS D'EGALITE
                 blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + ".";
-                blablafin += "\nL'adversaire est mort !";
+                blablafin += "\nL'adversaire est mort, score de ";
+                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
+                {
+                    blablafin += Jeu.INSTANCE.J1.Score;
+                }
+                else
+                {
+                    blablafin += Jeu.INSTANCE.J2.Score;
+                }
+                blablafin += " à O.\nBravo !";
             }
             else if (Jeu.INSTANCE.J1.Score == Jeu.INSTANCE.J2.Score)
             {
                 // PARTIE FINIE EGALITE
-                blablafin += "Egalité " + Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score + "! C'est pas de chance ";
-                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
-                {
-                    blablafin += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
-                }
-                else
-                {
-                    blablafin += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
-                }
+                blablafin += "Egalité " + Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score + "!  \nC'est pas de chance :/";
             }
             else
             {
                 // PARTIE FINIE PAS D'EGALITE
-                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\navec un score de ";
+                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\net un score de ";
                 if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
                 {
                     blablafin += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
@@ -451,8 +452,8 @@ namespace WPF_Test
                 {
                     blablafin += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
                 }
+                blablafin += "\nBravo !";
             }            
-            blablafin += "\nBravo !";
             PopUpResultat.Text = blablafin;
             FinPartie.IsOpen = true;
 
@@ -529,7 +530,8 @@ namespace WPF_Test
             if (result == true)
             {
                 //TODO faire la sauvegarde !
-                MessageBox.Show("Pas sauvegardé :p");
+                MessageBox.Show("Pas sauvegardé :p "+dlg.FileName);
+                Jeu.INSTANCE.sauvegarder(dlg.FileName);
                 return true;
             }
             else

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public class CarteDemo : StrategieCarte
     {
         public CarteDemo()
