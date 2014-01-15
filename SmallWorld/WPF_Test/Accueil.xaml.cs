@@ -68,7 +68,15 @@ namespace WPF_Test
 
         private void tuto_Click(object sender, RoutedEventArgs e)
         {
-
+            //On définit les propriétés pour le tutoriel
+            MonteurPartie.INSTANCE.Difficulte = Constants.DEMO;
+            MonteurPartie.INSTANCE.J1 = "Joueur1";
+            MonteurPartie.INSTANCE.J2 = "Joueur2";
+            MonteurPartie.INSTANCE.P1 = Constants.NAIN;
+            MonteurPartie.INSTANCE.P2 = Constants.GAULOIS;
+            MonteurPartie.INSTANCE.initialiser();
+            MainWindow parent = (Application.Current.MainWindow as MainWindow);
+            parent.changePage("Tutoriel.xaml"); 
         }
 
     }

@@ -54,7 +54,7 @@ namespace WPF_Test
         /// </summary>
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            int tailleCarte = Code.Carte.getTaille();
+            int tailleCarte = Jeu.INSTANCE.Carte.getTaille();
 
             //On crée les lignes et colonnes pour les 3 grilles          
             for (int y = 0; y < tailleCarte; y++)
@@ -118,7 +118,7 @@ namespace WPF_Test
         private Rectangle creerTuile(Coord c)
         {
             var tuile = new Rectangle();
-            var caseLogique = FabriqueCase.INSTANCE.obtenirCase(c);
+            var caseLogique = Jeu.INSTANCE.fab.obtenirCase(c);
 
             if (caseLogique is Desert)
                 tuile.Fill = Brushes.Bisque;
@@ -252,6 +252,11 @@ namespace WPF_Test
                 InfosJoueur2.Background = couleurPeuple[Jeu.INSTANCE.J2.Peuple.ToString()];
 
             }
+
+            //Ajout des tags liant le tour et le nom du joueur en cours
+            LabelJoueur.Tag = Jeu.INSTANCE.JActif.Nom;
+            LabelTourEnCours.Tag = Jeu.INSTANCE.NbToursActuels;
+            LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
         }
 
         private void miseAJourScore()
@@ -338,7 +343,7 @@ namespace WPF_Test
 
                 //Mise en surbrillance des cases où le déplacement/attaque est possible, si pas déjà fait
                 int[] cases = Jeu.INSTANCE.suggestionDeplacement(uniteLogique);
-                int tailleCarte = Code.Carte.getTaille();
+                int tailleCarte = Jeu.INSTANCE.Carte.getTaille();
                 for (int i = 0; i < tailleCarte; i++)
                 {
                     for (int j = 0; j < tailleCarte; j++)
@@ -528,7 +533,8 @@ namespace WPF_Test
             if (result == true)
             {
                 //TODO faire la sauvegarde !
-                MessageBox.Show("Pas sauvegardé :p");
+                MessageBox.Show("Pas sauvegardé :p " + dlg.FileName);
+                Jeu.INSTANCE.sauvegarder(dlg.FileName);
                 return true;
             }
             else
@@ -632,6 +638,11 @@ namespace WPF_Test
         {
             Sauver.IsOpen = false;
             e.Handled = true;
+        }
+
+        private void Tuto1_OK_Click(object sender, RoutedEventArgs e)
+        {
+            Tuto1.IsOpen = false;
         }
     }
 }
