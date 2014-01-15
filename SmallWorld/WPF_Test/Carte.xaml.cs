@@ -145,7 +145,7 @@ namespace WPF_Test
             Grid.SetRow(tuile, c.Y);
 
             //lien avec la case logique
-            tuile.Tag = caseLogique;
+            //tuile.Tag = caseLogique;        inutile ?
 
             // enregistrement d'un écouteur d'evt sur la tuile : 
             tuile.MouseLeftButtonDown += new MouseButtonEventHandler(tuile_MouseLeftButtonDown);

@@ -118,7 +118,7 @@
                         Découvrons l'interface !
                     </TextBlock>
                     <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
-                        En haut (fond grisé) sont indiqués le tour actuel, le nombre total de tour et le nom du Joueur qui doit jouer.
+                        En haut (fond grisé) sont indiqués le tour actuel, le nombre total de tours et le nom du Joueur qui doit jouer.
                     </TextBlock>
 
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
@@ -177,7 +177,7 @@
                         Pour jouer, rien de plus simple ! Si c'est votre tour, votre nom est affiché en haut et votre carte d'infos à droite 
                         est colorée selon la couleur de votre peuple. Vous allez donc jouer pour Joueur2 avec les Gaulois.
                         <LineBreak/>
-                        Après avoir cliqué sur OK, cliquez sur l'une de vos unités (colorées en jaune).
+                        Cliquez sur l'une de vos unités (colorées en jaune).
                     </TextBlock>
 
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
@@ -205,8 +205,9 @@
                     <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
                         Vous pouvez voir que lorsque vous cliquez sur une unité, la carte s'eclaircit et 
                         seules les cases sur les lesquelles vous pouvez vous déplacer sont colorés.
-                        Ici vous pouvez vous déplacer sur la
+                        Ici vous pouvez vous déplacer sur la case Montagne à droite.
                         <LineBreak/>
+                        Pour vous déplacer, cliquez sur la case Montagne à droite de l'unité sélectionnée.
                     </TextBlock>
 
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
@@ -218,6 +219,103 @@
                         </Grid.RowDefinitions>
 
                         <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto5_OK_Click">
+                            <StackPanel>
+                                <TextBlock Margin="6,0">OK</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
+
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto6" Placement="Center" Width="350" >
+                <StackPanel Background="White">
+                    <TextBlock  FontSize="22" Margin="5,2">
+                        A l'attaque !
+                    </TextBlock>
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        Ça y est, vous maitrisez les déplacements.
+                        <LineBreak/>
+                        Nous allons passer à l'attaque ! 
+                        <LineBreak/><LineBreak/>
+                        Préparez vous aux combats :)
+                    </TextBlock>
+
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto6_OK_Click">
+                            <StackPanel>
+                                <TextBlock Margin="6,0">OK</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
+
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto7" Placement="Left" HorizontalOffset="-135" Width="300" >
+                <StackPanel Background="White">
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        Vous pouvez voir que 2 unités ce sont déplacées. Elles sont face à face et prêtes à engager le combat !
+                        C'est à votre tour, vous pouvez attaquer l'ennemi comme si vous vouliez vous déplacer sur cette case.
+                        D'ailleurs, si vous gagnez le combat, vous vous déplacerez.
+                        <LineBreak/>
+                        <LineBreak/>
+                        Un peu de calcul : par défaut une unité attaque a 3 chances sur 4 de gagner lorsqu'elle attaque quelqu'un.
+                        Par contre cette probabilité diminue avec la vie de votre unité. Par exemple la vie de votre unité a été
+                        baissée à 3 (sur un max de 5). Vous avez environ 1 chance sur 2 de gagner.                        
+                        Vous pouvez perdre (pas de chance !) ou avoir à effectuer plusieurs combats pour gagner !
+                        <LineBreak/>
+                        Testez l'attaque avant de cliquer sur OK.
+                    </TextBlock>
+
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto7_OK_Click">
+                            <StackPanel>
+                                <TextBlock Margin="6,0">OK</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
+
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto8" Placement="Center"  Width="450" >
+                <StackPanel Background="White">
+                    <TextBlock  FontSize="22" Margin="5,2">
+                        Voilà les rudiments du jeu.
+                    </TextBlock>
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        Vous pouvez déplacer votre unité d'une case à chaque tour (sauf pouvoir spécial, voir les détails sur la page de
+                        choix de peuple). Lorsque que vous avez déplacé toutes vos unités, vous pouvez laisser le tour à l'adversaire en
+                        cliquant sur le bouton en bas à droite nommé Fin Tour".
+                        <LineBreak/>
+                        <LineBreak/>
+                        Le gagnant est celui qui cumule le plus de point ou qui a survécu :)
+                    </TextBlock>
+                    <TextBlock  TextAlignment="Center"  FontSize="22" Margin="5,2">
+                        Bon Jeu !
+                    </TextBlock>
+                    
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto8_OK_Click">
                             <StackPanel>
                                 <TextBlock Margin="6,0">OK</TextBlock>
                             </StackPanel>

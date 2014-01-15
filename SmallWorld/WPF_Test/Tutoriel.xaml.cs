@@ -26,7 +26,7 @@ namespace WPF_Test
         Dictionary<String, SolidColorBrush> couleurPeuple;
         //Constante pour la transparence des cases non possibles
         const double OPACITE_NON_POSSIBLE = 0.85;
-        int[] carte = { 2, 3, 0, 1, 4, 3, 2, 1, 0, 1, 4, 4, 3, 0, 0, 1, 2, 3, 0, 4, 2, 3, 2, 4, 1 };
+        int[] carte = { 2, 3, 1, 1, 4, 3, 2, 1, 0, 0, 0, 4, 0, 4, 3, 1, 2, 3, 0, 4, 2, 3, 2, 4, 1 };
 
         //Booleens d'activation des clicks
         bool activerClickUnite = false;
@@ -34,6 +34,7 @@ namespace WPF_Test
 
         //Booleens pour la gestion de l'affichage des popups
         bool attenteClickUnite = false;
+        bool attenteClickCase = false;
 
         public unsafe Tutoriel()
         {
@@ -88,6 +89,16 @@ namespace WPF_Test
             //Remplissage de la carte
             remplirCarte(tailleCarte);
 
+            //repositionner les joueurs
+            foreach (Unite u in Jeu.INSTANCE.J1.Peuple.Unites)
+            {
+                u.Position = new Coord(4, 0);
+            }
+            foreach (Unite u in Jeu.INSTANCE.J2.Peuple.Unites)
+            {
+                u.Position = new Coord(0, 4);
+            }
+
             //Affichage des unités
             miseAJourUnites();
 
@@ -125,22 +136,23 @@ namespace WPF_Test
         /// <returns></returns>
         private Rectangle creerTuile(Coord c)
         {
+            //on triche
             var tuile = new Rectangle();
-            var caseLogique = Jeu.INSTANCE.fab.obtenirCase(c);
+            var i = c.getIndiceTab1Dimension();
 
-            if (caseLogique is Desert)
+            if (carte[i] == 0)
                 tuile.Fill = Brushes.Bisque;
 
-            if (caseLogique is Eau)
+            if (carte[i] == 1)
                 tuile.Fill = Brushes.SkyBlue;
 
-            if (caseLogique is Foret)
+            if (carte[i] == 2)
                 tuile.Fill = Brushes.DarkGreen;
 
-            if (caseLogique is Montagne)
+            if (carte[i] == 3)
                 tuile.Fill = Brushes.BurlyWood;
 
-            if (caseLogique is Plaine)
+            if (carte[i] == 4)
                 tuile.Fill = Brushes.Green;
 
             tuile.Stroke = Brushes.WhiteSmoke;
@@ -149,9 +161,6 @@ namespace WPF_Test
             // mise à jour des attributs (column et Row) référencant la position dans la grille
             Grid.SetColumn(tuile, c.X);
             Grid.SetRow(tuile, c.Y);
-
-            //lien avec la case logique
-            tuile.Tag = caseLogique;
 
             // enregistrement d'un écouteur d'evt sur la tuile : 
             tuile.MouseLeftButtonDown += new MouseButtonEventHandler(tuile_MouseLeftButtonDown);
@@ -292,7 +301,6 @@ namespace WPF_Test
         private void tuile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (!activerClickCase) return;
-
             var rectangle = sender as Rectangle;
             //var caseLogique = rectangle.Tag as iCase;
 
@@ -314,6 +322,13 @@ namespace WPF_Test
                 //L'évènement a été traité, il ne faut pas appeler le handler de la fenêtre
                 e.Handled = true;
             }
+
+            if (attenteClickCase)
+            {
+                Tuto6.IsOpen = true;
+                Tuto5.IsOpen = false;
+                attenteClickCase = false;
+            }
         }
 
         /// <summary>
@@ -333,6 +348,9 @@ namespace WPF_Test
             {
                 Tuto5.IsOpen = true;
                 attenteClickUnite = false;
+                Tuto4.IsOpen = false;
+                activerClickCase = true;
+                attenteClickCase = true;
             }
             var ellipse = sender as Ellipse;
             var uniteLogique = ellipse.Tag as Unite;
@@ -478,6 +496,8 @@ namespace WPF_Test
             ADroite.Background = null;
             Tuto3.IsOpen = false;
             Tuto4.IsOpen = true;
+            activerClickUnite = true;
+            attenteClickUnite = true;
         }
 
         /// <summary>
@@ -488,9 +508,6 @@ namespace WPF_Test
         private void Tuto4_OK_Click(object sender, RoutedEventArgs e)
         {
             Tuto4.IsOpen = false;
-            activerClickUnite = true;
-            attenteClickUnite = true;
-            //Tuto5.IsOpen = true;
         }
 
         /// <summary>
@@ -501,9 +518,58 @@ namespace WPF_Test
         private void Tuto5_OK_Click(object sender, RoutedEventArgs e)
         {
             Tuto5.IsOpen = false;
-            //Tuto5.IsOpen = true;
         }
 
+        /// <summary>
+        /// Réaction à un click sur le Ok de la 6e page du tuto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tuto6_OK_Click(object sender, RoutedEventArgs e)
+        {
+            Tuto6.IsOpen = false;
+            Tuto7.IsOpen = true;
+            //Nouvelle mise en place
+            foreach (Unite u in Jeu.INSTANCE.J2.Peuple.Unites)
+            {
+                if (u.PointDeplacement < 1)
+                {
+                    u.PointDeplacement = 1;
+                    u.Position = new Coord(2, 3);
+                    foreach (Unite uni in Jeu.INSTANCE.J1.Peuple.Unites)
+                    {
+                        uni.Position = new Coord(3, 3);
+                        break;
+                    }
+                    break;
+                }
+            }
+            placerUnites();
+        }
+
+        /// <summary>
+        /// Réaction à un click sur le Ok de la 7e page du tuto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tuto7_OK_Click(object sender, RoutedEventArgs e)
+        {
+            Tuto7.IsOpen = false;
+            Tuto8.IsOpen = true;
+        }
+
+        /// <summary>
+        /// Réaction à un click sur le Ok de la 8e page du tuto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tuto8_OK_Click(object sender, RoutedEventArgs e)
+        {
+            Tuto8.IsOpen = false;
+            MainWindow w = (Application.Current.MainWindow as MainWindow);
+            w.changePage("Accueil.xaml");
+            w.clearHistory();
+        }
 
     }
 }
