@@ -142,5 +142,100 @@ namespace WPF_Test
             }
             e.Handled = true;
         }
+
+        /// <summary>
+        /// handler de la souris qui rentre sur une tuile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TuilePeuple_MouseEnter(object sender, MouseEventArgs e)
+        {     
+            //Affichage des titres
+            PeupleInfoL1.Visibility = System.Windows.Visibility.Visible;
+            PeupleInfoL2.Visibility = System.Windows.Visibility.Visible;
+            PeupleInfoL3.Visibility = System.Windows.Visibility.Visible;
+
+            RadioButton li = (sender as RadioButton);
+            var p = li.Name.Substring(0, 1);
+            switch (p)
+            {
+                case "N":
+                    PeupleInfoNom.Content = "Nains";
+                    PeupleInfoT1.Inlines.Add(new Run("Désert")); 
+                    PeupleInfoT1.Inlines.Add(new LineBreak());     
+                    PeupleInfoT1.Inlines.Add(new Run("Forêt")); 
+                    PeupleInfoT1.Inlines.Add(new LineBreak());
+                    PeupleInfoT1.Inlines.Add(new Run("Montagne"));  
+                    PeupleInfoT1.Inlines.Add(new LineBreak());
+                    PeupleInfoT1.Inlines.Add(new Run("Plaine"));
+
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+0 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Plaine"));   
+                    PeupleInfoT2.Inlines.Add(new LineBreak());
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+1 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Désert, Montagne"));   
+                    PeupleInfoT2.Inlines.Add(new LineBreak());
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+2 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Forêt"));
+
+                    PeupleInfoT3.Inlines.Add(new Run("Les Nains ont la capacité de se déplacer de Montagne en Montagne, même si elles ne sont pas concomitantes"));
+                    break;
+
+                case "V":
+                    PeupleInfoNom.Content = "Vikings";
+                    PeupleInfoT1.Inlines.Add(new Run("Désert"));
+                    PeupleInfoT1.Inlines.Add(new LineBreak());      
+                    PeupleInfoT1.Inlines.Add(new Run("Eau"));   
+                    PeupleInfoT1.Inlines.Add(new LineBreak());  
+                    PeupleInfoT1.Inlines.Add(new Run("Forêt"));     
+                    PeupleInfoT1.Inlines.Add(new LineBreak());
+                    PeupleInfoT1.Inlines.Add(new Run("Montagne"));   
+                    PeupleInfoT1.Inlines.Add(new LineBreak());
+                    PeupleInfoT1.Inlines.Add(new Run("Plaine"));
+
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+0 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Eau, Désert"));   
+                    PeupleInfoT2.Inlines.Add(new LineBreak());
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+1 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Forêt, Montagne, Plaine"));
+
+                    PeupleInfoT3.Inlines.Add(new Run("Les Vikings récupèrent un point de score supplémentaire lorsque qu'ils sont à côté d'une case eau"));
+                    break;
+
+                case "G":
+                    PeupleInfoNom.Content = "Gaulois"; 
+                    PeupleInfoT1.Inlines.Add(new Run("Désert")); 
+                    PeupleInfoT1.Inlines.Add(new LineBreak());     
+                    PeupleInfoT1.Inlines.Add(new Run("Forêt"));    
+                    PeupleInfoT1.Inlines.Add(new LineBreak());
+                    PeupleInfoT1.Inlines.Add(new Run("Montagne")); 
+                    PeupleInfoT1.Inlines.Add(new LineBreak());
+                    PeupleInfoT1.Inlines.Add(new Run("Plaine"));
+
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+0 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Montagne"));   
+                    PeupleInfoT2.Inlines.Add(new LineBreak());
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+1 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Désert, Forêt"));   
+                    PeupleInfoT2.Inlines.Add(new LineBreak());
+                    PeupleInfoT2.Inlines.Add(new Bold(new Run("+2 : ")));
+                    PeupleInfoT2.Inlines.Add(new Run("Plaine"));
+
+                    PeupleInfoT3.Inlines.Add(new Run("Les Gaulois ont la capacité de se déplacer 2 fois sur la plaine"));
+                    break;
+            }
+        }
+
+        private void TuilePeuple_MouseLeave(object sender, MouseEventArgs e)
+        {
+            PeupleInfoNom.Content = "";
+            //masquage des titres
+            PeupleInfoL1.Visibility = System.Windows.Visibility.Collapsed;
+            PeupleInfoL2.Visibility = System.Windows.Visibility.Collapsed;
+            PeupleInfoL3.Visibility = System.Windows.Visibility.Collapsed;
+            PeupleInfoT1.Inlines.Clear();
+            PeupleInfoT2.Inlines.Clear();
+            PeupleInfoT3.Inlines.Clear();
+        }
     }
 }

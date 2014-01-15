@@ -141,19 +141,19 @@ namespace WPF_Test
             var i = c.getIndiceTab1Dimension();
 
             if (carte[i] == 0)
-                tuile.Fill = Brushes.Bisque;
+                tuile.Fill = Carte.DESERT;
 
             if (carte[i] == 1)
-                tuile.Fill = Brushes.SkyBlue;
+                tuile.Fill = Carte.EAU;
 
             if (carte[i] == 2)
-                tuile.Fill = Brushes.DarkGreen;
+                tuile.Fill = Carte.FORET;
 
             if (carte[i] == 3)
-                tuile.Fill = Brushes.BurlyWood;
+                tuile.Fill = Carte.MONTAGNE;
 
             if (carte[i] == 4)
-                tuile.Fill = Brushes.Green;
+                tuile.Fill = Carte.PLAINE;
 
             tuile.Stroke = Brushes.WhiteSmoke;
             tuile.StrokeThickness = 1;
@@ -195,11 +195,11 @@ namespace WPF_Test
                     //Sélection de la couleur
                     if (u.Peuple != Jeu.INSTANCE.JActif.Peuple) // Si elle n'est pas au joueur actif
                     {
-                        e.Fill = Brushes.DarkGray;
+                        e.Fill = Carte.UNITEADV;
                     }
                     else if (u.PointDeplacement == 0) // Si elle n'a plus de vie
                     {
-                        e.Fill = Brushes.Black;
+                        e.Fill = Carte.UNITEPASVIE;
                     }
                     else // Sinon
                     {

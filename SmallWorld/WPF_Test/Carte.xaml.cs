@@ -22,10 +22,21 @@ namespace WPF_Test
     /// </summary>
     public partial class Carte : Page
     {
-        //Définition des couleurs : Nain,Viking,Gaulois
-        Dictionary<String,SolidColorBrush> couleurPeuple;
+        //// ===== CONSTANTES ==== ////
         //Constante pour la transparence des cases non possibles
-        const double OPACITE_NON_POSSIBLE = 0.85;
+        public static double OPACITE_NON_POSSIBLE = 0.85;
+        //Constantes Cases
+        public static SolidColorBrush DESERT = Brushes.Bisque;
+        public static SolidColorBrush EAU = Brushes.SkyBlue; 
+        public static SolidColorBrush FORET = Brushes.DarkGreen;
+        public static SolidColorBrush MONTAGNE = Brushes.BurlyWood;
+        public static SolidColorBrush PLAINE = Brushes.LightGreen;
+        //Cnstantes Unites
+        public static SolidColorBrush UNITEADV = Brushes.LightSlateGray;
+        public static SolidColorBrush UNITEPASVIE = Brushes.Black;
+
+        //Définition des couleurs : Nain,Viking,Gaulois
+        Dictionary<String,SolidColorBrush> couleurPeuple;            
         //Pour la sauvegarde menu ou pas
         bool retournerMenu = true;
 
@@ -123,19 +134,19 @@ namespace WPF_Test
             var caseLogique = Jeu.INSTANCE.fab.obtenirCase(c);
 
             if (caseLogique is Desert)
-                tuile.Fill = Brushes.Bisque;
+                tuile.Fill = DESERT;
                     
              if(caseLogique is Eau)
-                    tuile.Fill = Brushes.SkyBlue;
+                    tuile.Fill = EAU;
 
              if(caseLogique is Foret)
-                    tuile.Fill = Brushes.DarkGreen;
+                    tuile.Fill = FORET;
 
              if (caseLogique is Montagne)
-                 tuile.Fill = Brushes.BurlyWood;
+                 tuile.Fill = MONTAGNE;
 
              if(caseLogique is Plaine)
-                    tuile.Fill = Brushes.Green;
+                    tuile.Fill = PLAINE;
 
              tuile.Stroke = Brushes.WhiteSmoke;
              tuile.StrokeThickness = 1;
@@ -180,11 +191,11 @@ namespace WPF_Test
                     //Sélection de la couleur
                     if (u.Peuple != Jeu.INSTANCE.JActif.Peuple) // Si elle n'est pas au joueur actif
                     {
-                        e.Fill = Brushes.DarkGray;
+                        e.Fill = UNITEADV;
                     }
                     else if (u.PointDeplacement == 0) // Si elle n'a plus de vie
                     {
-                        e.Fill = Brushes.Black;
+                        e.Fill = UNITEPASVIE;
                     }
                     else // Sinon
                     {
