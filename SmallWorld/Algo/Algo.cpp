@@ -44,14 +44,24 @@ int* Algo::creationCarte(int taille) {
 
 int Algo::positionnerJoueurHorsEau(int* carte, int taille, int pos, int dir){
 	bool trouve = false;
+	int position = pos;
 	while(!trouve){
-		if(carte[pos] == EAU){
-			pos = (pos+1)%(taille*taille);
+		if(carte[position] == EAU){
+			position = (position+dir);
+			//Si on a une ligne d'eau en haut ou en bas de la carte 
+			//il faut descendre ou monter la ligne de positionnement sinon en dehors de la carte
+			if ((position > ((taille * taille) - 1)) || (position < 0)) {
+				//Changement du sens de direction
+				dir = -dir;
+				//Changement de ligne
+				position = (position + taille * (dir)) + (dir);
+			}
+
 		}else{
 			trouve = true;
 		}
 	}
-	return pos;
+	return position;
 }
 
 int* Algo::positionnerJoueurs(int* carte, int taille){

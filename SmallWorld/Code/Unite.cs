@@ -77,7 +77,7 @@ namespace Code
 
         public Unite(Coord pos, Peuple peuple)
         {
-            this.pointVie = 2;
+            this.pointVie = 5;
             this.pointDefense = 1;
             this.pointAttaque = 2;
             this.position = pos;
@@ -144,7 +144,7 @@ namespace Code
             {
                 Unite meilleureU = adversaire.Peuple.meilleureUnite(caseAttaquee);
                 Random r = new Random();
-                nbRoundCombat = 3 + r.Next(Math.Max(this.PointVie, meilleureU.PointVie));
+                nbRoundCombat = 3 + r.Next(Math.Max(this.PointVie, meilleureU.PointVie)-1);
 
                 gagne = this.combat(meilleureU, nbRoundCombat);
 
@@ -170,23 +170,26 @@ namespace Code
 
         public bool combat(Unite adverse, int nbCombats)
         {
+            Random rand = new Random();
+
             while ((nbCombats > 0) && (pointVie > 0) && (adverse.pointVie > 0))
             {
-                double probaAttaquantPerd = 0.5; //Par défaut on est à 50%
+                double probaAttPerd = 0.5; 
                 if (PointAttaque != adverse.PointDefense)
                 {
-                    double coefficient = (double)(Math.Abs(PointAttaque - adverse.PointDefense)) / (double)(Math.Max(PointAttaque, adverse.PointDefense));
-                    double ponderation = coefficient * 0.5;
+                    double coeff = (double)(Math.Abs(PointAttaque - adverse.PointDefense)) / (double)(Math.Max(PointAttaque, adverse.PointDefense));
+                    double pond = coeff * 0.5;
 
                     if (PointAttaque > adverse.PointDefense)
-                        probaAttaquantPerd = 0.5 - ponderation;
+                        probaAttPerd = 0.5 - pond;
 
                     if (PointAttaque < adverse.PointDefense)
-                        probaAttaquantPerd = 0.5 + ponderation;
+                        probaAttPerd = 0.5 + pond;
                 }
 
-                Random r = new Random();
-                if (r.Next(100) < probaAttaquantPerd*100)
+
+
+                if (rand.Next(100) < probaAttPerd*100)
                 {
                     PointVie--;
                 }
@@ -218,12 +221,6 @@ namespace Code
             if (deplacementPossible)
             {
                 bool combatGagne = true;
-
-                if ((this.peuple is PeupleGaulois) && (Jeu.INSTANCE.fab.obtenirCase(caseDeplacement) is Plaine))
-                    PointDeplacement = PointDeplacement - 0.5;
-                else
-                    pointDeDeplacement--;
-
                 //Verifie s'il y'a un adversaire sur la case et donc combat
                 foreach (var uni in Jeu.INSTANCE.recupAdversaire().Peuple.Unites)
                 {
@@ -235,9 +232,24 @@ namespace Code
                         break;
                     }
                 }
+
                 //Si on a gagné le combat, on se deplace sur la case gagnée
-                if (combatGagne)
+                int nbUnitesAdversaires = 0;
+                foreach (var uni in Jeu.INSTANCE.recupAdversaire().Peuple.Unites)
+                {
+                    if (uni.Position.Equals(caseDeplacement))
+                    {
+                        nbUnitesAdversaires++;
+                    }
+                }
+                if (combatGagne && nbUnitesAdversaires == 0)
+                {
                     this.position = caseDeplacement;
+                    if ((this.peuple is PeupleGaulois) && (Jeu.INSTANCE.fab.obtenirCase(caseDeplacement) is Plaine))
+                        PointDeplacement = PointDeplacement - 0.5;
+                    else
+                        pointDeDeplacement--;
+                }
 
             }
 
