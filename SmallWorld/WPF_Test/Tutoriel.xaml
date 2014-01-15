@@ -84,6 +84,28 @@
                     <TextBlock HorizontalAlignment="Center">Tour</TextBlock>
                 </StackPanel>
             </Button>
+            
+            <Popup IsOpen="True" PlacementTarget="{Binding ElementName=BigDock}" Name="Tuto1" Placement="Center" Width="200" Height="200">
+                <StackPanel Background="White">
+                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180">Bienvenue dans SmallWorld ! </TextBlock>
+
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto1_OK_Click">
+                            <StackPanel>
+                                <TextBlock HorizontalAlignment="Right">OK</TextBlock>
+                                <TextBlock HorizontalAlignment="Right">Partie</TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
 
             <Popup IsOpen="False" PlacementTarget="{Binding ElementName=BigDock}" Name="FinPartie" Placement="Center" Width="600" Height="500">
                 <StackPanel Background="White">
