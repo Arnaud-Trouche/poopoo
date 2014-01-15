@@ -25,6 +25,9 @@ namespace WPF_Test
         String peuple1;
         String peuple2;
 
+        /// <summary>
+        /// Constructeur de Choix_Peuple.xaml
+        /// </summary>
         public Choix_Peuple()
         {
             InitializeComponent();
@@ -32,6 +35,12 @@ namespace WPF_Test
             peuple2 = "";
         }
 
+        /// <summary>
+        /// handler clic fleche retour en haut à gauche :
+        ///     - réaction retour à la page précédente 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Back_Top_Click(object sender, RoutedEventArgs e)
         {
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
@@ -39,6 +48,12 @@ namespace WPF_Test
             e.Handled = true;
         }
 
+        /// <summary>
+        /// handler clic sur une case P1 :
+        ///     - mise de la case cochée (sauf si le même peuple est coché pour l'autre peuple)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void P1_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton li = (sender as RadioButton);
@@ -51,6 +66,12 @@ namespace WPF_Test
             e.Handled = true;
         }
 
+        /// <summary>
+        /// handler clic sur une case P2 :
+        ///     - mise de la case cochée (sauf si le même peuple est coché pour l'autre peuple)
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void P2_Checked(object sender, RoutedEventArgs e)
         {
             RadioButton li = (sender as RadioButton);
@@ -63,6 +84,13 @@ namespace WPF_Test
             e.Handled = true;
         }
 
+        /// <summary>
+        /// handler du clic sur la flèche en bas à droite de la fenêtre :
+        ///     - transmission des infos au MonteurPartie
+        ///     - changement de page
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Next_Click(object sender, RoutedEventArgs e)
         {
             bool erreur = false;

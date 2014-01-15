@@ -26,10 +26,6 @@ namespace WPF_Test
         Stack<string> history;
         string pageActuelle;
 
-        WrapperAlgo wrap;
-        int taille;
-        String s;
-
         unsafe public MainWindow()
         {
 
@@ -39,7 +35,8 @@ namespace WPF_Test
         }
 
         /// <summary>
-        /// Change la page chargée dans la fenêtre
+        /// Change la page chargée dans la frame de la MainWindow
+        ///     - gère l'historique avec une pile
         /// </summary>
         /// <param name="adresse">L'adresse (le nom) de la page à charger dans la fenêtre</param>
         public void changePage(String adresse){ 
@@ -61,7 +58,7 @@ namespace WPF_Test
         }
 
         /// <summary>
-        /// Efface l'historique des pages visitées (mais remet dans l'historique le menu)
+        /// Efface l'historique des pages visitées (mais remet dans l'historique la page d'accueil)
         /// </summary>
         public void clearHistory()
         {

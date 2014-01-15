@@ -10,7 +10,7 @@
 
     <DockPanel Name="BigDock">
         <!-- HEADER -->
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Name="EnHaut">
             <Button Style="{DynamicResource FlecheBack}" Click="Back_Top_Click" ></Button>
             <Label Content="Tour " FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
             <Label Content="{Binding Tag, ElementName=LabelTourEnCours}" Name="LabelTourEnCours" FontSize="40" Margin="5,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
@@ -21,7 +21,7 @@
         </StackPanel>
 
         <!-- INFOS JOUEURS ET UNITE COTE DROIT -->
-        <StackPanel  DockPanel.Dock="Right" >
+        <StackPanel  DockPanel.Dock="Right"  Name="ADroite">
 
             <!-- INFOS UNITE EN COURS (VIDE SINON) -->
             <Grid Width="165" Background="#FFF0F0F0" Margin="0,10">
@@ -78,17 +78,23 @@
                 <Label Grid.Row="2" Grid.Column="1" Content="{Binding Tag, ElementName=Score2}" Name="Score2" FontSize="16"/>
             </Grid>
 
-            <Button Style="{DynamicResource MiniButtonStyle}"  Margin="0,10,0,0" Click="FinTour_Click" >
+            <Button Style="{DynamicResource MiniButtonStyle}"  Margin="0,10,0,0" >
                 <StackPanel>
                     <TextBlock HorizontalAlignment="Center">Fin</TextBlock>
                     <TextBlock HorizontalAlignment="Center">Tour</TextBlock>
                 </StackPanel>
             </Button>
-            
-            <Popup IsOpen="True" PlacementTarget="{Binding ElementName=BigDock}" Name="Tuto1" Placement="Center" Width="200" Height="200">
-                <StackPanel Background="White">
-                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180">Bienvenue dans SmallWorld ! </TextBlock>
 
+            <Popup IsOpen="True" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto1" Placement="Center" Width="350">
+                <StackPanel Background="White">
+                    <TextBlock  FontSize="22" Margin="5,2">
+                        Bienvenue dans SmallWorld !
+                   </TextBlock>
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        Le but du jeu est simple : vous prenez la tête d’un peuple et vous partez à la conquête d’une contrée ! 
+                        Vous avez le choix entre des Gaulois, des Nains ou des Vikings. 
+                    </TextBlock>
+                    
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -99,91 +105,119 @@
 
                         <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto1_OK_Click">
                             <StackPanel>
-                                <TextBlock HorizontalAlignment="Right">OK</TextBlock>
-                                <TextBlock HorizontalAlignment="Right">Partie</TextBlock>
+                                <TextBlock Margin="6,0">OK</TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>
                 </StackPanel>
             </Popup>
 
-            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=BigDock}" Name="FinPartie" Placement="Center" Width="600" Height="500">
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto2" Placement="Center" Width="350" VerticalOffset="-170">
                 <StackPanel Background="White">
-                    <TextBlock FontSize="75" HorizontalAlignment="Right" Margin="0,0,5,0" Foreground="SkyBlue" FontWeight="ExtraLight">
-                        Partie Terminée
+                    <TextBlock  FontSize="22" Margin="5,2">
+                        Découvrons l'interface !
                     </TextBlock>
-                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180" Name="PopUpResultat"></TextBlock>
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        En haut (fond grisé) sont indiqués le tour actuel, le nombre total de tour et le nom du Joueur qui doit jouer.
+                    </TextBlock>
 
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Nouvelle_PartieClick">
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto2_OK_Click">
                             <StackPanel>
-                                <TextBlock HorizontalAlignment="Right">Nouvelle</TextBlock>
-                                <TextBlock HorizontalAlignment="Right">Partie</TextBlock>
-                            </StackPanel>
-                        </Button>
-
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" Click="Menu_PrincipalClick">
-                            <StackPanel>
-                                <TextBlock HorizontalAlignment="Right">Menu</TextBlock>
-                                <TextBlock HorizontalAlignment="Right">Principal</TextBlock>
-                            </StackPanel>
-                        </Button>
-
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0" Click="QuitterClick">
-                            <StackPanel>
-                                <TextBlock HorizontalAlignment="Right">Quitter</TextBlock>
-                                <TextBlock HorizontalAlignment="Right">Small</TextBlock>
-                                <TextBlock HorizontalAlignment="Right">World</TextBlock>
+                                <TextBlock  Margin="6,0">OK</TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>
                 </StackPanel>
             </Popup>
 
-            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=BigDock}" Name="Sauver" Placement="Center" Width="600" Height="500">
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto3" Placement="Center" Width="350" HorizontalOffset="80">
                 <StackPanel Background="White">
-                    <TextBlock FontSize="75" HorizontalAlignment="Right" Margin="0,0,5,0" Foreground="SkyBlue" FontWeight="ExtraLight">
-                        Attention !
+                    <TextBlock  FontSize="22" Margin="5,2">
+                        Découvrons l'interface !
                     </TextBlock>
-                    <TextBlock  FontSize="22" HorizontalAlignment="Center" Margin="5,30" Height="180" > Voulez-vous sauvegarder la partie ?</TextBlock>
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        A droite (fond grisé) sont indiqués les informations sur l'unité survolée ou sur laquelle vous avez cliqué. 
+                        Sont également indiqués les informations sur chaque joueur.
+                        <LineBreak/>
+                        Le joueur actuel voit sa couleur de peuple mise en fond.
+                        Ici c'est le joueur 2 avec les gaulois.
+                    </TextBlock>
 
                     <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition />
                         </Grid.RowDefinitions>
 
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="0" Grid.Row="0" Click="SauverOuiClick">
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto3_OK_Click">
                             <StackPanel>
-                                <TextBlock HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock FontSize="30" HorizontalAlignment="Center">Oui</TextBlock>
+                                <TextBlock Margin="6,0">OK</TextBlock>
                             </StackPanel>
                         </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
 
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="1" Grid.Row="0" Click="SauverNonClick">
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto4" Placement="Left" HorizontalOffset="-135" Width="300" >
+                <StackPanel Background="White">
+                    <TextBlock  FontSize="22" Margin="5,2">
+                        Commençons à jouer !
+                    </TextBlock>
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        Pour jouer, rien de plus simple ! Si c'est votre tour, votre nom est affiché en haut et votre carte d'infos à droite 
+                        est colorée selon la couleur de votre peuple. Vous allez donc jouer pour Joueur2 avec les Vikings.
+                        <LineBreak/>
+                        Après avoir cliqué sur OK, cliquez sur l'une de vos unités (colorées en jaune).
+                    </TextBlock>
+
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto4_OK_Click">
                             <StackPanel>
-                                <TextBlock HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock FontSize="30" HorizontalAlignment="Center">Non</TextBlock>
+                                <TextBlock Margin="6,0">OK</TextBlock>
                             </StackPanel>
                         </Button>
+                    </Grid>
+                </StackPanel>
+            </Popup>
 
-                        <Button Style="{DynamicResource ButtonStyle}" Grid.Column="2" Grid.Row="0" Click="SauverCancelClick">
+            <Popup IsOpen="False" PlacementTarget="{Binding ElementName=ScrollCarte}" Name="Tuto5" Placement="Left" HorizontalOffset="-135" Width="300" >
+                <StackPanel Background="White">
+                    <TextBlock  FontSize="22" Margin="5,2">
+                        Bravo !
+                    </TextBlock>
+                    <TextBlock  FontSize="16" Margin="5,2" TextWrapping="Wrap">
+                        Vous pouvez voir que lorsque vous cliquez sur une unité, la carte s'eclaircit et 
+                        seules les cases sur les lesquelles vous pouvez vous déplacer sont colorés.
+                    </TextBlock>
+
+                    <Grid ShowGridLines="False" Margin="5" HorizontalAlignment="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <Button Style="{DynamicResource MiniButtonStyle}" Grid.Column="0" Grid.Row="0" Click="Tuto5_OK_Click">
                             <StackPanel>
-                                <TextBlock HorizontalAlignment="Right"></TextBlock>
-                                <TextBlock FontSize="30" HorizontalAlignment="Center">Annuler</TextBlock>
+                                <TextBlock Margin="6,0">OK</TextBlock>
                             </StackPanel>
                         </Button>
                     </Grid>

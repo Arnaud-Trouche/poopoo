@@ -21,19 +21,35 @@ namespace WPF_Test
     /// </summary>
     public partial class Accueil : Page
     {
+        /// <summary>
+        /// Constructeur d'accueil.xaml
+        /// </summary>
         public Accueil()
         {            
             InitializeComponent();
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
-            //parent.Closing += parent_Closing;
         }
 
+        /// <summary>
+        /// Handler du clic sur nouvelle partie
+        ///     - ouverture de la page difficulte.xaml
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Nouvelle_Partie_Click(object sender, RoutedEventArgs e)
         {
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
-            parent.changePage("Difficulte.xaml"); 
+            parent.changePage("Difficulte.xaml");
         }
 
+        /// <summary>
+        /// Handler clic sur restaurer partie
+        ///     - ouverture de la boite de dialogue ouvrir un ficheir
+        ///     - appel à la méthode de restauration
+        ///     ) ouverture de la carte
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Restaurer_Partie_Click(object sender, RoutedEventArgs e)
         {
             // Configure open file dialog box
@@ -52,20 +68,27 @@ namespace WPF_Test
             {
                 Jeu.INSTANCE.charger(dlg.FileName);
                 MainWindow parent = (Application.Current.MainWindow as MainWindow);
-                parent.changePage("Carte.xaml"); 
+                parent.changePage("Carte.xaml");
             }
         }
 
+        /// <summary>
+        /// handler click bouton quitter partie : appel à application.current.shutdown
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Quitter_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
-        public void parent_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
+        /// <summary>
+        /// handler click bouton tutoriel :
+        ///     - définition d'attributs "aléatoires"
+        ///     - lancement de la partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tuto_Click(object sender, RoutedEventArgs e)
         {
             //On définit les propriétés pour le tutoriel
@@ -76,8 +99,9 @@ namespace WPF_Test
             MonteurPartie.INSTANCE.P2 = Constants.GAULOIS;
             MonteurPartie.INSTANCE.initialiser();
             MainWindow parent = (Application.Current.MainWindow as MainWindow);
-            parent.changePage("Tutoriel.xaml"); 
+            parent.changePage("Tutoriel.xaml");
         }
+
 
     }
 }

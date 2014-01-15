@@ -29,6 +29,9 @@ namespace WPF_Test
         //Pour la sauvegarde menu ou pas
         bool retournerMenu = true;
 
+        /// <summary>
+        /// Constructeur de Carte.xaml
+        /// </summary>
         public unsafe Carte()
         {
             InitializeComponent();
@@ -258,6 +261,9 @@ namespace WPF_Test
             LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
         }
 
+        /// <summary>
+        /// Rafraichissement des scores des joueurs à chaque déplacement d'unité
+        /// </summary>
         private void miseAJourScore()
         {
             // On met à jour le score
@@ -267,6 +273,12 @@ namespace WPF_Test
             Score1.Tag = Jeu.INSTANCE.J1.Score;
             Score2.Tag = Jeu.INSTANCE.J2.Score;
         }
+
+
+
+        ///
+        ///  HANDLERS
+        ///
 
 
         /// <summary>
@@ -295,6 +307,13 @@ namespace WPF_Test
                 //DEPLACEMENT/ATTAQUE
                 (UniteSelectionnee.Tag as Unite).deplacer(new Coord(col,row));
                 miseAJourUnites();
+                if (Jeu.INSTANCE.J1.Peuple.nombreUnitesRestantes() == 0 || Jeu.INSTANCE.J2.Peuple.nombreUnitesRestantes() == 0)
+                {
+                    if (!Jeu.INSTANCE.finTour())
+                    {
+                        finPartie();
+                    }
+                }
 
                 //L'évènement a été traité, il ne faut pas appeler le handler de la fenêtre
                 e.Handled = true;                
@@ -406,7 +425,7 @@ namespace WPF_Test
         }        
 
         /// <summary>
-        /// Clic sur le bouton en haut à gauche
+        /// Handler du clic sur le bouton en haut à gauche
         ///     - Retour au menu
         ///     - Possibilité de sauvegarder
         /// </summary>
@@ -414,61 +433,22 @@ namespace WPF_Test
         /// <param name="e"></param>
         private void Back_Top_Click(object sender, RoutedEventArgs e)
         {
-            MenuOuPas();
-        }
-        
-        private void finPartie()
-        {
-            String blablafin = "";
-            if (Jeu.INSTANCE.NbTours != Jeu.INSTANCE.NbToursActuels)
-            {
-                // PARTIE PAS FINIE PAS D'EGALITE
-                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + ".";
-                blablafin += "\nL'adversaire est mort, score de ";
-                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
-                {
-                    blablafin += Jeu.INSTANCE.J1.Score;
-                }
-                else
-                {
-                    blablafin += Jeu.INSTANCE.J2.Score;
-                }
-                blablafin += " à O.\nBravo !";
-            }
-            else if (Jeu.INSTANCE.J1.Score == Jeu.INSTANCE.J2.Score)
-            {
-                // PARTIE FINIE EGALITE
-                blablafin += "Egalité " + Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score + "!  \nC'est pas de chance :/";
-            }
-            else
-            {
-                // PARTIE FINIE PAS D'EGALITE
-                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\net un score de ";
-                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
-                {
-                    blablafin += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
-                }
-                else
-                {
-                    blablafin += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
-                }
-                blablafin += "\nBravo !";
-            }            
-            PopUpResultat.Text = blablafin;
-            FinPartie.IsOpen = true;
-
-            //TODO et s'il y a égalité ??? :p
-        }
-        
-        void w_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            QuitterOuPas();
-            e.Cancel = true;
+            //Demander si l'utilisateur veut sauvegarder
+            Sauver.IsOpen = true;
+            retournerMenu = true;
         }
 
+        /// <summary>
+        /// Handler du clic sur le bouton de fin de tour
+        ///     - passage au tour suivant
+        ///     - si unité morte ou nbtours fini, appel à finDePartie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void FinTour_Click(object sender, RoutedEventArgs e)
         {
-            if (Jeu.INSTANCE.finTour()) {
+            if (Jeu.INSTANCE.finTour())
+            {
                 miseAJourUnites();
                 miseAJourTags();
             }
@@ -477,26 +457,24 @@ namespace WPF_Test
                 finPartie();
             }
         }
-
+        
         /// <summary>
-        /// Lance la boite de dialogue de sauvegarde dans le but de quitter le jeu
+        /// 
         /// </summary>
-        private void QuitterOuPas()
-        {            
-            //Demander si l'utilisateur veut sauvegarder
-            Sauver.IsOpen = true; 
-            retournerMenu = false;
-        }
-
-        /// <summary>
-        /// Lance la boite de dialogue de sauvegarde dans le but de retourner au menu
-        /// </summary>
-        private void MenuOuPas()
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        void w_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             //Demander si l'utilisateur veut sauvegarder
             Sauver.IsOpen = true;
-            retournerMenu = true;
+            retournerMenu = false;
+            e.Cancel = true;
         }
+
+
+        ///
+        ///  SAUVER / QUITTER
+        ///        
 
         /// <summary>
         /// Retourne au menu
@@ -506,10 +484,14 @@ namespace WPF_Test
             MainWindow w = (Application.Current.MainWindow as MainWindow);
             w.changePage("Accueil.xaml");
             w.clearHistory();
+            w.Closing -= w_Closing;
         }
 
         /// <summary>
-        /// Tente de sauvegarder la partie et dit ça c'est bien passé
+        /// Sauvegarder la partie :
+        ///     - ouverture de la boite de dialogue
+        ///     - si nom de fichier entré, appel à la sauvegarde et suite de l'action
+        ///     - sinon annuler
         /// </summary>
         /// <returns></returns>
         private bool sauver()
@@ -529,8 +511,6 @@ namespace WPF_Test
             // Process save file dialog box results
             if (result == true)
             {
-                //TODO faire la sauvegarde !
-                MessageBox.Show("Pas sauvegardé :p "+dlg.FileName);
                 Jeu.INSTANCE.sauvegarder(dlg.FileName);
                 return true;
             }
@@ -541,52 +521,16 @@ namespace WPF_Test
         }
 
         /// <summary>
-        /// Quitte la fenêtre
+        /// Quitte la fenêtre courante
         /// </summary>
         private void quitter()
         {
             Application.Current.Shutdown();
+            //TODO faire des free ? pas ici mais bon
         }
-
+                                      
         /// <summary>
-        /// Fin de partie : l'utilisateur veut une nouvelle partie
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Nouvelle_PartieClick(object sender, RoutedEventArgs e)
-        {
-            FinPartie.IsOpen = false;
-            MainWindow w = (Application.Current.MainWindow as MainWindow);
-            w.changePage("Difficulte.xaml");
-            w.clearHistory();
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// Fin de partie : l'utilisateur veut revenir au menu
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Menu_PrincipalClick(object sender, RoutedEventArgs e)
-        {
-            FinPartie.IsOpen = false;
-            retourMenu();
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// Fin de partie : l'utilisateur veut quitter le jeu
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void QuitterClick(object sender, RoutedEventArgs e)
-        {
-            FinPartie.IsOpen = false;
-            quitter();
-        }
-
-        /// <summary>
-        /// Boite sauver ou pas : l'utilisateur veut sauvegarder
+        /// Handler clic popup sauvegarde : l'utilisateur veut sauvegarder
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -608,7 +552,7 @@ namespace WPF_Test
         }
 
         /// <summary>
-        /// Boite sauver ou pas : l'utilisateur veut pas sauvegarder
+        /// Handler clic popup sauvegarde : l'utilisateur veut pas sauvegarder
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -627,7 +571,7 @@ namespace WPF_Test
         }
 
         /// <summary>
-        /// Boite sauver ou pas : l'utilisateur veut annuler
+        /// Handler clic popup sauvegarde : l'utilisateur veut annuler
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -636,5 +580,94 @@ namespace WPF_Test
             Sauver.IsOpen = false;
             e.Handled = true;
         }
+
+
+        ///
+        /// GESTION DE LA FIN DE PARTIE
+        ///       
+
+        /// <summary>
+        /// Gestionnaire de la fin de partie
+        ///     - affichage du score
+        ///     - popup de choix
+        /// </summary>
+        private void finPartie()
+        {
+            String messageResultat = "";
+            if (Jeu.INSTANCE.NbTours != Jeu.INSTANCE.NbToursActuels)
+            {
+                // PARTIE PAS FINIE PAS D'EGALITE
+                messageResultat += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + ".";
+                messageResultat += "\nL'adversaire est mort, score de ";
+                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
+                {
+                    messageResultat += Jeu.INSTANCE.J1.Score;
+                }
+                else
+                {
+                    messageResultat += Jeu.INSTANCE.J2.Score;
+                }
+                messageResultat += " à O.\nBravo !";
+            }
+            else if (Jeu.INSTANCE.J1.Score == Jeu.INSTANCE.J2.Score)
+            {
+                // PARTIE FINIE EGALITE
+                messageResultat += "Egalité " + Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score + "!  \nC'est pas de chance :/";
+            }
+            else
+            {
+                // PARTIE FINIE PAS D'EGALITE
+                messageResultat += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\net un score de ";
+                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
+                {
+                    messageResultat += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
+                }
+                else
+                {
+                    messageResultat += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
+                }
+                messageResultat += "\nBravo !";
+            }
+            PopUpResultat.Text = messageResultat;
+            FinPartie.IsOpen = true;
+        }
+
+        /// <summary>
+        /// Handler clic popup fin de partie : l'utilisateur veut une nouvelle partie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Nouvelle_PartieClick(object sender, RoutedEventArgs e)
+        {
+            FinPartie.IsOpen = false;
+            MainWindow w = (Application.Current.MainWindow as MainWindow);
+            w.changePage("Difficulte.xaml");
+            w.clearHistory();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Handler clic popup fin de partie : l'utilisateur veut revenir au menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Menu_PrincipalClick(object sender, RoutedEventArgs e)
+        {
+            FinPartie.IsOpen = false;
+            retourMenu();
+            e.Handled = true;
+        }
+
+        /// <summary>
+        /// Handler clic popup fin de partie : l'utilisateur veut quitter le jeu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void QuitterClick(object sender, RoutedEventArgs e)
+        {
+            FinPartie.IsOpen = false;
+            quitter();
+        }
+
     }
 }

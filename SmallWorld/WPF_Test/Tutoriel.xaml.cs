@@ -26,8 +26,14 @@ namespace WPF_Test
         Dictionary<String, SolidColorBrush> couleurPeuple;
         //Constante pour la transparence des cases non possibles
         const double OPACITE_NON_POSSIBLE = 0.85;
-        //Pour la sauvegarde menu ou pas
-        bool retournerMenu = true;
+        int[] carte = { 2, 3, 0, 1, 4, 3, 2, 1, 0, 1, 4, 4, 3, 0, 0, 1, 2, 3, 0, 4, 2, 3, 2, 4, 1 };
+
+        //Booleens d'activation des clicks
+        bool activerClickUnite = false;
+        bool activerClickCase = false;
+
+        //Booleens pour la gestion de l'affichage des popups
+        bool attenteClickUnite = false;
 
         public unsafe Tutoriel()
         {
@@ -37,13 +43,15 @@ namespace WPF_Test
             MainWindow w = Application.Current.MainWindow as MainWindow;
             w.clearHistory();
             w.MouseLeftButtonDown += new MouseButtonEventHandler(window_MouseLeftButtonDown);
-            w.Closing += w_Closing;
 
             //Définition de la couleur de chaque peuple
             couleurPeuple = new Dictionary<string, SolidColorBrush>();
             couleurPeuple.Add("Nains", Brushes.Red);
             couleurPeuple.Add("Gaulois", Brushes.Yellow);
             couleurPeuple.Add("Vikings", Brushes.Orange);
+
+            //on pine le joueur actif pour le tuto
+            Jeu.INSTANCE.JActif = Jeu.INSTANCE.J2;
 
         }
 
@@ -79,6 +87,17 @@ namespace WPF_Test
 
             //Remplissage de la carte
             remplirCarte(tailleCarte);
+
+            //on déplace les joueurs où on veut 
+            foreach (Unite u in Jeu.INSTANCE.J1.Peuple.Unites)
+            {
+                u.Position = new Coord(0,4);
+            }
+            foreach (Unite u in Jeu.INSTANCE.J2.Peuple.Unites)
+            {
+                u.Position = new Coord(4,0);
+            }
+            
 
             //Affichage des unités
             miseAJourUnites();
@@ -117,22 +136,23 @@ namespace WPF_Test
         /// <returns></returns>
         private Rectangle creerTuile(Coord c)
         {
+            //on remplit la carte "à la main" pour le tuto pour pouvoir commenter
             var tuile = new Rectangle();
-            var caseLogique = Jeu.INSTANCE.fab.obtenirCase(c);
+            var i = c.getIndiceTab1Dimension();
 
-            if (caseLogique is Desert)
+            if (carte[i] == 0)
                 tuile.Fill = Brushes.Bisque;
 
-            if (caseLogique is Eau)
+            if (carte[i] == 1)
                 tuile.Fill = Brushes.SkyBlue;
 
-            if (caseLogique is Foret)
+            if (carte[i] == 2)
                 tuile.Fill = Brushes.DarkGreen;
 
-            if (caseLogique is Montagne)
+            if (carte[i] == 3)
                 tuile.Fill = Brushes.BurlyWood;
 
-            if (caseLogique is Plaine)
+            if (carte[i] == 4)
                 tuile.Fill = Brushes.Green;
 
             tuile.Stroke = Brushes.WhiteSmoke;
@@ -141,9 +161,6 @@ namespace WPF_Test
             // mise à jour des attributs (column et Row) référencant la position dans la grille
             Grid.SetColumn(tuile, c.X);
             Grid.SetRow(tuile, c.Y);
-
-            //lien avec la case logique
-            tuile.Tag = caseLogique;
 
             // enregistrement d'un écouteur d'evt sur la tuile : 
             tuile.MouseLeftButtonDown += new MouseButtonEventHandler(tuile_MouseLeftButtonDown);
@@ -259,6 +276,9 @@ namespace WPF_Test
             LabelTotalTour.Tag = Jeu.INSTANCE.NbTours;
         }
 
+        /// <summary>
+        /// Rafraichissement du Score à la fin du Tour
+        /// </summary>
         private void miseAJourScore()
         {
             // On met à jour le score
@@ -280,6 +300,8 @@ namespace WPF_Test
         /// <param name="e"></param>
         private void tuile_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (!activerClickCase) return;
+
             var rectangle = sender as Rectangle;
             //var caseLogique = rectangle.Tag as iCase;
 
@@ -315,6 +337,12 @@ namespace WPF_Test
         /// <param name="e"></param>
         private void unite_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            if (!activerClickUnite) return;
+            if (attenteClickUnite)
+            {
+                Tuto5.IsOpen = true;
+                attenteClickUnite = false;
+            }
             var ellipse = sender as Ellipse;
             var uniteLogique = ellipse.Tag as Unite;
 
@@ -416,233 +444,75 @@ namespace WPF_Test
         /// <param name="e"></param>
         private void Back_Top_Click(object sender, RoutedEventArgs e)
         {
-            MenuOuPas();
-        }
-
-        private void finPartie()
-        {
-            String blablafin = "";
-            if (Jeu.INSTANCE.NbTours != Jeu.INSTANCE.NbToursActuels)
-            {
-                // PARTIE PAS FINIE PAS D'EGALITE
-                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + ".";
-                blablafin += "\nL'adversaire est mort, score de ";
-                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
-                {
-                    blablafin += Jeu.INSTANCE.J1.Score;
-                }
-                else
-                {
-                    blablafin += Jeu.INSTANCE.J2.Score;
-                }
-                blablafin += " à O.\nBravo !";
-            }
-            else if (Jeu.INSTANCE.J1.Score == Jeu.INSTANCE.J2.Score)
-            {
-                // PARTIE FINIE EGALITE
-                blablafin += "Egalité " + Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score + "!  \nC'est pas de chance :/";
-            }
-            else
-            {
-                // PARTIE FINIE PAS D'EGALITE
-                blablafin += "C'est " + Jeu.INSTANCE.JVainqueur.Nom + " qui a gagné avec les " + Jeu.INSTANCE.JVainqueur.Peuple.ToString() + "\net un score de ";
-                if (Jeu.INSTANCE.JVainqueur == Jeu.INSTANCE.J1)
-                {
-                    blablafin += Jeu.INSTANCE.J1.Score + " à " + Jeu.INSTANCE.J2.Score;
-                }
-                else
-                {
-                    blablafin += Jeu.INSTANCE.J2.Score + " à " + Jeu.INSTANCE.J1.Score;
-                }
-                blablafin += "\nBravo !";
-            }
-            PopUpResultat.Text = blablafin;
-            FinPartie.IsOpen = true;
-
-            //TODO et s'il y a égalité ??? :p
-        }
-
-        void w_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            QuitterOuPas();
-            e.Cancel = true;
-        }
-
-        private void FinTour_Click(object sender, RoutedEventArgs e)
-        {
-            if (Jeu.INSTANCE.finTour())
-            {
-                miseAJourUnites();
-                miseAJourTags();
-            }
-            else
-            {
-                finPartie();
-            }
-        }
-
-        /// <summary>
-        /// Lance la boite de dialogue de sauvegarde dans le but de quitter le jeu
-        /// </summary>
-        private void QuitterOuPas()
-        {
-            //Demander si l'utilisateur veut sauvegarder
-            Sauver.IsOpen = true;
-            retournerMenu = false;
-        }
-
-        /// <summary>
-        /// Lance la boite de dialogue de sauvegarde dans le but de retourner au menu
-        /// </summary>
-        private void MenuOuPas()
-        {
-            //Demander si l'utilisateur veut sauvegarder
-            Sauver.IsOpen = true;
-            retournerMenu = true;
-        }
-
-        /// <summary>
-        /// Retourne au menu
-        /// </summary>
-        private void retourMenu()
-        {
             MainWindow w = (Application.Current.MainWindow as MainWindow);
             w.changePage("Accueil.xaml");
             w.clearHistory();
         }
+        
 
+
+        
         /// <summary>
-        /// Tente de sauvegarder la partie et dit ça c'est bien passé
-        /// </summary>
-        /// <returns></returns>
-        private bool sauver()
-        {
-            // Configure save file dialog box
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "Partie"; // Default file name
-            dlg.DefaultExt = ".sw"; // Default file extension
-            dlg.Filter = "Parties SmallWolrd (.sw)|*.sw"; // Filter files by extension
-            dlg.AddExtension = true;
-            dlg.OverwritePrompt = true;
-            dlg.Title = "Sauvegarder la partie";
-
-            // Show save file dialog box
-            Nullable<bool> result = dlg.ShowDialog();
-
-            // Process save file dialog box results
-            if (result == true)
-            {
-                //TODO faire la sauvegarde !
-                MessageBox.Show("Pas sauvegardé :p " + dlg.FileName);
-                Jeu.INSTANCE.sauvegarder(dlg.FileName);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Quitte la fenêtre
-        /// </summary>
-        private void quitter()
-        {
-            Application.Current.Shutdown();
-        }
-
-        /// <summary>
-        /// Fin de partie : l'utilisateur veut une nouvelle partie
+        /// Réaction à un click sur le Ok de la première page du tuto
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Nouvelle_PartieClick(object sender, RoutedEventArgs e)
-        {
-            FinPartie.IsOpen = false;
-            MainWindow w = (Application.Current.MainWindow as MainWindow);
-            w.changePage("Difficulte.xaml");
-            w.clearHistory();
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// Fin de partie : l'utilisateur veut revenir au menu
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Menu_PrincipalClick(object sender, RoutedEventArgs e)
-        {
-            FinPartie.IsOpen = false;
-            retourMenu();
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// Fin de partie : l'utilisateur veut quitter le jeu
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void QuitterClick(object sender, RoutedEventArgs e)
-        {
-            FinPartie.IsOpen = false;
-            quitter();
-        }
-
-        /// <summary>
-        /// Boite sauver ou pas : l'utilisateur veut sauvegarder
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SauverOuiClick(object sender, RoutedEventArgs e)
-        {
-            Sauver.IsOpen = false;
-            if (sauver())
-            {
-                if (retournerMenu)
-                {
-                    retourMenu();
-                }
-                else
-                {
-                    quitter();
-                }
-            }
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// Boite sauver ou pas : l'utilisateur veut pas sauvegarder
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SauverNonClick(object sender, RoutedEventArgs e)
-        {
-            Sauver.IsOpen = false;
-            if (retournerMenu)
-            {
-                retourMenu();
-            }
-            else
-            {
-                quitter();
-            }
-            e.Handled = true;
-        }
-
-        /// <summary>
-        /// Boite sauver ou pas : l'utilisateur veut annuler
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SauverCancelClick(object sender, RoutedEventArgs e)
-        {
-            Sauver.IsOpen = false;
-            e.Handled = true;
-        }
-
         private void Tuto1_OK_Click(object sender, RoutedEventArgs e)
         {
             Tuto1.IsOpen = false;
+            Tuto2.IsOpen = true;
+            EnHaut.Background = Brushes.Gray;
         }
+
+        /// <summary>
+        /// Réaction à un click sur le Ok de la 2e page du tuto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tuto2_OK_Click(object sender, RoutedEventArgs e)
+        {
+            EnHaut.Background = null;
+            Tuto2.IsOpen = false;
+            Tuto3.IsOpen = true;
+            ADroite.Background = Brushes.Gray;
+        }
+
+        /// <summary>
+        /// Réaction à un click sur le Ok de la 3e page du tuto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tuto3_OK_Click(object sender, RoutedEventArgs e)
+        {                        
+            ADroite.Background = null;
+            Tuto3.IsOpen = false;
+            Tuto4.IsOpen = true;
+        }
+
+        /// <summary>
+        /// Réaction à un click sur le Ok de la 4e page du tuto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tuto4_OK_Click(object sender, RoutedEventArgs e)
+        {
+            Tuto4.IsOpen = false;
+            activerClickUnite = true;
+            attenteClickUnite = true;
+            //Tuto5.IsOpen = true;
+        }
+
+        /// <summary>
+        /// Réaction à un click sur le Ok de la 5e page du tuto
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Tuto5_OK_Click(object sender, RoutedEventArgs e)
+        {
+            Tuto5.IsOpen = false;
+            //Tuto5.IsOpen = true;
+        }
+
+
     }
 }
