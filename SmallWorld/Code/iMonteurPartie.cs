@@ -9,8 +9,5 @@ namespace Code
     {
         bool initialiser();
 
-        bool restaurer();
-
-        bool sauvegarder();
     }
 }

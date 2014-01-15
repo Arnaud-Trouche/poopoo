@@ -5,6 +5,11 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe représentant un Peuple 
+    /// Un peuple contient sa liste d'unités. 
+    /// Possède des méthodes renvoyant le nombres d'unités restantes, le nombre d'unités sur une case,...
+    /// </summary>
     [Serializable]
     public class Peuple : iPeuple
     {
@@ -19,6 +24,9 @@ namespace Code
             }
         }
         
+        /// <summary>
+        ///Remet le point de déplacement aux unités du peuple pour commencer un nouveau tour de jeu.
+        /// </summary>
         public void  remettrePtDeplacement(){
             foreach (Unite unite in Unites)
             {
@@ -26,13 +34,12 @@ namespace Code
             }
 
         }
-        /**
-    * @fn meilleureUnite(List<Unite> listeUnite)
-    * @brief Récupère la meilleure unité défensive de la list
-    * 
-    * @param List<Unite> <b>listeUnite</b> la liste d'unité
-    * @return Unite la meilleure unité défensive
-    */
+       
+        /// <summary>
+        /// Récupère la meilleur unités ennemie (défense) présente sur la case pos.
+        /// </summary>
+        /// <param name="pos">Case où la recherche se réalise</param>
+        /// <returns>La meilleur unité (défense) présente sur la case</returns>
         public Unite meilleureUnite(Coord pos)
         {
             List<Unite> lesUnites = getUnitesPos(pos);
@@ -56,6 +63,11 @@ namespace Code
 
         }
 
+        /// <summary>
+        /// Retourne la liste des unités présente sur la case passée en paramètre.
+        /// </summary>
+        /// <param name="pos">Case de recherche</param>
+        /// <returns>Retourne la liste des unités présente sur la case pos.</returns>
         public List<Unite> getUnitesPos(Coord pos)
         {
             List<Unite> res = new List<Unite>();
@@ -69,7 +81,11 @@ namespace Code
             return res;
         }
 
-
+        /// <summary>
+        /// Constructeur de Peuple. Initialise le nombre d'unités et ajoute le bon nombre d'unités à la position voulue.
+        /// </summary>
+        /// <param name="nbUnites">Nombre d'unités du peuple.</param>
+        /// <param name="pos">Position où les unités seront placées.</param>
          public Peuple(int nbUnites, Coord pos)
         {
             this.nbUnites = nbUnites;
@@ -81,7 +97,10 @@ namespace Code
             }
         }
 
-
+        /// <summary>
+        /// Retourne le nombre d'unités restantes.
+        /// </summary>
+        /// <returns>Retourne le nombre d'unités restantes.</returns>
         public int nombreUnitesRestantes()
         {
             int alive = 0;

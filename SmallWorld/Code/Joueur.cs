@@ -5,6 +5,11 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe répresentant un Joueur. 
+    /// Un joueur à un nom, un score et 
+    /// possède un Peuple (liste d'unités). 
+    /// </summary>
     [Serializable]
     public class Joueur : iJoueur
     {
@@ -52,16 +57,10 @@ namespace Code
          
         }
 
-        public Joueur(String name, Peuple hisPeuple)
-        {
-            nom = name;
-            peuple = hisPeuple;
-        }
-        public void augmenterScore(int delta)
-        {
-            this.score += delta;
-        }
-
+        /// <summary>
+        /// Calcule le score du joueur qui est la somme des scores de ses unités.
+        /// </summary>
+        /// <returns>Le score du joueur.</returns>
         public int calculeScore()
         {
             int score = 0;

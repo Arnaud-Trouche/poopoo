@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// Classe représentant un peuple de type Gaulois
+    /// </summary>
     [Serializable]
     public class PeupleGaulois : Peuple
     {

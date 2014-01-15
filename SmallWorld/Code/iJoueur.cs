@@ -7,6 +7,6 @@ namespace Code
 {
     public interface iJoueur
     {
-        void augmenterScore(int score);
+
     }
 }

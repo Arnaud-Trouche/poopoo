@@ -8,6 +8,10 @@ using System.IO;
     
 namespace Code
 {
+    /// <summary>
+    /// Classe modélisant le coeur du Jeu. Elle possède toutes les attributs
+    /// nécessaires au déroulement d'une partie.  
+    /// </summary>
     [Serializable]  
     public class Jeu : iJeu
     {                        
@@ -18,6 +22,7 @@ namespace Code
         public Joueur JActif { get; set; }
         public Joueur JVainqueur { get; set; }
         public int NbToursActuels { get; set; }
+        //Un tour de jeu est composée de deux actions (un par joueur)
         private int nbActions;
         public int NbTours { get; set; }
         public bool PartieFinie { get; set; }
@@ -29,17 +34,33 @@ namespace Code
 
 
   
-
+        /// <summary>
+        /// Constructeur de Jeu. Indique que la Partie n'est pas terminée.
+        /// </summary>
         public Jeu()
         {
            PartieFinie = false;
         }
 
+        /// <summary>
+        /// Retourne le joueur adversaire du joueur courant.
+        /// </summary>
+        /// <returns>Le joueur adversaire au joueur courant.</returns>
         public Joueur recupAdversaire(){
             if (j1Joue) return J2;
             return J1;
         }
     
+        /// <summary>
+        /// Méthode appelé par le Monteur en amont qui a créer et transmis tous les paramètres 
+        /// nécessaires à la création d'une partie.
+        /// </summary>
+        /// <param name="c">La carte du Jeu</param>
+        /// <param name="j1">Le Joueur 1</param>
+        /// <param name="j2">Le Joueur 2</param>
+        /// <param name="nombreTours">Le nombre de tours de la partie</param>
+        /// <param name="fab">La FabriqueCase</param>
+        /// <param name="tab">La carte unidimensionnelle qui sert pour le Wrapper</param>
         public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nombreTours, FabriqueCase fab, int[] tab)
         {            
             this.Carte = c;
@@ -48,6 +69,9 @@ namespace Code
             this.fab = fab;
             this.carte1D = tab;
             NbTours = nombreTours;
+            //Décalage du nombre d'actions et de tour pour 
+            //être en cohérence avec l'affichage dans l'interface 
+            //graphique (car Binding)
             nbActions = 2;
             NbToursActuels = 1;
 
@@ -65,21 +89,36 @@ namespace Code
 
         }
 
+        /// <summary>
+        /// Renvoie un tableau unidimensionnelle traduisant 
+        /// les cases où une unité est capable de se déplacer 
+        /// selon son état.
+        /// </summary>
+        /// <param name="u">L'unité considérée</param>
+        /// <returns>Tableau unidimensionnelle des cases où l'unité peut se déplacer</returns>
         public int[] suggestionDeplacement(Unite u)
         {
             return u.deplacementPossibles();
         }
 
+        /// <summary>
+        /// Retourne Vrai si la partie est terminée, faux sinon. Réalise des traitements 
+        /// si la partie est finie (affectation joueur ayant gagné).
+        /// </summary>
+        /// <returns>Retourne Vrai si la partie est terminée, faux sinon.</returns>
         public bool finTour()
         {
-            //Si il y a une fin de partie
+            //Plusieurs cas de fin de parite
+            //Un des joueurs sans unité ou alors nombre de tours épuisé
             if (J1.Peuple.nombreUnitesRestantes() == 0 || J2.Peuple.nombreUnitesRestantes() == 0 || nbActions == (NbTours*2 + 1))
             {
                 PartieFinie = true;
                 finPartie();
                 return false;
             }
-                
+
+            //Les actions sont incrémentées dès qu'un joueur prend la main
+            //donc un nbTour = 1/2 nbActions
             nbActions++;
             if ((nbActions % 2) == 0)
                     NbToursActuels++;

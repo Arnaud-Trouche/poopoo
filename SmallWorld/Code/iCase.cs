@@ -7,8 +7,6 @@ namespace Code
 {
     public interface iCase
     {
-        int getPtScore(int peuple);
-        bool deplacementPossible(int peuple, Coord init, Coord nouvelle);
 
     }
 }

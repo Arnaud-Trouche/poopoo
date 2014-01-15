@@ -26,6 +26,10 @@ namespace Code
             foret = new Foret();
         }
 
+        /// <summary>
+        /// Assigne le tableau contenant les types de cases par celui qui est passé en paramètre.
+        /// </summary>
+        /// <param name="tab">Tableau unidimensionnel qui sera affecté</param>
         public void setTabCases(ref int[] tab){
             casesInt = tab;
         }

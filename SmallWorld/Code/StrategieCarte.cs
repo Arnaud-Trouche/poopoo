@@ -5,6 +5,10 @@ using System.Text;
 
 namespace Code
 {
+    /// <summary>
+    /// StategieCarte permet de choisir la taille de la carte, le nombre d'unités et le nombre de tours
+    /// en fonction de la difficulté choisie
+    /// </summary>
     [Serializable]
     public abstract class StrategieCarte : iStrategieCarte
     {
@@ -26,19 +30,5 @@ namespace Code
         {
             return nbHauteurCases;
         }
-
-        //public void creerCarte()
-        //{
-        //    //On appelle la Fabrique le bon nombre de fois pour initialiser les bonnes cases à la bonne valeur
-        //    Coord c;
-        //    for (int i = 0; i < nbHauteurCases; i++)
-        //    {
-        //        for (int j = 0; i < nbHauteurCases; i++)
-        //        {
-        //            c = new Coord(i, j);
-        //            FabriqueCase.INSTANCE.obtenirCase(c);
-        //        }
-        //    }
-        //}
     }
 }
