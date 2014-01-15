@@ -13,7 +13,7 @@ using System.Windows;
 [assembly: AssemblyCompany("CozTrouche")]
 [assembly: AssemblyProduct("SmallWorld")]
 [assembly: AssemblyCopyright("Copyright © CozTrouche 2013")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("CozTrouche")]
 [assembly: AssemblyCulture("")]
 
 // L'affectation de la valeur false à ComVisible rend les types invisibles dans cet assembly 
