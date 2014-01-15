@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public class Peuple : iPeuple
     {
         protected int nbUnites;

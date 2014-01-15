@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public abstract class StrategieCarte : iStrategieCarte
     {
         protected int nbUnites;

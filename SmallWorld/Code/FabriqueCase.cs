@@ -5,10 +5,9 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public class FabriqueCase : iFabriqueCase
     {
-        public static FabriqueCase INSTANCE = new FabriqueCase();
-
         private Dictionary<Coord, iCase> mapCases;
         private int[] casesInt;
         private Montagne montagne;
@@ -17,7 +16,7 @@ namespace Code
         private Plaine plaine;
         private Foret foret;
 
-        private FabriqueCase()
+        public FabriqueCase()
         {
             mapCases = new Dictionary<Coord, iCase>();
             montagne = new Montagne();

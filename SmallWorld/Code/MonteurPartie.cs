@@ -6,6 +6,7 @@ using Wrapper;
 
 namespace Code
 {
+    [Serializable]
     public class MonteurPartie : iMonteurPartie
     {
         public static MonteurPartie INSTANCE = new MonteurPartie();
@@ -16,10 +17,12 @@ namespace Code
         private int p2;
         private Joueur joueur1;
         private Joueur joueur2;
+        private FabriqueCase fab;
 
         private int tailleCarte;
         private int nbTours;
         private int nbUnites;
+        [NonSerialized]
         private WrapperAlgo wrapperAlgo;
         private int[] carte1D;
         private unsafe int* tab1D;
@@ -167,6 +170,7 @@ namespace Code
            carte = new Carte();
            joueur1 = new Joueur();
            joueur2 = new Joueur();
+           fab = new FabriqueCase();
 
            switch (difficulte)
            {
@@ -201,7 +205,9 @@ namespace Code
        {
            carte.definirTaille(tailleCarte);
            //Récupération des caractéristiques
-           this.tailleCarte = Code.Carte.getTaille();
+           this.tailleCarte = carte.getTaille();
+           Jeu.INSTANCE.Carte = new Carte();
+           Jeu.INSTANCE.Carte.definirTaille(tailleCarte);
            this.nbTours = carte.NbTours;
            this.nbUnites = carte.NbUnites;
 
@@ -210,7 +216,7 @@ namespace Code
            for (i = 0; i < tailleCarte * tailleCarte; i++)
                carte1D[i] = tab1D[i];
 
-           FabriqueCase.INSTANCE.setTabCases(ref carte1D);
+           fab.setTabCases(ref carte1D);
 
            //carte.creerCarte();
        }
@@ -249,7 +255,7 @@ namespace Code
         }
        
         public void lancerJeu(){
-            Jeu.INSTANCE.lancerJeu(carte, joueur1, joueur2, nbTours);
+            Jeu.INSTANCE.lancerJeu(carte, joueur1, joueur2, nbTours, fab);
 
         }
     }

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Wrapper;
-
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+    
 namespace Code
 {
+    [Serializable]  
     public class Jeu : iJeu
     {                        
         public Carte Carte { get; set; }
@@ -18,12 +21,16 @@ namespace Code
         private int nbActions;
         public int NbTours { get; set; }
         public bool PartieFinie { get; set; }
+        public FabriqueCase fab { get; set; }
+
+        [NonSerialized]
         public static Jeu INSTANCE = new Jeu();
-        private WrapperAlgo wrapperAlgo;
+
+
+  
 
         public Jeu()
         {
-           wrapperAlgo = new WrapperAlgo();
            PartieFinie = false;
         }
 
@@ -32,11 +39,12 @@ namespace Code
             return J1;
         }
     
-        public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nombreTours)
+        public void lancerJeu(Carte c, Joueur j1, Joueur j2, int nombreTours, FabriqueCase fab)
         {            
             this.Carte = c;
             this.J1 = j1;
             this.J2 = j2;
+            this.fab = fab;
             NbTours = nombreTours;
             nbActions = 2;
             NbToursActuels = 1;
@@ -151,7 +159,34 @@ namespace Code
         {
             Random random = new Random();
             return random.Next(min, max);
-        } 
+        }
 
+        public void sauvegarder(String nomFich)
+        {          
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(nomFich, FileMode.Create, FileAccess.Write, FileShare.None);
+            formatter.Serialize(stream, this);
+            stream.Close();
+        }
+
+        public void charger(String nomFich)
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream(nomFich, FileMode.Open, FileAccess.Read, FileShare.Read);
+            Jeu obj = (Jeu)formatter.Deserialize(stream);
+            stream.Close();
+
+            this.Carte = obj.Carte;
+            this.J1 = obj.J1;
+            this.J2 = obj.J2;
+            this.j1Joue = obj.j1Joue;
+            this.JActif = obj.JActif;
+            this.JVainqueur = obj.JVainqueur;
+            this.NbToursActuels = obj.NbToursActuels;
+            this.nbActions = obj.nbActions;
+            this.PartieFinie = obj.PartieFinie;
+            this.NbTours = obj.NbTours;
+            this.fab = obj.fab;
+         }
     }
 }

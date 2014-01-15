@@ -5,12 +5,13 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public class Carte : iCarte
     {
         private iStrategieCarte strategie;
         private int nbTours;
         private int nbUnites;
-        private static int TAILLE;
+        private int taille;
 
         //public void creerCarte()
         //{
@@ -19,7 +20,7 @@ namespace Code
 
         public void definirTaille(int taille)
         {
-            Carte.TAILLE = taille;
+            this.taille = taille;
             switch (taille)
             {
                 case Code.Constants.DEMO:
@@ -63,9 +64,9 @@ namespace Code
             }
         }
 
-        public static int getTaille()
+        public int getTaille()
         {
-            return TAILLE;
+            return taille;
         }
     }
 }

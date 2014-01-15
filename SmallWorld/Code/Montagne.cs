@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public class Montagne : iCase
     {
         public int getPtScore(int peuple)

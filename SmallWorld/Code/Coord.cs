@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Code
 {
+    [Serializable]
     public class Coord
     {
         private int x;
@@ -17,7 +18,7 @@ namespace Code
         /// <param name="y1">Ordonnée</param>
         public Coord(int x1, int y1)
         {
-            int max = Carte.getTaille();
+            int max = Jeu.INSTANCE.Carte.getTaille();
             if ((x1 < 0 || x1 > max) && (y1 < 0 || y1 > max))
             {
                 throw new System.ArgumentOutOfRangeException();
@@ -35,7 +36,7 @@ namespace Code
         /// <param name="indiceTab1dimension">Coordonnée unidimensionnelle</param>
         public Coord(int indiceTab1dimension)
         {
-            int taille = Carte.getTaille();
+            int taille = Jeu.INSTANCE.Carte.getTaille();
             if (indiceTab1dimension < 0 || indiceTab1dimension > taille*taille)
             {
                 throw new System.ArgumentOutOfRangeException();
@@ -53,7 +54,7 @@ namespace Code
             }
             set
             {
-                int max = Carte.getTaille();
+                int max = Jeu.INSTANCE.Carte.getTaille();
                 if (value < 0 || value > max)
                 {
                     throw new System.ArgumentOutOfRangeException();
@@ -73,7 +74,7 @@ namespace Code
             }
             set
             {
-                int max = Carte.getTaille();
+                int max = Jeu.INSTANCE.Carte.getTaille();
                 if (value < 0 || value > max)
                 {
                     throw new System.ArgumentOutOfRangeException();
@@ -92,7 +93,7 @@ namespace Code
         /// <returns> Renvoie l'indice unidimensionnel d'une coordonnée en prenant en compte la largeur de la carte.</returns>
         public int getIndiceTab1Dimension()
         {
-            int max = Carte.getTaille();
+            int max = Jeu.INSTANCE.Carte.getTaille();
 
             return this.y * max + this.x;
         }
